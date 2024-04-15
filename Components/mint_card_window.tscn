@@ -173,30 +173,25 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="MintCardWindow" type="VBoxContainer"]
-auto_translate_mode = 1
 offset_right = 1443.0
 offset_bottom = 986.0
 size_flags_horizontal = 3
 script = ExtResource("1_ipx8t")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-auto_translate_mode = 1
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_765iu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel"]
-auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.900901
@@ -207,14 +202,12 @@ theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer"]
-auto_translate_mode = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
 theme_override_font_sizes/font_size = 15
@@ -224,12 +217,10 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer"]
-auto_translate_mode = 1
 layout_mode = 2
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("1_eqkwr")
@@ -237,13 +228,11 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="Panel" type="Panel" parent="."]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_b183w")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.010395
@@ -255,26 +244,22 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="Panel" type="Panel" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(258.42, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_duqd7")
 
 [node name="UploadBackground" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/Panel"]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(258.82, 400)
 layout_mode = 0
 offset_right = 258.82
@@ -285,7 +270,6 @@ stretch_mode = 5
 
 [node name="UploadLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/Panel/UploadBackground"]
 unique_name_in_owner = true
-auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -306,7 +290,6 @@ horizontal_alignment = 1
 
 [node name="UploadedImage" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/Panel/UploadBackground"]
 unique_name_in_owner = true
-auto_translate_mode = 1
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
@@ -319,7 +302,6 @@ stretch_mode = 5
 
 [node name="OpenFileDialogButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/Panel/UploadBackground"]
 unique_name_in_owner = true
-auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -349,7 +331,6 @@ theme_override_constants/separation = 10
 layout_mode = 2
 
 [node name="ClearImageButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -371,11 +352,9 @@ texture = ExtResource("4_wy8q7")
 expand_mode = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
 layout_mode = 2
 
 [node name="ResetFieldsButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer2"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -388,7 +367,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ad3ke")
 text = "RESET FIELDS"
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer2/ResetFieldsButton"]
-auto_translate_mode = 1
 layout_mode = 0
 offset_left = 9.0
 offset_top = 5.00001
@@ -402,11 +380,9 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
 layout_mode = 2
 
 [node name="ReviewButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer3"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -419,7 +395,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_c3lxy")
 text = "REVIEW"
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer3/ReviewButton"]
-auto_translate_mode = 1
 layout_mode = 0
 offset_left = 9.0
 offset_top = 5.00001
@@ -434,7 +409,6 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 30
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -445,7 +419,6 @@ theme_override_constants/separation = 2
 
 [node name="CardDescriptionField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -458,12 +431,10 @@ placeholder_text = "Description"
 caret_blink = true
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -474,7 +445,6 @@ horizontal_alignment = 1
 
 [node name="CardSupplyField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -486,12 +456,10 @@ placeholder_text = "Supply"
 caret_blink = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -519,7 +487,6 @@ theme_override_constants/separation = 10
 
 [node name="ArtistNameField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
@@ -531,7 +498,6 @@ caret_blink = true
 
 [node name="EraNameField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
@@ -543,7 +509,6 @@ caret_blink = true
 
 [node name="RarityNameField" type="OptionButton" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer" groups=["MintCardDropdowns"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
@@ -566,7 +531,6 @@ custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer2"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -577,7 +541,6 @@ text = "Artist Name"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer2"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -587,7 +550,6 @@ text = "Era "
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer2"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -598,7 +560,6 @@ horizontal_alignment = 1
 
 [node name="CardScoreBoostField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -611,12 +572,10 @@ placeholder_text = "ScoreBoost"
 caret_blink = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer3"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -627,7 +586,6 @@ horizontal_alignment = 1
 
 [node name="CardHealBoostField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -640,12 +598,10 @@ placeholder_text = "HealBoost"
 caret_blink = true
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer4"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -656,7 +612,6 @@ horizontal_alignment = 1
 
 [node name="CardLevelField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -669,12 +624,10 @@ placeholder_text = "Level"
 caret_blink = true
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer5"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -685,7 +638,6 @@ horizontal_alignment = 1
 
 [node name="CardExperienceField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -698,12 +650,10 @@ placeholder_text = "Experience"
 caret_blink = true
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer6"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -714,7 +664,6 @@ horizontal_alignment = 1
 
 [node name="CardStarsField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -727,12 +676,10 @@ placeholder_text = "Stars"
 caret_blink = true
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer7"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -742,7 +689,6 @@ text = "Stars"
 horizontal_alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 2
@@ -750,7 +696,6 @@ alignment = 1
 
 [node name="CardBreakthroughField" type="OptionButton" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3"]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -758,7 +703,6 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 22
 theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
-selected = 0
 item_count = 2
 popup/item_0/text = "False"
 popup/item_0/id = 0
@@ -766,12 +710,10 @@ popup/item_1/text = "True"
 popup/item_1/id = 1
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3/HBoxContainer5"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -782,7 +724,6 @@ horizontal_alignment = 1
 
 [node name="CardAwakenCountField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -795,12 +736,10 @@ placeholder_text = "AwakenCount"
 caret_blink = true
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3/HBoxContainer6"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -811,7 +750,6 @@ horizontal_alignment = 1
 
 [node name="CardBoostCountField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -824,12 +762,10 @@ placeholder_text = "BoostCount"
 caret_blink = true
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3/HBoxContainer7"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -840,7 +776,6 @@ horizontal_alignment = 1
 
 [node name="CardSlotField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -852,12 +787,10 @@ placeholder_text = "Slot"
 caret_blink = true
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3/HBoxContainer8"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -868,7 +801,6 @@ horizontal_alignment = 1
 
 [node name="CardTierField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -880,12 +812,10 @@ placeholder_text = "Tier"
 caret_blink = true
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3/HBoxContainer9"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -896,7 +826,6 @@ horizontal_alignment = 1
 
 [node name="CardPositionField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -908,12 +837,10 @@ placeholder_text = "Position"
 caret_blink = true
 
 [node name="HBoxContainer10" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer3/HBoxContainer10"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -923,7 +850,6 @@ text = "Position"
 horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 2
@@ -931,7 +857,6 @@ alignment = 1
 
 [node name="CardPosition2Field" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -943,12 +868,10 @@ placeholder_text = "Position2"
 caret_blink = true
 
 [node name="HBoxContainer10" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2/HBoxContainer10"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -959,7 +882,6 @@ horizontal_alignment = 1
 
 [node name="CardGroupField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2" groups=["MintCardFields"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -971,12 +893,10 @@ placeholder_text = "Group"
 caret_blink = true
 
 [node name="HBoxContainer11" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2/HBoxContainer11"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -987,7 +907,6 @@ horizontal_alignment = 1
 
 [node name="CardSkillField" type="OptionButton" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2" groups=["MintCardDropdowns"]]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -1004,12 +923,10 @@ popup/item_2/text = ""
 popup/item_2/id = 2
 
 [node name="HBoxContainer12" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
-auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2/HBoxContainer12"]
-auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -1019,7 +936,6 @@ text = "Card Skill"
 horizontal_alignment = 1
 
 [node name="Spacer" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
-auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(400, 135)
 layout_mode = 2
@@ -1033,7 +949,6 @@ caret_blink = true
 
 [node name="Spacer2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
 unique_name_in_owner = true
-auto_translate_mode = 1
 visible = false
 modulate = Color(0.815686, 0.0823529, 0.196078, 1)
 custom_minimum_size = Vector2(400, 50)
@@ -1046,7 +961,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spacer3" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
-auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
@@ -1061,7 +975,6 @@ caret_blink = true
 
 [node name="ErrorLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
 unique_name_in_owner = true
-auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
@@ -1073,7 +986,6 @@ vertical_alignment = 1
 
 [node name="FileDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
-auto_translate_mode = 1
 mode = 2
 title = "Open a File"
 initial_position = 2

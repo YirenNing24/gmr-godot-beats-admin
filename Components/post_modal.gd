@@ -35,7 +35,6 @@ signal list_card_request_completed
 
 @onready var transfer_button: Button = %TransferButton
 
-
 var card_filter: String = "Listed"
 var data_card: Dictionary
 var image_card: Texture

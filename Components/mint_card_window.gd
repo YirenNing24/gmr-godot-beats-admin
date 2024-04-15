@@ -106,6 +106,7 @@ func _on_artist_name_field_text_changed(artist_name_value: String) -> void:
 	if artist_name_value != "":
 		artist_name = artist_name_value.capitalize()
 		artist_name_field.text = artist_name
+		card_slot_field.text = artist_name
 		artist_name_field.caret_column = artist_name_field.text.length()
 		error_label.text = ""
 	else:
