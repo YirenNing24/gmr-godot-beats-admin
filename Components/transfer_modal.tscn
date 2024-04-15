@@ -288,6 +288,7 @@ theme_override_font_sizes/font_size = 24
 text = "Token ID:"
 
 [node name="TokenIDLabel" type="LineEdit" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer24"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(168, 34)
 layout_mode = 2
 size_flags_horizontal = 5

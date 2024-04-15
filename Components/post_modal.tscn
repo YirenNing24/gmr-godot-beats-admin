@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://50n8up858rsy"]
+[gd_scene load_steps=30 format=3 uid="uid://50n8up858rsy"]
 
 [ext_resource type="Script" path="res://Components/post_modal.gd" id="1_au6gk"]
 [ext_resource type="Texture2D" uid="uid://po7672807uk" path="res://Resources/Icons/confirm-icon.png" id="1_h6i5b"]
@@ -6,7 +6,6 @@
 [ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="3_i02kh"]
 [ext_resource type="PackedScene" uid="uid://d2ojx5i67mui0" path="res://Components/list_modal.tscn" id="5_1t7eg"]
 [ext_resource type="PackedScene" uid="uid://dnwjijxqcg7il" path="res://Components/transfer_modal.tscn" id="6_apv1o"]
-[ext_resource type="Script" path="res://Components/transfer_modal.gd" id="7_ydouc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3ygg"]
 bg_color = Color(0, 0, 0, 0.847059)
@@ -776,8 +775,8 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="TransferModal" parent="." instance=ExtResource("6_apv1o")]
+visible = false
 layout_mode = 0
-script = ExtResource("7_ydouc")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="list_for_sale_button_pressed" from="." to="ListModal" method="_on_post_modal_list_for_sale_button_pressed"]

@@ -102,8 +102,7 @@ func _on_list_for_sale_button_pressed() -> void:
 	list_for_sale_button_pressed.emit(data_card, image_card)
 
 func _on_transfer_button_pressed() -> void:
-
-
+	transfer_card_button_pressed.emit(data_card, image_card)
 
 func init_buttons() -> void:
 	for button: Button in get_tree().get_nodes_in_group("ListedButtons"):

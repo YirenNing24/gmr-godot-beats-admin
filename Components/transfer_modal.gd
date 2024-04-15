@@ -51,7 +51,6 @@ func _on_submit_button_button_pressed() -> void:
 			var token_id: String = data_card.id
 			_on_submitted(token_id)
 			
-			
 func _on_submitted(token_id: String) -> void:
 	var amount: int = int(amount_field.text)
 	var wallet_address: String = wallet_address_field.text
@@ -82,7 +81,6 @@ func _on_visibility_changed() -> void:
 			timer.time_left = 0
 		for field: LineEdit in get_tree().get_nodes_in_group("TransferItemFields"):
 			field.text = ""
-
 		error_message_label.text = ""
 	else:
 		pass
