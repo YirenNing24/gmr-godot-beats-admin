@@ -95,12 +95,12 @@ func field_checker() -> bool:
 	return true
 
 func _on_wallet_address_text_changed(wallet_address: String) -> void:
-	if wallet_address.substr(0, 2) == "0x":
+	if wallet_address.substr(0, 2) == "0x" and wallet_address.length() == 42:
 		wallet_address_field.text = wallet_address
 		wallet_address_field.caret_column = wallet_address_field.text.length()
 	else:
 		wallet_address_field.text = ""
-		error_message_label.text = 'Address should start with "0x"'
+		error_message_label.text = 'Address should start with "0x" or length is not 42-characters'
 
 func _on_amount_field_text_changed(amount_value: String) -> void:
 	if amount_value.is_valid_int():
