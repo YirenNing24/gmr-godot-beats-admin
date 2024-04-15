@@ -1,0 +1,649 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjiddvytdh4ip"]
+
+[ext_resource type="Script" path="res://Components/submit_confirmation_panel.gd" id="1_fgxkb"]
+[ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="1_kuvq5"]
+[ext_resource type="Texture2D" uid="uid://po7672807uk" path="res://Resources/Icons/confirm-icon.png" id="2_6srkn"]
+[ext_resource type="Texture2D" uid="uid://ccub0lo38tqbg" path="res://Resources/Card Samples/leeseo_lovedive_le_trainee.png" id="2_176li"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3ygg"]
+bg_color = Color(0, 0, 0, 0.847059)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_juile"]
+bg_color = Color(0.0705882, 0.054902, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypu32"]
+content_margin_left = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq37o"]
+bg_color = Color(0.0430392, 0.0430392, 0.0430392, 0.827451)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sfkx"]
+bg_color = Color(0.388235, 0.270588, 0.929412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgkgs"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="SubmitConfirmationPanel" type="Panel"]
+auto_translate_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_j3ygg")
+script = ExtResource("1_fgxkb")
+
+[node name="Panel" type="Panel" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1875
+anchor_top = 0.0833333
+anchor_right = 0.8125
+anchor_bottom = 0.916667
+offset_left = 250.0
+offset_right = -250.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_juile")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(562, 414)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.0
+offset_top = -430.0
+offset_right = 567.0
+offset_bottom = 430.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 169)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
+theme_override_font_sizes/font_size = 30
+text = "Submit Confirmation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("2_6srkn")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ErrorContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ErrorContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="ConfirmationContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="UploadedImage" type="TextureRect" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(310.59, 480)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_176li")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="HBoxContainer19" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer19"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Card Name:"
+
+[node name="CardName" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer19"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Artist:"
+
+[node name="ArtistLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Era:"
+
+[node name="EraLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Rarity:"
+
+[node name="RarityLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer6"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Scoreboost:"
+
+[node name="ScoreboostLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer6"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Healboost:"
+
+[node name="HealboostLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Level:"
+
+[node name="LevelLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer7"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Experience:"
+
+[node name="ExperienceLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer7"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer8"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Stars:"
+
+[node name="StarsLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer8"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer9"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Breakthrough: "
+
+[node name="BreakthroughLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer9"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer10"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Awaken Count: "
+
+[node name="AwakenLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer10"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer11"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Boost Count:"
+
+[node name="BoostCountLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer11"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer12"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Slot:"
+
+[node name="SlotLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer12"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer13" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer13"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Tier:"
+
+[node name="TierLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer13"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer14" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer14"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Position:"
+
+[node name="PositionLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer14"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer15" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer15"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Position 2:"
+
+[node name="Position2Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer15"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer16" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer16"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Group:"
+
+[node name="GroupLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer16"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer17" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer17"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Card Skill:"
+
+[node name="CardSkillLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer17"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer18" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer18"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+text = "Supply:"
+
+[node name="SupplyLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer18"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Please review the card stats before submitting"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Time left:  "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TimeLeftLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="SubmitButton" type="Button" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_ypu32")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_kq37o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8sfkx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vgkgs")
+theme_override_styles/normal = ExtResource("1_kuvq5")
+text = "SUBMIT"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

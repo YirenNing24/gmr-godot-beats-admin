@@ -1,0 +1,200 @@
+[gd_scene load_steps=9 format=3 uid="uid://csvvfp4iq5634"]
+
+[ext_resource type="Texture2D" uid="uid://cd5qfpsjv64db" path="res://Resources/Icons/no-picture-icon.png" id="1_3f5fy"]
+[ext_resource type="Texture2D" uid="uid://dvblrw27p5ven" path="res://Resources/Icons/inventory-icon.png" id="2_83ssp"]
+[ext_resource type="Texture2D" uid="uid://nrr3k6txmv1t" path="res://Resources/Icons/statistics-icon.png" id="3_6rom5"]
+[ext_resource type="Texture2D" uid="uid://c01q1y27fq0go" path="res://Resources/Icons/friends-icon.png" id="4_4lj40"]
+[ext_resource type="Texture2D" uid="uid://bahir5d8b2kdx" path="res://Resources/Icons/account-icon.png" id="5_8a7b8"]
+[ext_resource type="Texture2D" uid="uid://dplfjwrib6hov" path="res://Resources/Icons/mail-icon.png" id="6_x5c55"]
+[ext_resource type="Texture2D" uid="uid://c0lc0ks177x18" path="res://Resources/Icons/ban-icon.png" id="7_omtkx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp2t1"]
+bg_color = Color(0.0705882, 0.054902, 0.160784, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PlayerProfile" type="Control"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(1415, 130)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 0
+offset_right = 1416.0
+offset_bottom = 130.0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dp2t1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(1399, 113)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00635593
+anchor_top = 0.0692308
+anchor_right = 0.99435
+anchor_bottom = 0.938462
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(113, 0)
+layout_mode = 2
+
+[node name="PlayerDP" type="TextureRect" parent="Panel/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+modulate = Color(0.226707, 0.226707, 0.226707, 1)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_3f5fy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerUsername" type="Label" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 30
+text = "kaetaro13"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 20
+text = "Last Active:"
+
+[node name="LastActiveLabel" type="Label" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 20
+text = "7/24/2023 at 11:11 PM"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 20
+text = "Since: "
+
+[node name="SinceLabel" type="Label" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 20
+text = "7/24/2023"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 20
+text = "Account type: "
+
+[node name="AccountTypeLabel" type="Label" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 20
+text = "Google"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="InventoryButton" type="TextureButton" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture_normal = ExtResource("2_83ssp")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="StatsButton" type="TextureButton" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture_normal = ExtResource("3_6rom5")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="FriendsButton" type="TextureButton" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture_normal = ExtResource("4_4lj40")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AccountButton" type="TextureButton" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture_normal = ExtResource("5_8a7b8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MailButton" type="TextureButton" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture_normal = ExtResource("6_x5c55")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BanButton" type="TextureButton" parent="Panel/HBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture_normal = ExtResource("7_omtkx")
+ignore_texture_size = true
+stretch_mode = 0

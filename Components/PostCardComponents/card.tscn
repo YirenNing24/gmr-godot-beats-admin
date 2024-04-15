@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4myipxv7a2ns"]
+
+[ext_resource type="Texture2D" uid="uid://cd5qfpsjv64db" path="res://Resources/Icons/no-picture-icon.png" id="1_3b6gl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfsw2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olsvn"]
+
+[node name="Card" type="Control"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(129, 225)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardImage" type="TextureRect" parent="HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(129.6, 200.76)
+layout_mode = 2
+texture = ExtResource("1_3b6gl")
+expand_mode = 1
+
+[node name="CardNameLabel" type="Label" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Leeseo Lovedive Star"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="Button" type="Button" parent="."]
+auto_translate_mode = 1
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gfsw2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_olsvn")
+flat = true

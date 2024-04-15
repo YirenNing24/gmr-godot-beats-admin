@@ -1,0 +1,276 @@
+[gd_scene load_steps=16 format=3 uid="uid://dgo03ngjmc8p"]
+
+[ext_resource type="Texture2D" uid="uid://bx0brthougm5" path="res://Resources/Icons/add-user-pink-icon.png" id="1_a71bv"]
+[ext_resource type="Script" path="res://Components/post_card_bundle_window.gd" id="1_sd1ti"]
+[ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="3_qvh6k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itb4x"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+shadow_size = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ims8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bryb5"]
+content_margin_left = 0.0
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw2dl"]
+bg_color = Color(0.388235, 0.270588, 0.929412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atm1w"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dcdu"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvaog"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gildr"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ymf0"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oq3c5"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7gja"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thsov"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+
+[node name="PostCardBundleWindow" type="VBoxContainer" groups=["TaskWindows"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(1443, 986)
+anchors_preset = -1
+anchor_right = 0.751562
+anchor_bottom = 0.912963
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_sd1ti")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_itb4x")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.075
+anchor_right = 0.993763
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7ims8")
+text = "post card BUNDLE"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer/Label"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+anchor_left = 1.07333
+anchor_right = 1.20667
+anchor_bottom = 0.909091
+texture = ExtResource("1_a71bv")
+expand_mode = 1
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddCardButton" type="Button" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
+theme_override_styles/focus = SubResource("StyleBoxFlat_bryb5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lw2dl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_atm1w")
+theme_override_styles/normal = ExtResource("3_qvh6k")
+text = "ADD CARD"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="CardFilter" type="OptionButton" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 34)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxFlat_8dcdu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_fvaog")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_gildr")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_2ymf0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oq3c5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n7gja")
+selected = 0
+item_count = 2
+popup/item_0/text = "Listed"
+popup/item_0/id = 0
+popup/item_1/text = "Posted"
+popup/item_1/id = 1
+
+[node name="Panel" type="Panel" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_thsov")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.010395
+anchor_top = 0.0180467
+anchor_right = 0.991684
+anchor_bottom = 0.980892
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3

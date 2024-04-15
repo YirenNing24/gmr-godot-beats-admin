@@ -1,0 +1,449 @@
+[gd_scene load_steps=29 format=3 uid="uid://bnq1m5as3wuaj"]
+
+[ext_resource type="Texture2D" uid="uid://dpblib2iw1vs8" path="res://Resources/Logos/ b_coin_icon.png" id="1_v5xh8"]
+[ext_resource type="StyleBox" uid="uid://df5agxqinoq3w" path="res://Resources/CustomResource/notif_button.tres" id="2_4w10o"]
+[ext_resource type="Texture2D" uid="uid://db8vgoxj80i6w" path="res://Resources/Icons/bell-regular.png" id="2_jacfj"]
+[ext_resource type="PackedScene" uid="uid://cr4igrogtlxka" path="res://Components/dashboard_menu.tscn" id="4_u6gtv"]
+[ext_resource type="PackedScene" uid="uid://8qenah8ml0m7" path="res://Components/dashboard_window.tscn" id="5_5bj3f"]
+[ext_resource type="PackedScene" uid="uid://dlyu3q7co780a" path="res://Components/mint_card_window.tscn" id="6_05c8g"]
+[ext_resource type="PackedScene" uid="uid://c58q8vpc3bix8" path="res://Components/mint_card_bundle.tscn" id="7_nhffm"]
+[ext_resource type="PackedScene" uid="uid://dx6ilddy21g34" path="res://Components/contracts_window.tscn" id="8_tjohg"]
+[ext_resource type="PackedScene" uid="uid://dlu4hu7h3uqya" path="res://Components/add_user_window.tscn" id="9_bg83q"]
+[ext_resource type="PackedScene" uid="uid://xdgongc2fqn6" path="res://Modals/logout.tscn" id="9_osgux"]
+[ext_resource type="PackedScene" uid="uid://yk6ki28etggu" path="res://Components/players_list_window.tscn" id="10_fnyxl"]
+[ext_resource type="PackedScene" uid="uid://b0davdddepk4v" path="res://Components/notification_container.tscn" id="11_bk5q8"]
+[ext_resource type="PackedScene" uid="uid://oprwljn3eiv0" path="res://Components/post_card_window.tscn" id="11_plfoy"]
+[ext_resource type="PackedScene" uid="uid://dgo03ngjmc8p" path="res://Components/post_card_bundle_window.tscn" id="12_kr60y"]
+[ext_resource type="PackedScene" uid="uid://rw3ac10w1pgk" path="res://Components/update_listings_window.tscn" id="13_0ew6x"]
+[ext_resource type="PackedScene" uid="uid://bjiddvytdh4ip" path="res://Components/submit_confirmation_panel.tscn" id="14_y10sy"]
+[ext_resource type="PackedScene" uid="uid://50n8up858rsy" path="res://Components/post_modal.tscn" id="15_tdkvx"]
+[ext_resource type="PackedScene" uid="uid://cxh7pmywa2pla" path="res://Components/loading_panel.tscn" id="15_uawtf"]
+[ext_resource type="PackedScene" uid="uid://crjg7loomwq1" path="res://Components/card_bundle_modal.tscn" id="18_b23bo"]
+[ext_resource type="PackedScene" uid="uid://bhpk2s08oaokn" path="res://Components/confirm_password_modal.tscn" id="20_hx7xy"]
+
+[sub_resource type="GDScript" id="GDScript_1jxv4"]
+script/source = "extends Control
+
+@onready var name_initial_label: Label = %NameInitialLabel
+@onready var logout_modal: Panel = %Logout
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
+
+func _ready() -> void:
+	name_initial_label.text = USERDATA.username[0]
+	connect_signal()
+	
+func connect_signal() -> void:
+	BKMREngine.Websocket.notification_status.connect(_on_user_status_changed)
+	
+func _on_dash_board_menu_dashboard_menu_button_pressed(button_name: String) -> void:
+	for window: VBoxContainer in get_tree().get_nodes_in_group(\"TaskWindows\"):
+		if window.name == button_name:
+			window.visible = true
+		else:
+			window.visible = false
+	
+func _on_profile_button_pressed() -> void:
+	if logout_modal.visible:
+		logout_modal.visible = false
+	else:
+		logout_modal.visible = true
+
+func _on_logout_log_out_button_pressed() -> void:
+	BKMREngine.Auth.logout_player()
+
+func _on_user_status_changed(_status: Dictionary) -> void:
+	animation_player.play(\"OnlineStatus\")
+	
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kus1k"]
+content_margin_left = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0laq0"]
+content_margin_left = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgc6s"]
+content_margin_left = 1.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 180
+corner_radius_top_right = 180
+corner_radius_bottom_right = 180
+corner_radius_bottom_left = 180
+corner_detail = 20
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4v6y4"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xeip"]
+bg_color = Color(0.388235, 0.270588, 0.929412, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 180
+corner_radius_top_right = 180
+corner_radius_bottom_right = 180
+corner_radius_bottom_left = 180
+corner_detail = 20
+
+[sub_resource type="Animation" id="Animation_7jbqh"]
+resource_name = "OnlineStatus"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NotificationContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1590, 1082), Vector2(1590, 996), Vector2(1590, 996), Vector2(1590, 996), Vector2(1590, 1082)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hyg4v"]
+_data = {
+"OnlineStatus": SubResource("Animation_7jbqh")
+}
+
+[node name="Dashboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_1jxv4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.941146
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(345, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_v5xh8")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 1)
+theme_override_font_sizes/font_size = 18
+text = "GMR ADMIN"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="SearchField" type="LineEdit" parent="VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_kus1k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0laq0")
+placeholder_text = "Search"
+caret_blink = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer5"]
+layout_mode = 2
+alignment = 1
+
+[node name="NotificationButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer"]
+custom_minimum_size = Vector2(20, 25)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("2_4w10o")
+theme_override_styles/hover = ExtResource("2_4w10o")
+theme_override_styles/pressed = ExtResource("2_4w10o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kgc6s")
+icon = ExtResource("2_jacfj")
+expand_icon = true
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer/NotificationButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.36
+anchor_right = 1.2
+anchor_bottom = 0.96
+offset_right = 5.0
+offset_bottom = 5.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4v6y4")
+metadata/_edit_use_anchors_ = true
+
+[node name="NotificationCountLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer/NotificationButton/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.266667
+anchor_top = -0.366667
+anchor_right = 0.8
+anchor_bottom = 1.36667
+offset_top = 4.5
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 18
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 227
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer2"]
+clip_contents = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5xeip")
+
+[node name="NameInitialLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer2/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ProfileButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer2/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DashboardMenu" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("4_u6gtv")]
+layout_mode = 2
+
+[node name="DashboardWindow" parent="VBoxContainer/HBoxContainer2" groups=["TaskWindows"] instance=ExtResource("5_5bj3f")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MintCardWindow" parent="VBoxContainer/HBoxContainer2" groups=["TaskWindows"] instance=ExtResource("6_05c8g")]
+visible = false
+layout_mode = 2
+
+[node name="MintCardBundleWindow" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("7_nhffm")]
+visible = false
+layout_mode = 2
+
+[node name="ContractsWindow" parent="VBoxContainer/HBoxContainer2" groups=["TaskWindows"] instance=ExtResource("8_tjohg")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddUserWindow" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("9_bg83q")]
+visible = false
+layout_mode = 2
+
+[node name="PlayersListWindow" parent="VBoxContainer/HBoxContainer2" groups=["TaskWindows"] instance=ExtResource("10_fnyxl")]
+visible = false
+custom_minimum_size = Vector2(1443, 986)
+layout_mode = 2
+
+[node name="PostCardWindow" parent="VBoxContainer/HBoxContainer2" groups=["TaskWindows"] instance=ExtResource("11_plfoy")]
+visible = false
+layout_mode = 2
+
+[node name="PostCardBundleWindow" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("12_kr60y")]
+visible = false
+layout_mode = 2
+
+[node name="UpdateListingsWindow" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("13_0ew6x")]
+visible = false
+layout_mode = 2
+
+[node name="Logout" parent="." instance=ExtResource("9_osgux")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.825
+anchor_top = 0.0537037
+anchor_right = 0.940625
+anchor_bottom = 0.297222
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="NotificationContainer" parent="." instance=ExtResource("11_bk5q8")]
+layout_mode = 1
+anchor_left = -0.00104167
+anchor_top = -0.0898148
+anchor_right = -0.00104167
+anchor_bottom = -0.0898148
+offset_left = 1592.0
+offset_top = 1179.0
+offset_right = 1920.0
+offset_bottom = 1262.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_hyg4v")
+}
+
+[node name="SubmitConfirmationPanel" parent="." instance=ExtResource("14_y10sy")]
+visible = false
+z_index = 2
+layout_mode = 1
+
+[node name="PostModal" parent="." instance=ExtResource("15_tdkvx")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LoadingPanel" parent="." instance=ExtResource("15_uawtf")]
+visible = false
+z_index = 4
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="CardBundleModal" parent="." instance=ExtResource("18_b23bo")]
+visible = false
+z_index = 1
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ConfirmPasswordModal" parent="." instance=ExtResource("20_hx7xy")]
+visible = false
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer2/Panel/ProfileButton" to="." method="_on_profile_button_pressed"]
+[connection signal="dashboard_menu_button_pressed" from="VBoxContainer/HBoxContainer2/DashboardMenu" to="." method="_on_dash_board_menu_dashboard_menu_button_pressed"]
+[connection signal="request_completed" from="VBoxContainer/HBoxContainer2/MintCardWindow" to="LoadingPanel" method="_on_mint_card_window_request_completed"]
+[connection signal="review_button_pressed" from="VBoxContainer/HBoxContainer2/MintCardWindow" to="SubmitConfirmationPanel" method="_on_mint_card_window_review_button_pressed"]
+[connection signal="update_contract_request_completed" from="VBoxContainer/HBoxContainer2/ContractsWindow" to="LoadingPanel" method="_on_contracts_window_update_contract_request_completed"]
+[connection signal="update_contract_request_sent" from="VBoxContainer/HBoxContainer2/ContractsWindow" to="LoadingPanel" method="_on_contracts_window_update_contract_request_sent"]
+[connection signal="get_cards_request_completed" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="LoadingPanel" method="_on_post_card_window_get_cards_request_completed"]
+[connection signal="get_cards_request_sent" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="LoadingPanel" method="_on_post_card_window_get_cards_request_sent"]
+[connection signal="selected_post_card" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="PostModal" method="_on_post_card_window_selected_post_card"]
+[connection signal="update_card_button_pressed" from="VBoxContainer/HBoxContainer2/UpdateListingsWindow" to="ConfirmPasswordModal" method="_on_update_listings_window_update_card_button_pressed"]
+[connection signal="log_out_button_pressed" from="Logout" to="." method="_on_logout_log_out_button_pressed"]
+[connection signal="request_sent" from="SubmitConfirmationPanel" to="LoadingPanel" method="_on_submit_confirmation_panel_request_sent"]
+[connection signal="list_card_request_completed" from="PostModal" to="LoadingPanel" method="_on_post_modal_list_card_request_completed"]
+[connection signal="list_card_request_sent" from="PostModal" to="LoadingPanel" method="_on_post_modal_list_card_request_sent"]
+[connection signal="get_cards_request_completed" from="CardBundleModal" to="LoadingPanel" method="_on_card_bundle_modal_get_cards_request_completed"]
+[connection signal="get_cards_request_sent" from="CardBundleModal" to="LoadingPanel" method="_on_card_bundle_modal_get_cards_request_sent"]
+[connection signal="selected_post_card" from="CardBundleModal" to="PostModal" method="_on_card_bundle_modal_selected_post_card"]
+[connection signal="password_field_submitted" from="ConfirmPasswordModal" to="VBoxContainer/HBoxContainer2/UpdateListingsWindow" method="_on_confirm_password_modal_password_field_submitted"]

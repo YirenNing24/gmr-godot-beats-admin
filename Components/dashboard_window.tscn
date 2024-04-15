@@ -1,0 +1,1606 @@
+[gd_scene load_steps=32 format=3 uid="uid://8qenah8ml0m7"]
+
+[ext_resource type="Script" path="res://Components/dashboard_window.gd" id="1_5r3dl"]
+[ext_resource type="Texture2D" uid="uid://bniv0shderp01" path="res://Resources/ColoredIcons/bee-icon.png" id="1_gq08j"]
+[ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="2_tct64"]
+[ext_resource type="Texture2D" uid="uid://bhaqka4cwk5ok" path="res://Resources/Icons/trend-up-icon.png" id="3_lhv4x"]
+[ext_resource type="Texture2D" uid="uid://djcmdiee1trxt" path="res://Resources/Icons/profile-icon.png" id="4_c6m7t"]
+[ext_resource type="Texture2D" uid="uid://jqttybc1aswt" path="res://Resources/Icons/product-icon.png" id="5_ljcin"]
+[ext_resource type="Texture2D" uid="uid://dgjj02q4woe44" path="res://Resources/Icons/bitcoin-icon.png" id="6_ew2ei"]
+[ext_resource type="Texture2D" uid="uid://cso7fbi14a67b" path="res://Resources/Icons/trend-up-arrow-icon.png" id="7_1ugl7"]
+[ext_resource type="Texture2D" uid="uid://dbo4g2kg7ap52" path="res://Resources/Icons/colored-card-icon.png" id="8_r4tkx"]
+[ext_resource type="Texture2D" uid="uid://dk23jev0n87n2" path="res://Resources/Icons/card-bundle-icon-color.png" id="9_jiueu"]
+[ext_resource type="Texture2D" uid="uid://byh0oktsoq0kk" path="res://Resources/Icons/power-up-color-icon.png" id="10_5hpvh"]
+[ext_resource type="Texture2D" uid="uid://e5gkef5recl4" path="res://Resources/Icons/char-bar-colored-icon.png" id="11_dm8eu"]
+[ext_resource type="Texture2D" uid="uid://cygcteofiugls" path="res://Resources/Icons/refunds-icon.png" id="12_jif7g"]
+[ext_resource type="Texture2D" uid="uid://op8beaow0aug" path="res://Resources/Icons/escalation-icon.png" id="13_trckk"]
+[ext_resource type="Texture2D" uid="uid://d3fxawy6ee8g4" path="res://Resources/Icons/query-icon.png" id="14_la3gd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2bdj"]
+bg_color = Color(0.0705882, 0.054902, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgimn"]
+content_margin_left = 0.0
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34fap"]
+bg_color = Color(0.388235, 0.270588, 0.929412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rq6mm"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ja13k"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyd3g"]
+bg_color = Color(0.337255, 0.792157, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xe7vh"]
+bg_color = Color(1, 0.705882, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmeqk"]
+bg_color = Color(0.0862745, 0.694118, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ydje"]
+bg_color = Color(0.117647, 0.101961, 0.207843, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snwgq"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x80lh"]
+bg_color = Color(0.0862745, 0.694118, 1, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbmya"]
+bg_color = Color(1, 0.705882, 0, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnuqf"]
+bg_color = Color(0.337255, 0.792157, 0, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eafnn"]
+bg_color = Color(0.764706, 0, 0.0627451, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gem0o"]
+bg_color = Color(1, 0.705882, 0, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od4gq"]
+bg_color = Color(0.0862745, 0.694118, 1, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+corner_detail = 20
+
+[node name="DashBoardWindow" type="VBoxContainer"]
+auto_translate_mode = 1
+offset_right = 1443.0
+offset_bottom = 986.0
+size_flags_horizontal = 3
+script = ExtResource("1_5r3dl")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="PersonalCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(500, 190)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(461, 169)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.5
+offset_top = -84.5
+offset_right = 230.5
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 169)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GreetingsLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Good day"
+horizontal_alignment = 1
+
+[node name="UsernameLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_gq08j")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Breakfast yet?"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="SalesEarningLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
+theme_override_font_sizes/font_size = 25
+text = "$48.5k"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="SignInButon" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer/PersonalCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_kgimn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_34fap")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rq6mm")
+theme_override_styles/normal = ExtResource("2_tct64")
+text = "VIEW SALES"
+
+[node name="BriefSummaryCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(600, 190)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(461, 169)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -452.0
+offset_top = -84.5
+offset_right = 449.0
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 169)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GreetingsLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Brief Summary"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Total 48.5% growth  this month"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(59, 59)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ja13k")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lhv4x")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Sales"
+
+[node name="GreetingsLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "$245k"
+vertical_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(59, 59)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yyd3g")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2/Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_c6m7t")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Players"
+
+[node name="GreetingsLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "$245k"
+vertical_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer3"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(59, 59)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe7vh")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer3/Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_ljcin")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer3/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Merchandise"
+
+[node name="GreetingsLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer3/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "$245k"
+vertical_alignment = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer4"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(59, 59)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bmeqk")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer4/Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ew2ei")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer4"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer4/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Revenue"
+
+[node name="GreetingsLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/BriefSummaryCard/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer4/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "$245k"
+vertical_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="WeeklyOverview" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(461, 169)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -164.0
+offset_right = 231.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 169)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Weekly Overview"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="SignInButon" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer2/WeeklyOverview/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_kgimn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_34fap")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rq6mm")
+theme_override_styles/normal = ExtResource("2_tct64")
+text = "VIEW REPORT"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TotalEarningCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = -171.0
+offset_right = 215.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 169)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Total Earnings"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="GreetingsLabel" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
+theme_override_font_sizes/font_size = 35
+text = "$48.5k"
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("7_1ugl7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.890196, 0, 1)
+text = "10%"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Compared to $43.65k last week"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ydje")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_r4tkx")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 18
+text = "Cards"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Seulgi LE, Irene LE"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.52
+alignment = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "$7,241,994.65"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_styles/background = SubResource("StyleBoxFlat_snwgq")
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ydje")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer/Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_jiueu")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 18
+text = "Card Bundles"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Seulgi LE, Irene LE"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.52
+alignment = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "$7,241,994.65"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_styles/background = SubResource("StyleBoxFlat_x80lh")
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer4/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ydje")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_5hpvh")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 18
+text = "Card Power-ups"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Seulgi LE, Irene LE"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.52
+alignment = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "$7,241,994.65"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xbmya")
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="TotalEarningCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0892857
+anchor_top = 0.0838323
+anchor_right = 0.915179
+anchor_bottom = 0.94012
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hnuqf")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer/VBoxContainer/Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_dm8eu")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 18
+text = "Total Earning"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 24
+text = "$25.6K"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.890196, 0, 1)
+text = "+10%"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/TotalEarningCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Weekly profit"
+
+[node name="RefundCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0892857
+anchor_top = 0.0838323
+anchor_right = 0.915179
+anchor_bottom = 0.94012
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eafnn")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer/VBoxContainer/Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_jif7g")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 18
+text = "Refunds"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 24
+text = "$25.6K"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.890196, 0, 1)
+text = "+16%"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/RefundCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Past Week"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="EscalationCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0892857
+anchor_top = 0.0838323
+anchor_right = 0.915179
+anchor_bottom = 0.94012
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gem0o")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer/VBoxContainer/Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_trckk")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 18
+text = "Escalations"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 24
+text = "666"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.890196, 0, 1)
+text = "+10%"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/EscalationCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Weekly profit"
+
+[node name="SupportQueriesCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0892857
+anchor_top = 0.0838323
+anchor_right = 0.915179
+anchor_bottom = 0.94012
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_od4gq")
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer/VBoxContainer/Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_la3gd")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 18
+text = "Support Queries"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 24
+text = "25"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.890196, 0, 1)
+text = "+22%"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer2/SupportQueriesCard/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Weekly profit"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="SalesByCountryCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/SalesByCountryCard"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(461, 169)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -164.0
+offset_right = 231.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/SalesByCountryCard/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 169)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/SalesByCountryCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer3/SalesByCountryCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Sales By Countries"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer3/SalesByCountryCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/SalesByCountryCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/SalesByCountryCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TotalEarningCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = -171.0
+offset_right = 215.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 169)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Purchase"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer/TotalEarningCard/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TotalEarningCard" type="Panel" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2bdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer2/TotalEarningCard"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = -171.0
+offset_right = 215.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer2/TotalEarningCard/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 169)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer2/TotalEarningCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer2/TotalEarningCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Subscription"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer2/TotalEarningCard/HBoxContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/VBoxContainer2/TotalEarningCard/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10

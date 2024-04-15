@@ -1,0 +1,267 @@
+[gd_scene load_steps=12 format=3 uid="uid://dlu4hu7h3uqya"]
+
+[ext_resource type="Script" path="res://Components/add_user_window.gd" id="1_0lwy2"]
+[ext_resource type="Texture2D" uid="uid://bx0brthougm5" path="res://Resources/Icons/add-user-pink-icon.png" id="2_b3ii4"]
+[ext_resource type="StyleBox" uid="uid://b4xgb6l5osc02" path="res://Resources/CustomResource/SignIn.tres" id="3_ilduu"]
+[ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="4_mh7v0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_765iu"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+shadow_size = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlba4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b183w"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkeqd"]
+content_margin_left = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnxbu"]
+content_margin_left = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gum33"]
+bg_color = Color(0.388235, 0.270588, 0.929412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbqpk"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="AddUserWindow" type="VBoxContainer" groups=["TaskWindows"]]
+auto_translate_mode = 1
+offset_right = 1443.0
+offset_bottom = 986.0
+size_flags_horizontal = 3
+script = ExtResource("1_0lwy2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_765iu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -143.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nlba4")
+text = "Add USER"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer/Label"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_left = 81.0
+offset_right = 101.0
+offset_bottom = 20.0
+texture = ExtResource("2_b3ii4")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_b183w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.010395
+anchor_top = 0.0180467
+anchor_right = 0.988912
+anchor_bottom = 0.980892
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GreetingsLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Add new user"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UsernameField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3" groups=["AddUserFields"]]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_qkeqd")
+theme_override_styles/normal = ExtResource("3_ilduu")
+placeholder_text = "Username"
+caret_blink = true
+
+[node name="EmailField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3" groups=["AddUserFields"]]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_qkeqd")
+theme_override_styles/normal = ExtResource("3_ilduu")
+placeholder_text = "Email"
+caret_blink = true
+
+[node name="AccessLevel" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3" groups=["AddUserFields"]]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_qkeqd")
+theme_override_styles/normal = ExtResource("3_ilduu")
+placeholder_text = "AccessLevel"
+caret_blink = true
+
+[node name="PasswordField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3" groups=["AddUserFields"]]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_wnxbu")
+theme_override_styles/normal = ExtResource("3_ilduu")
+placeholder_text = "Password"
+caret_blink = true
+secret = true
+
+[node name="ConfirmPasswordField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3" groups=["AddUserFields"]]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_wnxbu")
+theme_override_styles/normal = ExtResource("3_ilduu")
+placeholder_text = "Confirm password"
+caret_blink = true
+secret = true
+
+[node name="SubmitButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = ExtResource("4_mh7v0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gum33")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dbqpk")
+theme_override_styles/normal = ExtResource("4_mh7v0")
+text = "SIGN IN"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 1
+
+[connection signal="text_submitted" from="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/ConfirmPasswordField" to="." method="_on_confirm_password_field_text_submitted"]
+[connection signal="button_up" from="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/SubmitButton" to="." method="_on_submit_button_button_up"]

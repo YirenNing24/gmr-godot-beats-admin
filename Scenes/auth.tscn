@@ -1,0 +1,229 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2xbhh544n80f"]
+
+[ext_resource type="Script" path="res://Scenes/auth.gd" id="1_dn4wu"]
+[ext_resource type="Texture2D" uid="uid://dpblib2iw1vs8" path="res://Resources/Logos/ b_coin_icon.png" id="1_xjrmc"]
+[ext_resource type="StyleBox" uid="uid://b4xgb6l5osc02" path="res://Resources/CustomResource/SignIn.tres" id="2_nw1gd"]
+[ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="3_lryw2"]
+[ext_resource type="Texture2D" uid="uid://brb0hc2admn6c" path="res://Resources/HeroPictures/robot_log_in.png" id="4_np21l"]
+[ext_resource type="Texture2D" uid="uid://b4ibn4am3jmnj" path="res://Resources/HeroPictures/robot_log_in2.png" id="5_vb1i2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqgga"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0)
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlejh"]
+content_margin_left = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwk5t"]
+content_margin_left = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m03lb"]
+bg_color = Color(0.388235, 0.270588, 0.929412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h62t1"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jope"]
+bg_color = Color(0.0352941, 0.0352941, 0.0352941, 0.792157)
+
+[node name="Auth" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dn4wu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tqgga")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+texture = ExtResource("1_xjrmc")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 1)
+theme_override_font_sizes/font_size = 30
+text = "GMR ADMIN"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 1)
+theme_override_font_sizes/font_size = 25
+text = "Welcome to GMR Admin!"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 14
+text = "Please sign-in to your account and start the fun!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UsernameField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_mlejh")
+theme_override_styles/normal = ExtResource("2_nw1gd")
+placeholder_text = "Username"
+caret_blink = true
+
+[node name="PasswordField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_hwk5t")
+theme_override_styles/normal = ExtResource("2_nw1gd")
+placeholder_text = "Password"
+caret_blink = true
+secret = true
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ErrorMessage" type="Label" parent="Panel/VBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.988235, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SignInButon" type="Button" parent="Panel/VBoxContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = ExtResource("3_lryw2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m03lb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h62t1")
+theme_override_styles/normal = ExtResource("3_lryw2")
+text = "SIGN IN"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -373.0
+offset_right = 645.0
+offset_bottom = -1.0
+grow_vertical = 0
+texture = ExtResource("4_np21l")
+stretch_mode = 6
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1359.0
+offset_top = -402.0
+offset_right = 2030.0
+offset_bottom = 5.0
+grow_vertical = 0
+texture = ExtResource("5_vb1i2")
+stretch_mode = 6
+flip_h = true
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3jope")
+
+[connection signal="text_submitted" from="Panel/VBoxContainer/VBoxContainer3/PasswordField" to="." method="_on_password_field_text_submitted"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer4/SignInButon" to="." method="_on_sign_in_buton_pressed"]

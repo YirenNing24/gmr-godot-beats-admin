@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://xdgongc2fqn6"]
+
+[ext_resource type="Script" path="res://Modals/UserDropDown.gd" id="1_627l3"]
+[ext_resource type="Texture2D" uid="uid://dqgicdcgoewxr" path="res://Resources/Icons/logout-icon.png" id="1_r0oet"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om4hd"]
+bg_color = Color(0.0705882, 0.054902, 0.14902, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 8
+shadow_offset = Vector2(0, 7)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_44kph"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5mnr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvavl"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwlum"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ck4br"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1i7r"]
+bg_color = Color(0.164706, 0.152941, 0.235294, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 180
+corner_radius_top_right = 180
+corner_radius_bottom_right = 180
+corner_radius_bottom_left = 180
+corner_detail = 20
+
+[node name="UserDropDown" type="Panel"]
+auto_translate_mode = 1
+z_index = 1
+offset_left = 1584.0
+offset_top = 58.0
+offset_right = 1806.0
+offset_bottom = 321.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_om4hd")
+script = ExtResource("1_627l3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(200, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -115.5
+offset_right = 112.0
+offset_bottom = 126.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogOutButton" type="Button" parent="VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_44kph")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_m5mnr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xvavl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uwlum")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ck4br")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/LogOutButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -20.0
+offset_right = 108.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LogOutButton/HBoxContainer"]
+auto_translate_mode = 1
+clip_contents = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_g1i7r")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LogOutButton/HBoxContainer/Panel"]
+auto_translate_mode = 1
+clip_contents = true
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 11.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_r0oet")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/LogOutButton/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 16
+text = "Logout"
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/LogOutButton" to="." method="_on_log_out_button_pressed"]

@@ -1,0 +1,372 @@
+[gd_scene load_steps=15 format=3 uid="uid://cr4igrogtlxka"]
+
+[ext_resource type="Script" path="res://Components/dashboard_menu.gd" id="1_1rbnw"]
+[ext_resource type="StyleBox" uid="uid://bgh6lrqb85aqf" path="res://Resources/CustomResource/dashboard_menu_button.tres" id="1_r7ult"]
+[ext_resource type="Texture2D" uid="uid://d01mnm51oei48" path="res://Resources/Icons/dashboard-icon.png" id="2_5at6s"]
+[ext_resource type="Texture2D" uid="uid://b54t5dowxxf1s" path="res://Resources/Icons/card-icon.png" id="3_pxktq"]
+[ext_resource type="Texture2D" uid="uid://ccjqbwd0dbhwe" path="res://Resources/Icons/mint-card-bundle-icon.png" id="4_06xik"]
+[ext_resource type="Texture2D" uid="uid://4vfk4ly77j5v" path="res://Resources/Icons/post-card-bundle-icon.png" id="5_47yqy"]
+[ext_resource type="Texture2D" uid="uid://dacj3j5t4cojo" path="res://Resources/Icons/post-card-icon.png" id="6_uhxjo"]
+[ext_resource type="Texture2D" uid="uid://cuup5sihjm3k3" path="res://Resources/Icons/players-icon.png" id="7_fmipp"]
+[ext_resource type="Texture2D" uid="uid://cqh16cri7m82f" path="res://Resources/Icons/contract-icon.png" id="8_tnt61"]
+[ext_resource type="Texture2D" uid="uid://brpt6ol0f1bed" path="res://Resources/Icons/add-user-icon.png" id="10_v5y1l"]
+[ext_resource type="Texture2D" uid="uid://cd5ownoh3sqjn" path="res://Resources/Icons/update-icon.png" id="11_i2fin"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rcpv"]
+content_margin_left = 70.0
+content_margin_right = 20.0
+bg_color = Color(0.286275, 0.270588, 0.388235, 1)
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_detail = 20
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca72e"]
+content_margin_left = 70.0
+content_margin_right = 20.0
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+draw_center = false
+corner_detail = 20
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5v8i"]
+content_margin_left = 16.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="DashBoardMenu" type="VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(360, 0)
+script = ExtResource("1_1rbnw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="DashboardWindow" type="Button" parent="VBoxContainer" groups=["DashboardMenuButton"]]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 19
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Dashboard"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/DashboardWindow"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 41.0
+texture = ExtResource("2_5at6s")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537958, 0.519348, 0.674469, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5v8i")
+text = "GAME ITEM MINTING"
+uppercase = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="MintCardWindow" type="Button" parent="VBoxContainer2" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Mint Card"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/MintCardWindow"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 41.0
+texture = ExtResource("3_pxktq")
+expand_mode = 1
+
+[node name="MintCardBundleWindow" type="Button" parent="VBoxContainer2" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Mint Card Bundle"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/MintCardBundleWindow"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 7.0
+offset_right = 47.0
+offset_bottom = 37.0
+texture = ExtResource("4_06xik")
+expand_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537958, 0.519348, 0.674469, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5v8i")
+text = "MARKETPLACE AND AUCTION"
+uppercase = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="PostCardWindow" type="Button" parent="VBoxContainer3" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Post Card"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer3/PostCardWindow"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 41.0
+texture = ExtResource("5_47yqy")
+expand_mode = 1
+
+[node name="PostCardBundleWindow" type="Button" parent="VBoxContainer3" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Post Card Bundle"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer3/PostCardBundleWindow"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 7.0
+offset_right = 47.0
+offset_bottom = 37.0
+texture = ExtResource("6_uhxjo")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537958, 0.519348, 0.674469, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5v8i")
+text = "PLAYER MANAGERMENT"
+uppercase = true
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="PlayersListWindow" type="Button" parent="VBoxContainer4" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Player Management"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer4/PlayersListWindow"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 41.0
+texture = ExtResource("7_fmipp")
+expand_mode = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer4"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537958, 0.519348, 0.674469, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5v8i")
+text = "Contracts and settings"
+uppercase = true
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="ContractsWindow" type="Button" parent="VBoxContainer5" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Contracts"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer5/ContractsWindow"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 41.0
+texture = ExtResource("8_tnt61")
+expand_mode = 1
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="AddUserWindow" type="Button" parent="VBoxContainer6" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Add User"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer6/AddUserWindow"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 41.0
+texture = ExtResource("10_v5y1l")
+expand_mode = 1
+
+[node name="UpdateListingsWindow" type="Button" parent="VBoxContainer6" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Update Listings"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer6/UpdateListingsWindow"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 41.0
+texture = ExtResource("11_i2fin")
+expand_mode = 1

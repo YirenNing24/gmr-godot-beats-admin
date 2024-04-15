@@ -1,0 +1,242 @@
+[gd_scene load_steps=13 format=3 uid="uid://crjg7loomwq1"]
+
+[ext_resource type="Script" path="res://Components/card_bundle_modal.gd" id="1_mqeuq"]
+[ext_resource type="Texture2D" uid="uid://bx0brthougm5" path="res://Resources/Icons/add-user-pink-icon.png" id="2_xpejx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac3us"]
+bg_color = Color(0, 0, 0, 0.847059)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6numv"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm4it"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+shadow_size = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06rh5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtcq3"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cavm"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bekqp"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_buffe"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3073a"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyljq"]
+content_margin_left = 48.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CardBundleModal" type="Panel"]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1880.0
+offset_bottom = -1040.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ac3us")
+script = ExtResource("1_mqeuq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.452604
+anchor_top = -0.442593
+anchor_right = 1.44844
+anchor_bottom = 1.51019
+offset_left = 960.0
+offset_top = 524.0
+offset_right = -960.0
+offset_bottom = -556.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6numv")
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00625
+anchor_top = 0.0270531
+anchor_right = 0.995833
+anchor_bottom = 1.00097
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="CardsContainer" type="GridContainer" parent="Panel/ScrollContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 10
+
+[node name="Panel" type="Panel" parent="Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0415459
+anchor_right = 1.0
+anchor_bottom = -0.00483092
+pivot_offset = Vector2(-144, 31)
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nm4it")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0526316
+anchor_right = 0.99375
+anchor_bottom = 0.973684
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/Panel/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_06rh5")
+text = "CHOOSE A CARD"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/HBoxContainer/HBoxContainer/Label"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_left = 161.0
+offset_right = 181.0
+offset_bottom = 20.0
+texture = ExtResource("2_xpejx")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Panel/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/Panel/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="CardFilter" type="OptionButton" parent="Panel/Panel/HBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(168, 30)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxFlat_xtcq3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6cavm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bekqp")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_buffe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3073a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dyljq")
+selected = 0
+item_count = 2
+popup/item_0/text = "Listed"
+popup/item_0/id = 0
+popup/item_1/text = "Posted"
+popup/item_1/id = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
