@@ -13,16 +13,17 @@ extends Panel
 var timer: SceneTreeTimer
 var is_reviewed: bool = false
 
-
 var data_card: Dictionary
 var image_card: Texture
 
 
 func _ready() -> void:
-	connect_signal()
+	pass
 
-func connect_signal() -> void:
-	var _connect: int = submit_button.pressed.connect(_on_submit_button_button_pressed)
+func _process(_delta: float ) -> void:
+	if timer != null:
+		var time_left: int = int(timer.time_left)
+		%TimeLeftLabel.text = str(time_left)
 
 func _on_post_modal_transfer_card_button_pressed(card_data: Dictionary, card_pic: Texture) -> void:
 	visible = true
@@ -31,6 +32,7 @@ func _on_post_modal_transfer_card_button_pressed(card_data: Dictionary, card_pic
 	token_id_label.text = card_data.id
 	
 	data_card = card_data
+	var _connect: int = submit_button.pressed.connect(_on_submit_button_button_pressed)
 
 func _on_submit_button_button_pressed() -> void:
 	var is_filled: bool = field_checker()
@@ -55,14 +57,14 @@ func _on_submitted(token_id: String) -> void:
 	var amount: int = int(amount_field.text)
 	var wallet_address: String = wallet_address_field.text
 	
-	var _transfer_card_data: Dictionary = {
+	var transfer_card_data: Dictionary = {
 		"toAddress":  wallet_address,
 		"tokenIds": [token_id],
 		"amounts": [amount],
 	}
-	#BKMREngine.NFT.transfer_cards(transfer_card_data)
-
-
+	print(transfer_card_data)
+	BKMREngine.NFT.transfer_cards(transfer_card_data)
+#add transfer relationship on memgraph DB
 func _on_cancel_button_pressed() -> void:
 	_on_visibility_changed()
 
@@ -84,9 +86,9 @@ func _on_visibility_changed() -> void:
 		error_message_label.text = ""
 	else:
 		pass
-
+		
+# Checks if any LineEdit fields are empty
 func field_checker() -> bool:
-	# Check if any LineEdit fields are empty
 	for field: LineEdit in get_tree().get_nodes_in_group("TransferItemFields"):
 		if field.text == "":
 			error_message_label.text = "Please fill out all the fields"
@@ -98,6 +100,7 @@ func _on_wallet_address_text_changed(wallet_address: String) -> void:
 	if wallet_address.substr(0, 2) == "0x" and wallet_address.length() == 42:
 		wallet_address_field.text = wallet_address
 		wallet_address_field.caret_column = wallet_address_field.text.length()
+		error_message_label.text = ""
 	else:
 		wallet_address_field.text = ""
 		error_message_label.text = 'Address should start with "0x" or length is not 42-characters'

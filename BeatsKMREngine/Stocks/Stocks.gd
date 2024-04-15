@@ -41,7 +41,7 @@ func _on_GetListedCards_request_completed(_result: int, response_code: int, head
 	
 	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
 	if json_body == null:
-		get_listed_cards_complete.emit({"error": "Error retrieving cards"})
+		get_listed_cards_complete.emit({ "error": "Error retrieving cards" })
 		return
 		
 	if status_check:
@@ -51,6 +51,8 @@ func _on_GetListedCards_request_completed(_result: int, response_code: int, head
 			get_listed_cards_complete.emit(json_body.error)
 		elif json_body:
 			get_listed_cards_complete.emit(json_body)
+	else:
+		get_listed_cards_complete.emit({ "error": "Error retrieving cards" })
 			
 func get_posted_cards() -> Node:
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
