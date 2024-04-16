@@ -354,6 +354,7 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 22
 theme_override_styles/focus = SubResource("StyleBoxFlat_cx51l")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pkia7")
+text = "1"
 placeholder_text = "1"
 alignment = 2
 caret_blink = true

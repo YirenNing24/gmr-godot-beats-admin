@@ -51,16 +51,18 @@ func _on_submit_button_button_pressed() -> void:
 				)
 		else:
 			var token_id: String = data_card.id
-			_on_submitted(token_id)
+			var uri: String = data_card.uri
+			_on_submitted(token_id, uri)
 			
-func _on_submitted(token_id: String) -> void:
+func _on_submitted(token_id: String, uris: String) -> void:
 	var amount: int = int(amount_field.text)
 	var wallet_address: String = wallet_address_field.text
-	
+	var uri: String = uris
 	var transfer_card_data: Dictionary = {
 		"toAddress":  wallet_address,
 		"tokenIds": [token_id],
 		"amounts": [amount],
+		"uris":[uri]
 	}
 	print(transfer_card_data)
 	BKMREngine.NFT.transfer_cards(transfer_card_data)
