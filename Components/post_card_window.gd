@@ -15,13 +15,13 @@ func _ready() -> void:
 	signal_connect()
 	
 func signal_connect() -> void:
+	BKMREngine.Stocks.get_cards_stock_complete.connect(_on_get_cards_complete)
 	BKMREngine.Stocks.get_listed_cards_complete.connect(_on_get_cards_complete)
-	BKMREngine.Stocks.get_posted_cards_complete.connect(_on_get_cards_complete)
 	
 func _on_visibility_changed() -> void:
 	if visible:
 		card_filter.selected = 0
-		BKMREngine.Stocks.get_listed_cards()
+		BKMREngine.Stocks.get_card_stock()
 		get_cards_request_sent.emit()
 	else:
 		filter_match = "Listed"
@@ -59,10 +59,10 @@ func post_card_for_sale(token_id: String) -> void:
 func _on_card_filter_item_selected(selected_filter: int) -> void:
 	var filter: String = card_filter.get_item_text(selected_filter)
 	match filter:
+		"Stocks":
+			BKMREngine.Stocks.get_card_stock()
 		"Listed":
 			BKMREngine.Stocks.get_listed_cards()
-		"Posted":
-			BKMREngine.Stocks.get_posted_cards()
 			
 	filter_match = filter 
 	get_cards_request_sent.emit()

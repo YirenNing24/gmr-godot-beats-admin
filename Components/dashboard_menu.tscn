@@ -146,6 +146,34 @@ offset_bottom = 37.0
 texture = ExtResource("4_06xik")
 expand_mode = 1
 
+[node name="CreateUpgradeItems" type="Button" parent="VBoxContainer2" groups=["DashboardMenuButton"]]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = ExtResource("1_r7ult")
+theme_override_styles/hover_pressed = ExtResource("1_r7ult")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
+theme_override_styles/pressed = ExtResource("1_r7ult")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
+toggle_mode = true
+text = "Create Upgrade Items"
+alignment = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/CreateUpgradeItems"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 7.0
+offset_right = 47.0
+offset_bottom = 37.0
+texture = ExtResource("4_06xik")
+expand_mode = 1
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 auto_translate_mode = 1
 layout_mode = 2
@@ -178,7 +206,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
 theme_override_styles/pressed = ExtResource("1_r7ult")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
 toggle_mode = true
-text = "Post Card"
+text = "List Card"
 alignment = 0
 expand_icon = true
 
@@ -205,7 +233,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_6rcpv")
 theme_override_styles/pressed = ExtResource("1_r7ult")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ca72e")
 toggle_mode = true
-text = "Post Card Bundle"
+text = "List Card Bundle"
 alignment = 0
 expand_icon = true
 

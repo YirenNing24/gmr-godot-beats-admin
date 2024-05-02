@@ -141,5 +141,3 @@ func _on_list_card_completed(_data: Dictionary) -> void:
 func _on_list_modal_list_card_complete() -> void:
 	BKMREngine.Stocks.get_listed_cards()
 	visible = false
-
-

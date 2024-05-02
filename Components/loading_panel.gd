@@ -14,7 +14,8 @@ func fake_loader() -> void:
 	var _loader_fake: CallbackTweener = tween.tween_callback(fake_loader)
 	
 func tween_kill() -> void:
-	tween.kill()
+	if tween:
+		tween.kill()
 
 func _on_submit_confirmation_panel_request_sent() -> void:
 	fake_loader()
@@ -45,3 +46,11 @@ func _on_contracts_window_update_contract_request_sent() -> void:
 func _on_contracts_window_update_contract_request_completed() -> void:
 	tween_kill()
 	visible = false
+
+func _on_create_upgrade_items_create_upgrade_item_request_complete() -> void:
+	tween_kill()
+	visible = false
+	
+func _on_create_upgrade_items_create_upgrade_item_request_sent() -> void:
+	fake_loader()
+

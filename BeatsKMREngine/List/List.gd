@@ -27,7 +27,7 @@ func list_card(list_card_data: Dictionary) -> Node:
 	var _list_card: int = ListCard.request_completed.connect(_on_ListCard_request_completed)
 	
 	var payload: Dictionary = list_card_data
-	var request_url: String = host + "/admin/list-card"
+	var request_url: String = host + "/admin/list/card"
 	
 	BKMREngine.send_post_request(ListCard, request_url, payload)
 	return self
@@ -64,8 +64,10 @@ func update_card_list() -> Node:
 	UpdateList = prepared_http_req.request
 	wrUpdateList = prepared_http_req.weakref
 	
+	
+		
 	var _update_list: int = UpdateList.request_completed.connect(_on_UpdateList_request_completed)
-	var request_url: String = host + "/admin/update-card-list"
+	var request_url: String = host + "/admin/card/populate-card-list"
 	
 	BKMREngine.send_get_request(UpdateList, request_url)
 	return self

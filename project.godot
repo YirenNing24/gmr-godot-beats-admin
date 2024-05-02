@@ -84,6 +84,7 @@ ConfirmationErrorLabels=""
 ListItemFields=""
 ListedButtons=""
 TransferItemFields=""
+UpgradeItemDropdowns=""
 
 [input]
 

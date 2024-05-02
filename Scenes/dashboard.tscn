@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bnq1m5as3wuaj"]
+[gd_scene load_steps=30 format=3 uid="uid://bnq1m5as3wuaj"]
 
 [ext_resource type="Texture2D" uid="uid://dpblib2iw1vs8" path="res://Resources/Logos/ b_coin_icon.png" id="1_v5xh8"]
 [ext_resource type="StyleBox" uid="uid://df5agxqinoq3w" path="res://Resources/CustomResource/notif_button.tres" id="2_4w10o"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://oprwljn3eiv0" path="res://Components/post_card_window.tscn" id="11_plfoy"]
 [ext_resource type="PackedScene" uid="uid://dgo03ngjmc8p" path="res://Components/post_card_bundle_window.tscn" id="12_kr60y"]
 [ext_resource type="PackedScene" uid="uid://rw3ac10w1pgk" path="res://Components/update_listings_window.tscn" id="13_0ew6x"]
+[ext_resource type="PackedScene" uid="uid://cs6lqxjmv25nc" path="res://Components/create_upgrade_items.tscn" id="14_c2hjp"]
 [ext_resource type="PackedScene" uid="uid://bjiddvytdh4ip" path="res://Components/submit_confirmation_panel.tscn" id="14_y10sy"]
 [ext_resource type="PackedScene" uid="uid://50n8up858rsy" path="res://Components/post_modal.tscn" id="15_tdkvx"]
 [ext_resource type="PackedScene" uid="uid://cxh7pmywa2pla" path="res://Components/loading_panel.tscn" id="15_uawtf"]
@@ -345,6 +346,10 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="CreateUpgradeItems" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("14_c2hjp")]
+visible = false
+layout_mode = 2
+
 [node name="Logout" parent="." instance=ExtResource("9_osgux")]
 unique_name_in_owner = true
 visible = false
@@ -439,6 +444,8 @@ metadata/_edit_use_anchors_ = true
 [connection signal="get_cards_request_sent" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="LoadingPanel" method="_on_post_card_window_get_cards_request_sent"]
 [connection signal="selected_post_card" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="PostModal" method="_on_post_card_window_selected_post_card"]
 [connection signal="update_card_button_pressed" from="VBoxContainer/HBoxContainer2/UpdateListingsWindow" to="ConfirmPasswordModal" method="_on_update_listings_window_update_card_button_pressed"]
+[connection signal="create_upgrade_item_request_complete" from="VBoxContainer/HBoxContainer2/CreateUpgradeItems" to="LoadingPanel" method="_on_create_upgrade_items_create_upgrade_item_request_complete"]
+[connection signal="create_upgrade_item_request_sent" from="VBoxContainer/HBoxContainer2/CreateUpgradeItems" to="LoadingPanel" method="_on_create_upgrade_items_create_upgrade_item_request_sent"]
 [connection signal="log_out_button_pressed" from="Logout" to="." method="_on_logout_log_out_button_pressed"]
 [connection signal="request_sent" from="SubmitConfirmationPanel" to="LoadingPanel" method="_on_submit_confirmation_panel_request_sent"]
 [connection signal="list_card_request_completed" from="PostModal" to="LoadingPanel" method="_on_post_modal_list_card_request_completed"]

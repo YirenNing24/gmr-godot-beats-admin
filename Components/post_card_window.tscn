@@ -144,7 +144,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7ims8")
-text = "post card"
+text = "LIST CARD"
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer/Label"]
@@ -189,9 +189,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_oq3c5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n7gja")
 selected = 0
 item_count = 2
-popup/item_0/text = "Listed"
+popup/item_0/text = "Stocks"
 popup/item_0/id = 0
-popup/item_1/text = "Posted"
+popup/item_1/text = "Listed"
 popup/item_1/id = 1
 
 [node name="Panel" type="Panel" parent="."]
