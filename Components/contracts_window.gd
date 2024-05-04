@@ -9,7 +9,9 @@ signal update_contract_request_completed
 @onready var bundle_address: LineEdit = %BundleAddress
 @onready var card_marketplace_address: LineEdit = %CardMarketplaceAddress
 @onready var bundle_marketplace_address: LineEdit = %BundleMarketplaceAddress
-@onready var card_upgrade_item_address: LineEdit = %CardUpgradeItemAddress
+@onready var card_item_upgrade_address: LineEdit = %CardItemUpgradeAddress
+@onready var card_marketplace_upgrade_item_address: LineEdit = %CardItemUpgradeMarketplaceAddress
+
 @onready var update_contract_button: Button = %UpdateContractButton
 
 
@@ -39,7 +41,8 @@ func _on_update_contract_button_button_up() -> void:
 		"bundleAddress": card_marketplace_address.text, 
   		"cardMarketplaceAddress": card_marketplace_address.text, 
 		"bundleMarketplaceAddress": bundle_marketplace_address.text,
-		"cardItemUpgradeAddress": card_upgrade_item_address.text
+		"cardItemUpgradeAddress": card_item_upgrade_address.text,
+		"cardMarketplaceUpgradeItemAddress": card_marketplace_upgrade_item_address.text
 	}
 	update_contract_request_sent.emit()
 	BKMREngine.Contract.update_contracts(contracts)
@@ -47,7 +50,6 @@ func _on_update_contract_button_button_up() -> void:
 func _on_get_contracts_complete(contracts: Array) -> void:
 	if !contracts.is_empty():
 		var latest_contracts_list: Dictionary = contracts[0]
-		
 		for address_name: String in latest_contracts_list.keys():
 			for line_edit: LineEdit in get_tree().get_nodes_in_group("ContractLineEdits"):
 				if address_name.to_lower() == line_edit.name.to_lower():

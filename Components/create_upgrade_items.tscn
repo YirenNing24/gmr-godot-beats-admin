@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://cs6lqxjmv25nc"]
+[gd_scene load_steps=23 format=3 uid="uid://cs6lqxjmv25nc"]
 
 [ext_resource type="Script" path="res://Components/create_upgrade_items.gd" id="1_414iy"]
 [ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="2_02kcy"]
 [ext_resource type="StyleBox" uid="uid://dhmtqsdak3k75" path="res://Resources/CustomResource/create_upgrade_items.tres" id="2_jdfxi"]
 [ext_resource type="Texture2D" uid="uid://cbrgclqhmyjde" path="res://Resources/Item Upgrade Textures/general_tier1.png" id="4_fjli5"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_swbmg"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="6_gdf15"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itb4x"]
 bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
@@ -134,13 +136,25 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40jjm"]
-bg_color = Color(0.0999859, 0.099986, 0.099986, 1)
+bg_color = Color(0.129558, 0.129559, 0.129558, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_size = 2
 shadow_offset = Vector2(4, 4)
+
+[sub_resource type="Resource" id="Resource_28teb"]
+script = ExtResource("6_gdf15")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_8gcrm"]
+script = ExtResource("6_gdf15")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
 
 [node name="CreateUpgradeItems" type="VBoxContainer" groups=["TaskWindows"]]
 auto_translate_mode = 1
@@ -231,36 +245,55 @@ auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.010395
-anchor_top = 0.0530786
+anchor_top = 0.0286624
 anchor_right = 0.991684
-anchor_bottom = 0.980892
+anchor_bottom = 1.00106
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 50
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
-size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="ErrorMessageLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+modulate = Color(0.862745, 0, 0, 1)
+custom_minimum_size = Vector2(168, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
 auto_translate_mode = 1
 visible = false
 custom_minimum_size = Vector2(150, 0)
@@ -271,7 +304,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_7ims8")
 text = "UPDATES POSTED CARD AND LISTED CARDS from the blockchain"
 uppercase = true
 
-[node name="CardUpgradeSelection" type="OptionButton" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2" groups=["UpgradeItemDropdowns"]]
+[node name="CardUpgradeSelection" type="OptionButton" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2" groups=["UpgradeItemDropdowns"]]
 unique_name_in_owner = true
 auto_translate_mode = 1
 custom_minimum_size = Vector2(168, 34)
@@ -288,7 +321,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_n7gja")
 item_count = 1
 popup/item_0/text = "General"
 
-[node name="TierField" type="OptionButton" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2" groups=["UpgradeItemDropdowns"]]
+[node name="TierField" type="OptionButton" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2" groups=["UpgradeItemDropdowns"]]
 unique_name_in_owner = true
 auto_translate_mode = 1
 custom_minimum_size = Vector2(168, 34)
@@ -311,7 +344,7 @@ popup/item_2/id = 2
 popup/item_3/text = "Tier4"
 popup/item_3/id = 3
 
-[node name="ExpGivenField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="ExpGivenField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 custom_minimum_size = Vector2(168, 34)
@@ -327,7 +360,7 @@ alignment = 2
 editable = false
 caret_blink = true
 
-[node name="QuantityField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="QuantityField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 custom_minimum_size = Vector2(168, 34)
@@ -341,7 +374,7 @@ placeholder_text = "Quantity"
 alignment = 2
 caret_blink = true
 
-[node name="CreateUpgradeItemButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="CreateUpgradeItemButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
 auto_translate_mode = 1
 custom_minimum_size = Vector2(130, 34)
 layout_mode = 2
@@ -354,17 +387,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_atm1w")
 theme_override_styles/normal = ExtResource("2_02kcy")
 text = "SUBMIT"
 
-[node name="ErrorMessageLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-auto_translate_mode = 1
-modulate = Color(0.862745, 0, 0, 1)
-custom_minimum_size = Vector2(168, 50)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 2
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
@@ -375,7 +397,8 @@ layout_mode = 2
 alignment = 1
 
 [node name="Panel" type="Panel" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+clip_contents = true
+custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_40jjm")
 
@@ -402,6 +425,25 @@ auto_translate_mode = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="item_selected" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/TierField" to="." method="_on_tier_field_item_selected"]
-[connection signal="text_changed" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/QuantityField" to="." method="_on_quantity_field_text_changed"]
-[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/CreateUpgradeItemButton" to="." method="_on_create_upgrade_item_button_pressed"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("5_swbmg")
+wheel_scroll_damper = SubResource("Resource_28teb")
+dragging_scroll_damper = SubResource("Resource_8gcrm")
+
+[node name="UpgradeItemContainer" type="GridContainer" parent="Panel/VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 7
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="item_selected" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2/TierField" to="." method="_on_tier_field_item_selected"]
+[connection signal="text_changed" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2/QuantityField" to="." method="_on_quantity_field_text_changed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2/CreateUpgradeItemButton" to="." method="_on_create_upgrade_item_button_pressed"]

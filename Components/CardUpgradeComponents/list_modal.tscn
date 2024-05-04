@@ -1,8 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2ojx5i67mui0"]
+[gd_scene load_steps=20 format=3 uid="uid://b5qlam2yhp1lh"]
 
-[ext_resource type="Texture2D" uid="uid://po7672807uk" path="res://Resources/Icons/confirm-icon.png" id="1_ntcce"]
-[ext_resource type="Script" path="res://Components/list_modal.gd" id="1_y4svh"]
-[ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="3_idart"]
+[ext_resource type="Script" path="res://Components/CardUpgradeComponents/list_modal.gd" id="1_4ligj"]
+[ext_resource type="Texture2D" uid="uid://po7672807uk" path="res://Resources/Icons/confirm-icon.png" id="1_vo622"]
+[ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="2_npbkp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3ygg"]
 bg_color = Color(0, 0, 0, 0.847059)
@@ -157,7 +157,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="ListModal" type="Panel"]
-z_index = 2
+z_index = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -166,7 +166,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_j3ygg")
-script = ExtResource("1_y4svh")
+script = ExtResource("1_4ligj")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(1200, 0)
@@ -217,14 +217,14 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
 theme_override_font_sizes/font_size = 30
-text = "List Item For Sale"
+text = "List Card Upgrade Item For Sale"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
-texture = ExtResource("1_ntcce")
+texture = ExtResource("1_vo622")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
@@ -238,7 +238,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ErrorContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -248,7 +247,6 @@ custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
 [node name="ConfirmationContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -284,9 +282,9 @@ custom_minimum_size = Vector2(168, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
 theme_override_font_sizes/font_size = 24
-text = "Card Name:"
+text = "Type:"
 
-[node name="CardNameLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer19"]
+[node name="Type" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer19"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -446,6 +444,43 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
 theme_override_font_sizes/font_size = 16
 
+[node name="HBoxContainer25" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer25"]
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 24
+text = "Quantity:"
+
+[node name="QuantityField" type="LineEdit" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer25" groups=["ListItemFields"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(168, 34)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxFlat_cx51l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pkia7")
+placeholder_text = "100"
+alignment = 2
+caret_blink = true
+
+[node name="ChoseCurrencylabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer25"]
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 24
+
+[node name="ErrorLabel2" type="Label" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer25"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(243, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 16
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -521,7 +556,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ypu32")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_kq37o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8sfkx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vgkgs")
-theme_override_styles/normal = ExtResource("3_idart")
+theme_override_styles/normal = ExtResource("2_npbkp")
 text = "SUBMIT"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer"]
@@ -545,5 +580,6 @@ text = "CANCEL"
 [connection signal="text_changed" from="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer20/StartDateField" to="." method="_on_start_date_field_text_changed"]
 [connection signal="text_changed" from="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer21/EndDateField" to="." method="_on_end_date_field_text_changed"]
 [connection signal="item_selected" from="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer22/CurrencyField" to="." method="_on_currency_field_item_selected"]
-[connection signal="text_changed" from="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer23/PriceField" to="." method="_on_price_field_text_changed"]
+[connection signal="text_changed" from="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer25/QuantityField" to="." method="_on_quantity_field_text_changed"]
+[connection signal="pressed" from="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/HBoxContainer2/SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="button_up" from="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/CancelButton" to="." method="_on_cancel_button_button_up"]

@@ -72,6 +72,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="gmr-godot-beats-admin"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg")
+
 [global_group]
 
 DashboardMenuButton=""
