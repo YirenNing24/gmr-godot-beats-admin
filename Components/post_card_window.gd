@@ -42,7 +42,6 @@ func _on_get_cards_complete(cards: Array) -> void:
 			var card_pic: Texture =  ImageTexture.create_from_image(image)
 			card.get_node("HBoxContainer/CardImage").texture = card_pic
 			
-			
 		card.get_node("HBoxContainer/CardNameLabel").text = card_data.name
 		card.get_node("Button").pressed.connect(_on_card_selected.bind(card_data))
 		card_container.add_child(card)

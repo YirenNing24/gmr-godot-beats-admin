@@ -322,7 +322,7 @@ theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
 theme_override_font_sizes/font_size = 24
 text = "Start Date:"
 
-[node name="StartDateField" type="LineEdit" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer20" groups=["ListItemFields"]]
+[node name="StartDateField" type="LineEdit" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer20"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(168, 34)
 layout_mode = 2
@@ -354,7 +354,7 @@ theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
 theme_override_font_sizes/font_size = 24
 text = "End Date:"
 
-[node name="EndDateField" type="LineEdit" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer21" groups=["ListItemFields"]]
+[node name="EndDateField" type="LineEdit" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer21"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(168, 34)
 layout_mode = 2
@@ -419,7 +419,7 @@ theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
 theme_override_font_sizes/font_size = 24
 text = "Price:"
 
-[node name="PriceField" type="LineEdit" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer23" groups=["ListItemFields"]]
+[node name="PriceField" type="LineEdit" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/HBoxContainer/VBoxContainer/HBoxContainer23"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(168, 34)
 layout_mode = 2

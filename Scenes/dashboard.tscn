@@ -158,6 +158,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
