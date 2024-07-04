@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc4hx04j3bgn1"]
+[gd_scene load_steps=9 format=3 uid="uid://dc4hx04j3bgn1"]
 
 [ext_resource type="Script" path="res://Scenes/BeatMaker.cs" id="1_02n4t"]
 [ext_resource type="Theme" uid="uid://6wfg3gqntauh" path="res://Resources/Themes/file_button.tres" id="2_wfarr"]
+[ext_resource type="FontFile" uid="uid://ppvw26qavbge" path="res://Resources/Fonts/HankenGrotesk-ExtraBold.ttf" id="3_bih1y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3gkq"]
 bg_color = Color(0.164706, 0.152941, 0.235294, 1)
@@ -56,11 +57,26 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MenuButton" type="MenuButton" parent="EditorContainer/Panel/HBoxContainer"]
+[node name="FileMenu" type="MenuButton" parent="EditorContainer/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme = ExtResource("2_wfarr")
+theme_override_fonts/font = ExtResource("3_bih1y")
 text = "File"
+
+[node name="MenuButton2" type="MenuButton" parent="EditorContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("2_wfarr")
+theme_override_fonts/font = ExtResource("3_bih1y")
+text = "Authenticate"
+
+[node name="MenuButton3" type="MenuButton" parent="EditorContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("2_wfarr")
+theme_override_fonts/font = ExtResource("3_bih1y")
+text = "Help"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="EditorContainer"]
 layout_mode = 2
@@ -111,3 +127,33 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bpkvg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpinBox" type="SpinBox" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="WindowScroll" type="ScrollContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TracksContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
