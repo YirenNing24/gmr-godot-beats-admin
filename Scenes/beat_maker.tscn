@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://dc4hx04j3bgn1"]
+
+[ext_resource type="Script" path="res://Scenes/BeatMaker.cs" id="1_02n4t"]
+[ext_resource type="Theme" uid="uid://6wfg3gqntauh" path="res://Resources/Themes/file_button.tres" id="2_wfarr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3gkq"]
+bg_color = Color(0.164706, 0.152941, 0.235294, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8o3g"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo05b"]
+bg_color = Color(0.0845102, 0.0628911, 0.175561, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ec0h5"]
+bg_color = Color(0.0705882, 0.054902, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpkvg"]
+bg_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+
+[node name="BeatMaker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_02n4t")
+
+[node name="EditorContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="EditorContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3gkq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuButton" type="MenuButton" parent="EditorContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("2_wfarr")
+text = "File"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="EditorContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="EditorContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_o8o3g")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/HBoxContainer2/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/VBoxContainer/Panel/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="EditorContainer/HBoxContainer2/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xo05b")
+
+[node name="Panel" type="Panel" parent="EditorContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ec0h5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpkvg")

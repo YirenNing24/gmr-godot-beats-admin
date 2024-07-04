@@ -20,5 +20,3 @@ func _on_get_cards_complete(cards: Array) -> void:
 	
 func _on_post_modal_choose_for_pack_button_pressed(_card_data: Dictionary, _card_pic: Texture) -> void:
 	pass # Replace with function body.
-
-

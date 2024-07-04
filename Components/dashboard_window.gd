@@ -5,4 +5,3 @@ extends VBoxContainer
 
 func _ready() -> void:
 	username_label.text = USERDATA.username + "!"
-

@@ -53,4 +53,3 @@ func _on_create_upgrade_items_create_upgrade_item_request_complete() -> void:
 	
 func _on_create_upgrade_items_create_upgrade_item_request_sent() -> void:
 	fake_loader()
-
