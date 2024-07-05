@@ -11,8 +11,8 @@ namespace SaveMapDialog
 	public delegate void MapInfoSavedEventHandler();
 
 	//**GODOT MEMORY VARIABLES
-	public Dictionary<string, Variant> sessionData = new();
-	public Dictionary<string, Variant> audioInfo = new();
+	public Dictionary sessionData = new();
+	public Dictionary audioInfo = new();
 	public static readonly string[] AUDIO_FIELD_NAMES = new string[] { "TITLE", "ARTIST" };
 	public static readonly string sessionFilePath = "user://editor/session";
 	public string audioFileName = "";
@@ -47,6 +47,7 @@ namespace SaveMapDialog
 
 	public void InitAudioInputs()
 	{
+		sessionData = Utilities.BeatMakerUtils.ReadJSONFile(sessionFilePath);
 
 	}
 

@@ -1,10 +1,7 @@
-
-
-using System;
 using System.Collections.Generic;
-using System.Net.Http.Json;
 using System.Text.Json;
 using Godot;
+using Godot.Collections;
 
 namespace Utilities
 {
@@ -12,12 +9,12 @@ namespace Utilities
     public partial class BeatMakerUtils
 
     {
-	    public static Dictionary<string, Variant> ReadJSON(string filePath)
+	    public static Dictionary ReadJSONFile(string filePath)
         {
             if (!FileAccess.FileExists(filePath))
             {
                 GD.Print("File not found!", filePath);
-                return new Dictionary<string, Variant>();
+                return new Dictionary();
 
             }
 
@@ -25,21 +22,21 @@ namespace Utilities
             if (file == null)
             {
                 GD.Print("File oepning error!", filePath);
-                return new Dictionary<string, Variant>();
+                return new Dictionary();
             }
             string content = file.GetAsText();
-            var json = JsonSerializer.Deserialize<Dictionary<string, Variant>>(content);
+            var json = JsonSerializer.Deserialize<Dictionary>(content);
 
             if (json == null)
             {   
                 GD.Print("File JSON parse error!", filePath);
-                return new Dictionary<string, Variant>();
+                return new Dictionary();
             };
 
             return json;
         }
 
-        public static void WriteJSONFile(string filePath, Dictionary<string, Variant> data)
+        public static void WriteJSONFile(string filePath, Dictionary data)
         {
             FileAccess file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write);
             if (file == null)
