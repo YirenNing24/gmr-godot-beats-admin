@@ -8,7 +8,7 @@ namespace Main
 		[Signal]
 		public delegate void PreviewUpdatedEventHandler();
 
-		//**Value Variables
+		//**GODOT MEMORY VARIABLES
 		public int loadPercent = 0;
 		public string oggFilePath = "";
 		public bool isPlaying = false;
@@ -20,7 +20,7 @@ namespace Main
 		public string audioFileName;
 		private GodotThread audioLoadThread;
 
-		//**Node variables
+		//**GODOT NODE VARIABLES
 		private MenuButton fileMenu;
 		private ScrollContainer windowScroll;
 		private VBoxContainer tracksContainer;
