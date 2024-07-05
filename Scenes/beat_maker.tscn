@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc4hx04j3bgn1"]
+[gd_scene load_steps=10 format=3 uid="uid://dc4hx04j3bgn1"]
 
 [ext_resource type="Script" path="res://Scenes/BeatMaker.cs" id="1_02n4t"]
 [ext_resource type="Theme" uid="uid://6wfg3gqntauh" path="res://Resources/Themes/file_button.tres" id="2_wfarr"]
 [ext_resource type="FontFile" uid="uid://ppvw26qavbge" path="res://Resources/Fonts/HankenGrotesk-ExtraBold.ttf" id="3_bih1y"]
+[ext_resource type="PackedScene" uid="uid://drjp8x40dfe5t" path="res://Components/BeatMakerComponents/save_map_dialog.tscn" id="4_3ly17"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3gkq"]
 bg_color = Color(0.164706, 0.152941, 0.235294, 1)
@@ -133,10 +134,23 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 6.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
-[node name="SpinBox" type="SpinBox" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer"]
+[node name="PlayButton" type="Button" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bih1y")
+theme_override_font_sizes/font_size = 20
+text = "PLAY"
+
+[node name="StartInput" type="SpinBox" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="BPMInput" type="SpinBox" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer"]
 layout_mode = 2
 
 [node name="WindowScroll" type="ScrollContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer"]
@@ -148,6 +162,35 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="WaveFormContainer" type="Control" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="WaveFormNode" type="TextureRect" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer"]
+layout_mode = 2
+offset_right = 1640.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+
+[node name="CursorContainer" type="Control" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CursorSlider" type="HSlider" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="CursorStatic" type="Node2D" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer"]
+
+[node name="CursorPlayback" type="Node2D" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer"]
+
 [node name="TracksContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -157,3 +200,13 @@ custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="FileDialog" type="FileDialog" parent="."]
+
+[node name="ImportMap" type="FileDialog" parent="."]
+auto_translate_mode = 1
+size = Vector2i(207, 175)
+
+[node name="SaveMapDialog" parent="." instance=ExtResource("4_3ly17")]
+z_index = 1
+layout_mode = 1

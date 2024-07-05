@@ -4,7 +4,23 @@ namespace Main
 {
 	public partial class BeatMaker : Control
 	{
-		public int LoadPercent = 0;
+
+		[Signal]
+		public delegate void PreviewUpdatedEventHandler();
+
+		//**Value Variables
+		public int loadPercent = 0;
+		public string oggFilePath = "";
+		public bool isPlaying = false;
+		public bool isFollowPlaying = false;
+		public int windowSize = 720;
+		public AudioStreamOggVorbis stream;
+		public bool isPopupActive = false;
+		public string editorDir;
+		public string audioFileName;
+		private GodotThread audioLoadThread;
+
+		//**Node variables
 		private MenuButton fileMenu;
 		private ScrollContainer windowScroll;
 		private VBoxContainer tracksContainer;
@@ -17,6 +33,11 @@ namespace Main
 		private Slider cursorSlider;
 		private Node2D cursorStatic;
 		private Node2D cursorPlayback;
+		private FileDialog importMap;
+		private FileDialog fileDialog;
+		private Panel saveMapDialog;
+		private Button playButton;
+
 
 
 		public override void _Ready()
@@ -42,11 +63,19 @@ namespace Main
 			waveFormNode = GetNode<TextureRect>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/WaveFormNode");
 			cursorContainer = GetNode<Control>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer");
 			cursorSlider = GetNode<HSlider>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorSlider");
+			cursorStatic = GetNode<Node2D>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorStatic");
+			cursorPlayback = GetNode<Node2D>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorPlayback");
+			importMap = GetNode<FileDialog>("ImportMap");
+			fileDialog = GetNode<FileDialog>("FileDialog");
+			saveMapDialog = GetNode<Panel>("MapInfoDialog");
+			playButton = GetNode<Button>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/PlayButton");
+
+			audioLoadThread =  new GodotThread();
 		}
 
 		private void BuildEditor()
 		{
-			LoadPercent += 100;
+			loadPercent += 100;
 			FileMenuItems();
 			CallDeferred("SetProcess", true);
 			CallDeferred("SetProcessInput", true);
@@ -70,6 +99,31 @@ namespace Main
 			popUp.AddSeparator();
 			popUp.AddItem("Reset", 6);
 			popUp.AddItem("Exit", 7);
+
+		 	popUp.IndexPressed += OnFileMenuButtonIndexPressed;
 		}
-	}
+
+        private void OnFileMenuButtonIndexPressed(long index)
+        {
+			if (index == 0)
+			{
+				ImportAudio();
+			}
+
+			else if(index == 6)
+			{
+	
+			}
+
+        }
+
+        private void ImportAudio()
+        {
+			fileDialog.Visible = true;
+			fileDialog.CurrentFile = "";
+			fileDialog.PopupCentered();
+
+			EmitSignal(nameof(PreviewUpdated));
+        }
+    }
 }
