@@ -54,7 +54,7 @@ namespace Main
 		public MemoryVariables memoryVariables = new();
 
 		// Grouping node variables
-		public class NodeVariables
+		public partial class NodeVariables
 		{
 			public MenuButton fileMenu;
 			public ScrollContainer windowScroll;
@@ -74,6 +74,7 @@ namespace Main
 			public Button playButton;
 			public Node2D activeNote;
 			public Control activeTrack;
+			public VBoxContainer editorContainer;
 		}
 
 		public NodeVariables nodeVariables = new();
@@ -107,6 +108,7 @@ namespace Main
 			nodeVariables.fileDialog = GetNode<FileDialog>("FileDialog");
 			nodeVariables.saveMapDialog = GetNode<Panel>("MapInfoDialog");
 			nodeVariables.playButton = GetNode<Button>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/PlayButton");
+			nodeVariables.editorContainer = GetNode<VBoxContainer>("EditorContainer");
 
 			memoryVariables.audioLoadThread = new GodotThread();
 		}

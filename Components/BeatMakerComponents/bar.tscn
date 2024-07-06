@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://bvckggg42dnun"]
+[gd_scene load_steps=3 format=3 uid="uid://bvckggg42dnun"]
+
+[ext_resource type="Script" path="res://Components/BeatMakerComponents/Bar.cs" id="1_xfo4f"]
+[ext_resource type="FontFile" uid="uid://ppvw26qavbge" path="res://Resources/Fonts/HankenGrotesk-ExtraBold.ttf" id="2_1pl1i"]
 
 [node name="Bar" type="Node2D"]
+script = ExtResource("1_xfo4f")
+
+[node name="Label" type="Label" parent="."]
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = -1.0
+theme_override_fonts/font = ExtResource("2_1pl1i")
+theme_override_font_sizes/font_size = 14
+text = "Index"
+vertical_alignment = 2
+
+[node name="Grid" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

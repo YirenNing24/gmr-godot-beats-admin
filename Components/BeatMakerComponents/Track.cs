@@ -47,7 +47,7 @@ using System.Linq;
                     string dataQuartersCount = (string)data["quarters_count"];
 					Bar bar = (Bar)AddBar(x, dataIndex.ToInt(), dataQuartersCount.ToInt());
 					bar.SetNotesData(data["notes"]);
-					x += bar.getWidth();
+					x += bar.GetWidth();
 
                 }
 			
@@ -55,7 +55,7 @@ using System.Linq;
 			{
 				foreach (int i in Enumerable.Range(0, barsCount))
 				{
-					Bar bar = (Bar)AddBar(x, i, Utilities.Constants.QuartersCount);
+					Bar bar = AddBar(x, i, Utilities.Constants.QuartersCount);
 					x += bar.GetWidth();
 				}
 			}
@@ -73,7 +73,7 @@ using System.Linq;
 		}
 
 
-		public Node2D AddBar(int x, int index, int quartersCount)
+		public Bar AddBar(int x, int index, int quartersCount)
 		{
 			Bar bar = barScene.Instantiate<Bar>();
 			bar.trackIndex = trackIndex;
@@ -89,11 +89,34 @@ using System.Linq;
 	
 	
 		public void RespawnBars()
-		{
+		{	
 			int currentBarsCount = bars.Count();
 			if (currentBarsCount < barsCount)
 			{
-				int x = bars[currentBarsCount - 1];
+				int x = (int)bars[currentBarsCount - 1].Position.X + bars[currentBarsCount - 1].GetWidth();
+				foreach (int i in Enumerable.Range(0, barsCount))
+				{
+					if (i > currentBarsCount)
+					{
+						Bar bar = AddBar(x, i, Utilities.Constants.QuartersCount);
+						x += bar.GetWidth();						
+                    }
+				}
+				GD.Print("curr_bars_count < bars_count", " bars count:", bars.Count());
+
+			}
+			else if (currentBarsCount > barsCount)
+			{
+				foreach (int i in Enumerable.Range(0, barsCount))
+				{
+					Bar barsNode = bars[i];
+					if (i >= barsCount) 
+					{
+						barsContainer.RemoveChild(barsNode);
+					}
+				}
+				bars.Resize(barsCount);
+				GD.Print("curr_bars_count < bars_count", " bars count:", bars.Count());
 			}
 		}
 	
