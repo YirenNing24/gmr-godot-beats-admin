@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://jiond1lgfsus"]
+
+[ext_resource type="Script" path="res://Components/BeatMakerComponents/Track.cs" id="1_adv15"]
+
+[node name="Track" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_adv15")
+
+[node name="BarsContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 159)
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.147222
+offset_bottom = -159.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true

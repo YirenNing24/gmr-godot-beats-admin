@@ -208,5 +208,6 @@ auto_translate_mode = 1
 size = Vector2i(207, 175)
 
 [node name="SaveMapDialog" parent="." instance=ExtResource("4_3ly17")]
+visible = false
 z_index = 1
 layout_mode = 1
