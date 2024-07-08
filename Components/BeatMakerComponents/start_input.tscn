@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl44mg0anuotn"]
+
+[ext_resource type="Script" path="res://Scenes/StartInput.cs" id="1_sqegi"]
+
+[node name="StartInput" type="SpinBox"]
+script = ExtResource("1_sqegi")

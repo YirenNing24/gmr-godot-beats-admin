@@ -62,14 +62,14 @@ namespace Main
 			public ScrollContainer windowScroll;
 			public VBoxContainer tracksContainer;
 			public AudioStreamPlayer audioStreamPlayer;
-			public SpinBox bpmInput;
-			public SpinBox startInput;
+			public BpmInput bpmInput;
+			public StartInput startInput;
 			public Control waveformContainer;
 			public TextureRect waveFormNode;
 			public Control cursorContainer;	
 			public Slider cursorSlider;
-			public Node2D cursorStatic;
-			public Node2D cursorPlayback;
+			public CursorStatic cursorStatic;
+			public CursorPlayback cursorPlayback;
 			public FileDialog importMap;
 			public FileDialog fileDialog;
 			public SaveMapDialog saveMapDialog;
@@ -98,17 +98,17 @@ namespace Main
 			nodeVariables.windowScroll = GetNode<ScrollContainer>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll");
 			nodeVariables.tracksContainer = GetNode<VBoxContainer>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/TracksContainer");
 			nodeVariables.audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
-			nodeVariables.bpmInput = GetNode<SpinBox>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/BPMInput");
-			nodeVariables.startInput = GetNode<SpinBox>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/StartInput");
+			nodeVariables.bpmInput = GetNode<BpmInput>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/BPMInput");
+			nodeVariables.startInput = GetNode<StartInput>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/StartInput");
 			nodeVariables.waveformContainer = GetNode<Control>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer");
 			nodeVariables.waveFormNode = GetNode<TextureRect>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/WaveFormNode");
 			nodeVariables.cursorContainer = GetNode<Control>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer");
 			nodeVariables.cursorSlider = GetNode<HSlider>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorSlider");
-			nodeVariables.cursorStatic = GetNode<Node2D>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorStatic");
-			nodeVariables.cursorPlayback = GetNode<Node2D>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorPlayback");
+			nodeVariables.cursorStatic = GetNode<CursorStatic>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorStatic");
+			nodeVariables.cursorPlayback = GetNode<CursorPlayback>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorPlayback");
 			nodeVariables.importMap = GetNode<FileDialog>("ImportMap");
 			nodeVariables.fileDialog = GetNode<FileDialog>("FileDialog");
-			nodeVariables.saveMapDialog = GetNode<SaveMapDialog>("MapInfoDialog");
+			nodeVariables.saveMapDialog = GetNode<SaveMapDialog>("SaveMapDialog");
 			nodeVariables.playButton = GetNode<Button>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/PlayButton");
 			nodeVariables.editorContainer = GetNode<VBoxContainer>("EditorContainer");
 
@@ -119,8 +119,10 @@ namespace Main
 		{
 			memoryVariables.loadPercent += 100;
 			FileMenuItems();
-			CallDeferred("SetProcess", true);
-			CallDeferred("SetProcessInput", true);
+			SetProcess(true);
+			SetProcessInput(true);
+			// CallDeferred("SetProcess", true);
+			// CallDeferred("SetProcessInput", true);
 			memoryVariables.windowScrollSize = (int)nodeVariables.windowScroll.GetMinimumSize().X;
 			UpdateControls();
 			UpdateLastFilePath(Utilities.Constants.LastFilePath);
@@ -404,7 +406,7 @@ namespace Main
 	
 			string dataStartPosition = (string)data["start_pos"];
 			float mapStartPosition = Convert.ToInt32(dataStartPosition) / Utilities.Constants.CellExportScale;
-			nodeVariables.startInput.input.SetValue(mapStartPosition);
+			nodeVariables.startInput.Value = mapStartPosition;
 
 			nodeVariables.saveMapDialog.SetData((string)data["creator"], (Dictionary)data["audio"]);
 
@@ -477,9 +479,8 @@ namespace Main
 				{
 					Track track = memoryVariables.tracks[i];
 					GD.Print("Track " + i + " removed");
-					GD.Print("Track " + t + " removed");
+					GD.Print("Track " + track + " removed");
 
-					// Assuming you have a method to destroy or remove the track
 					DestroyTrack(track);
 				}
 			}
@@ -528,7 +529,7 @@ namespace Main
 			Vector2 scaledSize = new(memoryVariables.waveFormLength * 1, Utilities.Constants.WaveformHeight);
 			nodeVariables.waveformContainer.CustomMinimumSize = scaledSize;
 			nodeVariables.waveformContainer.Size = scaledSize;
-			nodeVariables.cursorPlayback.speedScale = memoryVariables.scaleRatio;
+			nodeVariables.cursorPlayback.speedScale = (int)memoryVariables.scaleRatio;
 			memoryVariables.windowScrollSize = (int)(nodeVariables.cursorSlider.Value - d);
 			memoryVariables.pendingWScrollUpdate = true;
 

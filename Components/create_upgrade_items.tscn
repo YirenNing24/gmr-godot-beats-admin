@@ -159,8 +159,14 @@ rebound_strength = 7.0
 [node name="CreateUpgradeItems" type="VBoxContainer" groups=["TaskWindows"]]
 auto_translate_mode = 1
 custom_minimum_size = Vector2(1443, 986)
+anchors_preset = -1
+anchor_right = 0.751562
+anchor_bottom = 0.912963
+offset_right = -1443.0
+offset_bottom = -986.0
 size_flags_horizontal = 3
 script = ExtResource("1_414iy")
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 auto_translate_mode = 1

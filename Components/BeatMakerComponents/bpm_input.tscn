@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cusiegrqreaoj"]
+
+[ext_resource type="Script" path="res://Components/BeatMakerComponents/BpmInput.cs" id="1_fdwd2"]
+
+[node name="BPMInput" type="SpinBox"]
+script = ExtResource("1_fdwd2")

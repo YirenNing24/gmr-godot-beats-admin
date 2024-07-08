@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc4hx04j3bgn1"]
+[gd_scene load_steps=14 format=3 uid="uid://dc4hx04j3bgn1"]
 
 [ext_resource type="Script" path="res://Scenes/BeatMaker.cs" id="1_02n4t"]
 [ext_resource type="Theme" uid="uid://6wfg3gqntauh" path="res://Resources/Themes/file_button.tres" id="2_wfarr"]
 [ext_resource type="FontFile" uid="uid://ppvw26qavbge" path="res://Resources/Fonts/HankenGrotesk-ExtraBold.ttf" id="3_bih1y"]
 [ext_resource type="PackedScene" uid="uid://drjp8x40dfe5t" path="res://Components/BeatMakerComponents/save_map_dialog.tscn" id="4_3ly17"]
+[ext_resource type="PackedScene" uid="uid://c5d0fg4n063sf" path="res://Components/BeatMakerComponents/cursor_static.tscn" id="4_opsx2"]
+[ext_resource type="PackedScene" uid="uid://cl44mg0anuotn" path="res://Components/BeatMakerComponents/start_input.tscn" id="4_yck8c"]
+[ext_resource type="PackedScene" uid="uid://bx3kq53c03p68" path="res://Components/BeatMakerComponents/cursor_playback.tscn" id="5_2mjt1"]
+[ext_resource type="PackedScene" uid="uid://cusiegrqreaoj" path="res://Components/BeatMakerComponents/bpm_input.tscn" id="5_syb4c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3gkq"]
 bg_color = Color(0.164706, 0.152941, 0.235294, 1)
@@ -147,10 +151,10 @@ theme_override_fonts/font = ExtResource("3_bih1y")
 theme_override_font_sizes/font_size = 20
 text = "PLAY"
 
-[node name="StartInput" type="SpinBox" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer"]
+[node name="StartInput" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer" instance=ExtResource("4_yck8c")]
 layout_mode = 2
 
-[node name="BPMInput" type="SpinBox" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer"]
+[node name="BPMInput" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer" instance=ExtResource("5_syb4c")]
 layout_mode = 2
 
 [node name="WindowScroll" type="ScrollContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer"]
@@ -187,9 +191,9 @@ anchor_right = 1.0
 offset_bottom = 16.0
 grow_horizontal = 2
 
-[node name="CursorStatic" type="Node2D" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer"]
+[node name="CursorStatic" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer" instance=ExtResource("4_opsx2")]
 
-[node name="CursorPlayback" type="Node2D" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer"]
+[node name="CursorPlayback" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer" instance=ExtResource("5_2mjt1")]
 
 [node name="TracksContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer"]
 unique_name_in_owner = true
@@ -208,6 +212,5 @@ auto_translate_mode = 1
 size = Vector2i(207, 175)
 
 [node name="SaveMapDialog" parent="." instance=ExtResource("4_3ly17")]
-visible = false
 z_index = 1
 layout_mode = 1

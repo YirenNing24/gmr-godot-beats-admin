@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://drjp8x40dfe5t"]
 
-[ext_resource type="Script" path="res://Components/BeatMakerComponents/MapInfoDialog.cs" id="1_0w0ka"]
+[ext_resource type="Script" path="res://Components/BeatMakerComponents/SaveMapDialog.cs" id="1_0w0ka"]
 [ext_resource type="StyleBox" uid="uid://b4xgb6l5osc02" path="res://Resources/CustomResource/SignIn.tres" id="1_ol1jl"]
 [ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="2_3aauy"]
 [ext_resource type="FontFile" uid="uid://ppvw26qavbge" path="res://Resources/Fonts/HankenGrotesk-ExtraBold.ttf" id="2_onqqe"]

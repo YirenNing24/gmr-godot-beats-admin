@@ -32,7 +32,7 @@ using Godot.Collections;
         {
             beatMapMakerField = GetNode<LineEdit>("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/UsernameField");
             artistField = GetNode<LineEdit>("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/ArtistField");
-            titleField = GetNode<LineEdit>("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/TitleField");
+            titleField = GetNode<LineEdit>("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/SongTitleField");
             difficultyField = GetNode<LineEdit>("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/DifficultyField");
 			saveButton = GetNode<Button>("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/HBoxContainer/SaveButton");
         }
