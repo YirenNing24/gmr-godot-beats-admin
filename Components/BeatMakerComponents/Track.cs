@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
-using System;
 using System.Linq;
+using Array = Godot.Collections.Array;
 
 
 
@@ -22,15 +22,11 @@ using System.Linq;
 		public bool sizeUpdated = false;
 		public bool startPositionUpdated = true;	
 		public bool isActive = false;
-
-
 		public override void _Ready()
 		{
 			SpawnBars();
 			SetProcess(true);
 		}
-
-
 		public override void _Process(double delta)
 		{
 		}
@@ -45,10 +41,9 @@ using System.Linq;
 				{
                     string dataIndex = (string)data["index"];
                     string dataQuartersCount = (string)data["quarters_count"];
-					Bar bar = (Bar)AddBar(x, dataIndex.ToInt(), dataQuartersCount.ToInt());
-					bar.SetNotesData(data["notes"]);
+					Bar bar = AddBar(x, dataIndex.ToInt(), dataQuartersCount.ToInt());
+					bar.SetNotesData((Array)data["notes"]);
 					x += bar.GetWidth();
-
                 }
 			
 			} else 
@@ -61,8 +56,7 @@ using System.Linq;
 			}
 		}
 
-
-		public void SetUp(int barCount, bool updateExisting)
+		public void SetUp(int barCount, bool updateExisting = false)
 		{
 			barsCount = barCount;
 			if (updateExisting)
@@ -72,6 +66,77 @@ using System.Linq;
 
 		}
 
+		public void SetStartPosition(int value)
+		{
+			startPos = value;
+			startPositionUpdated = false;
+		}
+
+		public void SetActive(bool value)
+		{
+			isActive = value;
+		}
+
+		public void SetData(Dictionary trackData)
+		{
+			Color trackDataColor = (Color)trackData["color"];
+			color = new Color(trackDataColor);
+			barsData = (Array<Dictionary>)trackData["bars"];
+		}
+
+		public int GetHeight()
+		{
+			return Utilities.Constants.TrackDistance + GetMaxBarHeight();
+		}
+
+		public int GetMaxBarHeight()
+		{
+			int maxHeight = 0;
+			foreach(Bar bar in bars)
+			{
+				int height = bar.GetHeight();
+				if (height > maxHeight)
+				{
+					maxHeight = height;
+				}
+			}
+			return maxHeight;
+		}
+
+		public void UpdateScale(int value)
+		{
+			currentScale = value;
+			foreach(Bar bar in bars)
+			{
+				bar.UpdateScale(value);
+
+			}
+			float barsContainerY = barsContainer.Position.Y;
+			barsContainer.Position = new Vector2(startPos * value, barsContainerY);
+		}
+
+
+		public Dictionary GetData()
+		{
+			var barsData = new Array<Dictionary>();
+			foreach (Bar bar in bars)
+			{
+				var barData = new Dictionary
+				{
+					{ "index", bar.index },
+					{ "quarters_count", bar.quartersCount },
+					{ "notes", bar.GetNotesData() }
+				};
+				barsData.Add(barData);
+			}
+			var data = new Dictionary
+			{
+				{ "color", color.ToHtml() },
+				{ "bars", barsData }
+			};
+
+			return data;
+		}
 
 		public Bar AddBar(int x, int index, int quartersCount)
 		{
@@ -80,13 +145,12 @@ using System.Linq;
 			bar.index = index;
 			bar.quartersCount = quartersCount;
 			bar.SetXPosition(x);
+
             _ = bars.Append<Node2D>(bar);
 			barsContainer.CallDeferred("AddChild", bar);
 
 			return bar;
-
 		}
-	
 	
 		public void RespawnBars()
 		{	
@@ -120,8 +184,14 @@ using System.Linq;
 			}
 		}
 	
-	}
+		public void SetInfo()
+		{
+			color = new Color(1, (float)0.752941, (float)0.796078, 1);
+			realSize = CustomMinimumSize;
+		}
 
-
-
-
+    internal void UpdateScale(float scaleRatio)
+    {
+        throw new System.NotImplementedException();
+    }
+}

@@ -5,7 +5,10 @@ using Godot.Collections;
 using Array = Godot.Collections.Array;
 
 public partial class Bar : Node2D
-{
+{	
+
+	public PackedScene noteScene = GD.Load<PackedScene>("res://Components/BeatMakerComponents/note.tscn");
+
 	public Node2D grid;
 	public Label indexLabel;
 	public Control control;
@@ -29,10 +32,13 @@ public partial class Bar : Node2D
 	{
 		indexLabel.Text = index.ToString();
 		control.CustomMinimumSize = new Vector2(GetWidth(), GetHeight());
+		control.GuiInput += OnControlGuiInput;
 
 	}
 
-	public int GetWidth()
+
+
+    public int GetWidth()
 	{
 		return GetCellsCount() * Utilities.Constants.CellWidth;
 	}
@@ -67,9 +73,9 @@ public partial class Bar : Node2D
 	public Note AddNote(int x)
 	{
 		_ = filledCells.Append(x);
-		Note note = noteScene.Instantiate();
+		Note note = noteScene.Instantiate<Note>();
 		note.Position = new Vector2(x, 0);
-		notes.Append(note);
+        _ = notes.Append(note);
 		AddChild(note);
 		SortNotes();
 		UpdateNotesWidth();
@@ -79,7 +85,7 @@ public partial class Bar : Node2D
 		public Note AddSwipeNote(int x)
 	{
 		_ = filledCells.Append(x);
-		SwipeNote swipeNote = swipeNoteScene.Instantiate();
+		SwipeNote swipeNote = (SwipeNote)noteScene.Instantiate();
 		swipeNote.Position = new Vector2(x, 0);
 		notes.Append(swipeNote);
 		AddChild(swipeNote);
@@ -107,13 +113,12 @@ public partial class Bar : Node2D
 			Note note = AddNote(x);
             string dataLength = (string)data["len"];
 			note.SetWidth(dataLength.ToInt() / Utilities.Constants.CellExportScale);
-
         }
 	}
 
 	public Array GetNotesData()
 	{
-		var notesData = new Godot.Collections.Array();
+		var notesData = new Array();
 
 		foreach (Note note in notes)
 		{
@@ -121,10 +126,8 @@ public partial class Bar : Node2D
              {
 				{ "pos", note.Position.X * Utilities.Constants.CellExportScale },
 				{ "len", note.GetWidth() * Utilities.Constants.CellExportScale },
-				{ "member", note.Member },
-				{ "layer", note.LayerNumber },
-				{ "slanted", note.Slanted },
-				{ "swipe", note.IsSwipe }
+				{ "member", note.member },
+				{ "swipe", note.isSwipe }
 			};
 
 			notesData.Add(noteData);
@@ -132,7 +135,6 @@ public partial class Bar : Node2D
 
 		return notesData;
 	}
-
 
 	public void SortNotes()
 	{
@@ -158,7 +160,7 @@ public partial class Bar : Node2D
 		}
 		foreach (Note note in notes)
 		{
-			if (x >= note.Position.X || x < note.Position.X + note.GetWidth())
+			if (x >= note.Position.X && x < note.Position.X + note.GetWidth())
 			{
 				return false;
 			}	
@@ -170,7 +172,7 @@ public partial class Bar : Node2D
 	{
 		foreach (Note note in notes)
 		{
-			note.MaxWidth = CalcNoteMaxWidth(note.Position.X);
+			note.maxWidth = CalcNoteMaxWidth((int)note.Position.X);
 		}
 	}
 
@@ -178,7 +180,7 @@ public partial class Bar : Node2D
 	{
 		int endNoteX = noteX + Utilities.Constants.CellWidth;
 		int maxNoteWidth = GetWidth() - noteX;
-		foreach (int x in Enumerable.Range(end_note_x, GetWidth(), Utilities.Constants.CellWidth))
+		for (int x = endNoteX; x < GetWidth(); x += Utilities.Constants.CellWidth)
 		{
 			if (filledCells.Contains(x))
 			{
@@ -200,19 +202,128 @@ public partial class Bar : Node2D
 		GD.Print("delete note begin", filledCells);
 	}
 
+	public Note GetFirstNote()
+	{
+		if (notes.Count == 0)
+		{
+			return null;
+		}
+
+		Note first = notes[0];
+		foreach (Note note in notes)
+		{
+			if (note.Position.X < first.Position.X)
+			{
+				first = note;
+			}
+		}
+		return first;
+
+	}
+
+	public Bar GetNextBar()
+	{
+		if (track.bars.Count > index + 1)
+		{
+			return track.bars[index + 1];
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	public Note GetNoteAfter (int xPosition)
+	{
+		if (notes.Count > 0)
+		{
+			Array next = new();
+			foreach (Note note in notes)
+			{
+				if (note.Position.X > xPosition)
+				{
+					next.Append(note);
+
+				}
+			}
+			if (next.Count > 0)
+			{
+				Note first = (Note)next[0];
+				foreach (Note nextNote in next.Select(v => (Note)v))
+				{
+					if (nextNote.Position.X < first.Position.X)
+						{
+							first = nextNote;
+		
+						}
+				}
+				return first;
+			}
+		}
+		return null;
+	}
 
 
-func delete_note(note: StaticBody2D) -> void:
-	print("delete note begin", filled_cells)
-	filled_cells.erase(int(note.position.x))
-	update_notes_width()
-	remove_child(note)
-	notes.erase(note)
-	editor.unset_active_note()
-	print("deleted!", filled_cells)
+
+// func update_scale(val: int) -> void:
+// 	scale = Vector2(val, 1)
+// 	position = Vector2(x_pos * val, position.y)
+// 	index_label.set_scale(Vector2(1.0 / val, 1))
+// 	for note: StaticBody2D in notes:
+// 		note.update_scale(val)
+
+    private void OnControlGuiInput(InputEvent @event)
+    {
+		if (@event is InputEventMouseButton mouseEvent && mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
+		{
+			if (holdShift)
+			{
+				float noteX = mouseEvent.Position.X;
+				int cellIndex = (int)MathF.Floor(noteX / Utilities.Constants.CellWidth);
+				if (IsCellEmptyAt(cellIndex * Utilities.Constants.CellWidth))
+				{
+					GD.Print("Swipe note added at cell index:", cellIndex);
+				}
+
+				SwipeNote swipeNote = (SwipeNote)AddSwipeNote(cellIndex * Utilities.Constants.CellWidth);
+
+				// Find the index of the note in the filled_cells array
+				int noteIndex = filledCells.IndexOf(swipeNote.Position.X);
+				GD.Print("filled: ", filledCells);
+ 				GD.Print("Note index in filled_cells:", noteIndex);
+
+				editor.SetActiveNote(swipeNote);
+            }
+			else
+			{
+				GD.Print("Bar " + index.ToString() + " Clicked at", mouseEvent.Position);
+				// Calculate the index of the cell based on the note's x position
+				float noteX = mouseEvent.Position.X;
+				int cellIndex = (int)Math.Floor(noteX / Utilities.Constants.CellWidth);
+				if (IsCellEmptyAt(cellIndex * Utilities.Constants.CellWidth))
+				{
+					GD.Print("Note added at cell index:", cellIndex);
+
+					// Add the note at the cell index
+					Note note = AddNote(cellIndex * Utilities.Constants.CellWidth);
+
+					//Find the index of the ntoe in the filled cells array
+					int noteIndex = filledCells.IndexOf(note.Position.X);
+
+				 	GD.Print("filled: ", filledCells);
+ 					GD.Print("Note index in filled_cells:", noteIndex);
+
+				}
+				else
+				{
+					GD.Print("Cell is not empty, cannot add note");
+				}
 
 
+			}
+
+		}
 
 
-
+    }
 }

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5d0fg4n063sf"]
+
+[ext_resource type="Script" path="res://Scenes/CursorStatic.cs" id="1_3ykhg"]
+
+[node name="CursorStatic" type="Node2D"]
+script = ExtResource("1_3ykhg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

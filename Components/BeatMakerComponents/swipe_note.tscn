@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://djuoo88i1k8dj"]
+
+[ext_resource type="Script" path="res://Components/BeatMakerComponents/SwipeNote.cs" id="1_1iexi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6ew1"]
+
+[node name="SwipeNote" type="StaticBody2D"]
+script = ExtResource("1_1iexi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i6ew1")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AssignColor" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

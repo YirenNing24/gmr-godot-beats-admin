@@ -1,8 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-namespace SaveMapDialog
-{
+
     public partial class SaveMapDialog : Panel
     {   
         // SIGNAL
@@ -157,4 +156,3 @@ namespace SaveMapDialog
 		}
 	}
 	
-}

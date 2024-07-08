@@ -1,8 +1,8 @@
 using System;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
+using System.Linq;
 using Godot;
 using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 namespace Main
 {
@@ -10,6 +10,7 @@ namespace Main
 	{
 		[Signal]
 		public delegate void PreviewUpdatedEventHandler();
+		public PackedScene trackScene = GD.Load<PackedScene>("res://Components/BeatMakerComponents/track.tscn");
 
 		// Grouping memory variables
 		public class MemoryVariables
@@ -24,7 +25,7 @@ namespace Main
 			public string editorDir;
 			public string audioFileName;
 			public GodotThread audioLoadThread;
-			public int mapStartPost;
+			public int mapStartPos;
 			public int trackLength;
 			public int trackSpeed;
 			public float trackTempo;
@@ -34,7 +35,7 @@ namespace Main
 			public int waveFormScale;
 			public float tempoUpdateTimeOut;
 			public int tempoUpdateInProcess;
-			public int uiScale;
+			public float uiScale;
 			public float scaleRatio;
 			public int previousScaleRatio;
 			public float barSize;
@@ -49,6 +50,7 @@ namespace Main
 			public int windowsScrollLastPos = 0;
 			public Array<Track> tracks;
 			public bool isConnecting = false;
+			public bool audioLoaded = false;
 		}
 
 		public MemoryVariables memoryVariables = new();
@@ -70,10 +72,10 @@ namespace Main
 			public Node2D cursorPlayback;
 			public FileDialog importMap;
 			public FileDialog fileDialog;
-			public Panel saveMapDialog;
+			public SaveMapDialog saveMapDialog;
 			public Button playButton;
-			public Node2D activeNote;
-			public Control activeTrack;
+			public Note activeNote;
+			public Track activeTrack;
 			public VBoxContainer editorContainer;
 		}
 
@@ -106,7 +108,7 @@ namespace Main
 			nodeVariables.cursorPlayback = GetNode<Node2D>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorPlayback");
 			nodeVariables.importMap = GetNode<FileDialog>("ImportMap");
 			nodeVariables.fileDialog = GetNode<FileDialog>("FileDialog");
-			nodeVariables.saveMapDialog = GetNode<Panel>("MapInfoDialog");
+			nodeVariables.saveMapDialog = GetNode<SaveMapDialog>("MapInfoDialog");
 			nodeVariables.playButton = GetNode<Button>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/PlayButton");
 			nodeVariables.editorContainer = GetNode<VBoxContainer>("EditorContainer");
 
@@ -119,6 +121,32 @@ namespace Main
 			FileMenuItems();
 			CallDeferred("SetProcess", true);
 			CallDeferred("SetProcessInput", true);
+			memoryVariables.windowScrollSize = (int)nodeVariables.windowScroll.GetMinimumSize().X;
+			UpdateControls();
+			UpdateLastFilePath(Utilities.Constants.LastFilePath);
+		}
+
+		public void SetupEditorDirectory()
+		{
+			GD.Print("user data dir:", OS.GetUserDataDir());
+			memoryVariables.editorDir = "user://editor";
+			if (DirAccess.Open(memoryVariables.editorDir) == null)
+			{	
+				_ = DirAccess.MakeDirAbsolute(memoryVariables.editorDir);
+			}
+			GD.Print("editor_dir:", memoryVariables.editorDir);
+		}
+
+		public void UpdateControls()
+		{
+			if (memoryVariables.audioLoaded)
+			{
+				CallDeferred("AddTrack");
+			}
+			else
+			{
+
+			}
 		}
 
 		public override void _Process(double delta)
@@ -183,7 +211,6 @@ namespace Main
 			nodeVariables.cursorSlider.CustomMinimumSize = new Vector2(memoryVariables.waveFormLength, 16);
 		}
 
-
 		public void RedrawMap()
 		{
 			foreach (Track track in memoryVariables.tracks)
@@ -191,7 +218,6 @@ namespace Main
 				track.SetUp(memoryVariables.barsCount, true);
 			}
 		}
-
 
         public void FileMenuItems() 
 		{
@@ -231,5 +257,298 @@ namespace Main
 
 			EmitSignal(nameof(PreviewUpdated));
 		}
+
+		public void SetActiveNote(Note note)
+		{
+			nodeVariables.activeNote?.SetActive(false);
+			nodeVariables.activeNote = note;
+			nodeVariables.activeNote.SetActive(true);
+			Track noteBarTrack = note.bar.track;
+			SetActiveTrack(noteBarTrack);
+
+		}
+
+		public void UnsetActiveNote()
+		{
+			if (nodeVariables.activeNote != null)
+			{
+				nodeVariables.activeNote.SetActive(false);
+				nodeVariables.activeNote = null;
+			}
+			
+		}
+
+		public void ReDrawMap()
+		{
+			foreach(Track track in memoryVariables.tracks)
+			{
+				track.SetUp(memoryVariables.barsCount, true);
+			}
+		}
+		
+		public bool CopySong(string inputFilePath)
+		{
+			GD.Print("Copy started ", inputFilePath);
+			string fileName = inputFilePath.GetFile();
+			string fileFormat = fileName.GetExtension().ToLower();
+			memoryVariables.oggFilePath = memoryVariables.editorDir + "/" + "audio" + ".ogg" ;
+			if (fileFormat == ".ogg"){
+				DirAccess dir = DirAccess.Open(memoryVariables.editorDir);
+				if (dir != null)
+				{
+                    _ = dir.Copy(inputFilePath, memoryVariables.oggFilePath);
+                }
+			}
+			else
+			{
+				return false;
+			}
+			GD.Print("Copy finished");
+			return true;
+		}
+
+		public void ExportData()
+		{
+			string songsDir = "Songs";
+			string songFolder;
+			string newDir;
+			DirAccess dir = DirAccess.Open(songsDir);
+			GD.Print("current dir: ", dir.GetCurrentDir());
+			GD.Print("OPEN RETURN CODE: " + dir);
+
+			int randInt;
+			GD.Randomize();
+			randInt = (int)GD.Randi();
+			songFolder = randInt.ToString() + " " + nodeVariables.saveMapDialog.audioInfo["artist"] + "-" + nodeVariables.saveMapDialog.audioInfo["title"];
+			GD.Print(songFolder);
+			Error dirMakeError = dir.MakeDir(songFolder);
+			if (dirMakeError != Error.Ok)
+			{
+				GD.Print("Failed to create directory: " + dirMakeError);
+				return;
+			}
+
+			newDir = songsDir + "/" + songFolder;
+			DirAccess dirNew = DirAccess.Open(newDir);
+
+			
+			Array tracksData = new();
+			foreach (Track track in memoryVariables.tracks)
+			{
+				tracksData.Add(track.GetData());
+			}
+
+			Dictionary data = new()
+			{
+				{ "audio", nodeVariables.saveMapDialog.audioInfo },
+				{ "beatmap_maker", nodeVariables.saveMapDialog.beatMapMaker },
+				{ "audio_file", nodeVariables.saveMapDialog.audioInfo["artist"] + "-" + nodeVariables.saveMapDialog.audioInfo["title"] + ".ogg" },
+				{ "date", GetCurrDate() },
+				{ "tempo", memoryVariables.trackTempo },
+				{ "song_folder", newDir },
+				{ "start_pos", memoryVariables.mapStartPos * Utilities.Constants.CellExportScale},
+				{ "tracks", tracksData }
+			};
+
+			newDir += "/" + "map-" + nodeVariables.saveMapDialog.audioInfo["artist"] + "-" + nodeVariables.saveMapDialog.audioInfo["title"] + ".json";
+			
+			Utilities.BeatMakerUtils.WriteJSONFile(newDir, data);
+            UpdateLastFilePath(newDir);
+			newDir = songsDir + "/" + songFolder;
+			newDir += "/" + nodeVariables.saveMapDialog.audioInfo["artist"] + "-" + nodeVariables.saveMapDialog.audioInfo["title"] + ".ogg";
+
+			string fileName = "editor_dir/audio.ogg";
+			string fileFormat = fileName.GetExtension().ToLower();
+
+			string oggFilePath = memoryVariables.editorDir + "/" + "audio" + ".ogg";
+
+			if (fileFormat == "ogg")
+			{
+				Error copyError = dirNew.Copy(oggFilePath, newDir);
+				if (copyError != Error.Ok)
+				{
+					GD.Print("Failed to copy audio file: " + copyError);
+					return;
+				}
+			}
+			else
+			{
+				return;
+			}
+		}
+
+		public static void EnableLoadSong(bool isEnabled)
+		{
+			if (isEnabled)
+			{
+
+			}
+
+			else 
+			{
+
+			}
+		}
+
+    	public void ImportData(string path)
+		{
+			Dictionary data = Utilities.BeatMakerUtils.ReadJSONFile(path);
+			if (data == null)
+			{
+				return;
+			}
+
+			string dataTempo = (string)data["tempo"];
+			int trackTempo = Convert.ToInt32(dataTempo);
+			nodeVariables.bpmInput.SetTempo(memoryVariables.trackTempo);
+	
+			string dataStartPosition = (string)data["start_pos"];
+			float mapStartPosition = Convert.ToInt32(dataStartPosition) / Utilities.Constants.CellExportScale;
+			nodeVariables.startInput.input.SetValue(mapStartPosition);
+
+			nodeVariables.saveMapDialog.SetData((string)data["creator"], (Dictionary)data["audio"]);
+
+			memoryVariables.mapInfoWasSaved = false;
+			memoryVariables.pendingExport = false;
+			ClearTracks();
+			SetParams();
+			ScaleTo(0);
+
+			int y = Utilities.Constants.CellHeight + Utilities.Constants.TrackDistance;
+			foreach (Dictionary trackData in ((Array)data["tracks"]).Select(v => (Dictionary)v))
+			{
+				Track track = (Track)trackScene.Instantiate();
+				track.SetData(trackData);
+				track.SetPosition(new Vector2(0, y));
+				track.SetStartPosition((int)mapStartPosition);
+				nodeVariables.tracksContainer.AddChild(track);
+				memoryVariables.tracks.Add(track);
+				y += track.GetHeight();
+			}
+
+			UpdateCursorLength();
+			UpdateLastFilePath(path);
+
+			GD.Print("Data imported");
+			GD.Print("New track data:", memoryVariables.tracks);
+		}
+
+
+		public void UpdateCursorLength()
+		{
+			int offset = 0;
+			foreach(Track track in memoryVariables.tracks)
+			{
+				offset += (int)track.CustomMinimumSize.Y;
+			}
+			nodeVariables.cursorStatic.SetLengthOffset(offset);
+			nodeVariables.cursorPlayback.SetLengthOffset(offset);
+		}
+
+		public void AddTrack()
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				Track track = (Track)trackScene.Instantiate();
+				track.SetInfo();
+				track.SetUp(memoryVariables.barsCount);
+				track.trackIndex = i;
+				track.Position = new Vector2(0, (memoryVariables.tracks.Count + 1) * (Utilities.Constants.CellHeight + Utilities.Constants.TrackDistance));
+				track.SetStartPosition(memoryVariables.mapStartPos);
+				nodeVariables.tracksContainer.CallDeferred("AddChild", track);
+				memoryVariables.tracks.Append(track);
+				SetActiveTrack(track);
+				UpdateCursorLength();
+				ScaleTo(0);
+			}
+		}
+
+		public void SetActiveTrack(Track track)
+		{
+			nodeVariables.activeTrack?.SetActive(false);
+			nodeVariables.activeTrack = track;
+			nodeVariables.activeTrack.SetActive(true);
+		}
+
+		public void ClearTracks()
+			{
+				int trackSize = memoryVariables.tracks.Count();
+				for (int i = 0; i < trackSize; i++)
+				{
+					Track track = memoryVariables.tracks[i];
+					GD.Print("Track " + i + " removed");
+					GD.Print("Track " + t + " removed");
+
+					// Assuming you have a method to destroy or remove the track
+					DestroyTrack(track);
+				}
+			}
+
+		public void DestroyTrack(Track track)
+		{
+			if (nodeVariables.activeTrack == track)
+			{
+				nodeVariables.activeTrack = null;
+			}
+			nodeVariables.tracksContainer.RemoveChild(track);
+			memoryVariables.tracks.Remove(track);
+			UpdateCursorLength();
+			
+		}
+
+		public void ScaleTo(float dir)
+		{
+			if (memoryVariables.pendingWScrollUpdate)
+			{
+				return;
+			}
+
+			float value = dir * memoryVariables.waveFormScale;
+			memoryVariables.uiScale = value;
+			float currentScale = memoryVariables.waveFormScale * memoryVariables.uiScale;
+			memoryVariables.scaleRatio = currentScale / memoryVariables.waveFormScale;
+			if (memoryVariables.scaleRatio <= 0 || memoryVariables.scaleRatio == 0)
+			{
+				memoryVariables.scaleRatio = (float)0.1;
+				memoryVariables.uiScale -= value;
+				return;
+			}
+			CallDeferred("DeferredScaleTo");
+		}
+
+		public void DeferredScaleTo()
+		{
+			float scaleD = memoryVariables.scaleRatio / memoryVariables.previousScaleRatio;
+			float cursorValue = (float)nodeVariables.cursorSlider.Value;
+			float scrollValue = (float)nodeVariables.windowScroll.GetHScrollBar().Value;
+			float d = cursorValue - scrollValue;
+			nodeVariables.cursorSlider.MaxValue = memoryVariables.waveFormLength * memoryVariables.scaleRatio;
+			nodeVariables.cursorSlider.CustomMinimumSize = new Vector2(memoryVariables.waveFormLength * memoryVariables.scaleRatio, 100);
+			nodeVariables.cursorSlider.Value = cursorValue * scaleD;
+			Vector2 scaledSize = new(memoryVariables.waveFormLength * 1, Utilities.Constants.WaveformHeight);
+			nodeVariables.waveformContainer.CustomMinimumSize = scaledSize;
+			nodeVariables.waveformContainer.Size = scaledSize;
+			nodeVariables.cursorPlayback.speedScale = memoryVariables.scaleRatio;
+			memoryVariables.windowScrollSize = (int)(nodeVariables.cursorSlider.Value - d);
+			memoryVariables.pendingWScrollUpdate = true;
+
+			foreach(Track track in memoryVariables.tracks)
+			{
+				track.UpdateScale(memoryVariables.scaleRatio);
+			}
+			memoryVariables.previousScaleRatio = (int)memoryVariables.scaleRatio;
+		}
+
+        public static string GetCurrDate()
+		{
+			return DateTime.Now.ToString("yyyy-MM-dd");
+		}
+
+		public static void UpdateLastFilePath(string filePath)
+		{
+			Utilities.Constants.LastFilePath = filePath;
+		}
+
+
 	}
 }
