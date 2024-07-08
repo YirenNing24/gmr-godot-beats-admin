@@ -123,22 +123,88 @@ namespace Main
 
         private void OnSongFileDialogSelected(string path)
         {
-            memoryVariables.audioLoadThread.Start(new Callable(this, nameof(LoadSong)));
 
-			void LoadSong(string path)
-			{
-				LoadSongs(path);
-			}
-
-
+			Callable loadSong = Callable.From(() => LoadSongs(path));
+            memoryVariables.audioLoadThread.Start(loadSong);
         }
 
         public void LoadSongs(string path)
+         {
+		 	GD.Print("Loading started ", path);
+			EnableLoadSong(false);
+			UpdateLoadAudio(Tr("Loading..."));
+			bool isCopied = CopySong(path);
+			if (isCopied)
+			{
+				memoryVariables.audioLoadThread.WaitToFinish();	
+				EnableLoadSong(true);
+				return;
+			}
+			if (!CheckAudio())
+			{
+				GD.Print("Audio file not valid or copied.");
+				EnableLoadSong(true);
+				memoryVariables.audioLoadThread.WaitToFinish();
+				return;
+			}
+
+			UpdateLoadAudio(Tr("Loading..."));
+			memoryVariables.stream = LoadOGG(memoryVariables.oggFilePath);
+			GD.Print("FILE:", memoryVariables.oggFilePath, memoryVariables.stream);
+			if (!IsSongLoaded(memoryVariables.stream))
+			{
+				return;
+			}
+			CallDeferred("SetAudioPlayerStream", memoryVariables.stream);
+			UpdateLoadAudio(Tr("Loading..."));
+			// LoadWaveform();
+			SetParams();
+			memoryVariables.audioLoaded = true;
+			UpdateControls();
+			UpdateLastFilePath(path);
+			UpdateLoadAudio(Tr("Audio Loaded"));
+		 }
+
+        private void SetAudioPlayerStream(AudioStreamOggVorbis stream)
         {
-			GD.Print(path);
+			nodeVariables.audioStreamPlayer.Stream = stream;
         }
 
+        private bool IsSongLoaded(AudioStreamOggVorbis stream)
+        {
+			if (stream == null)
+			{
+				memoryVariables.audioLoadThread.WaitToFinish();
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+        }
 
+        private static AudioStreamOggVorbis LoadOGG(string oggFilePath)
+        {
+			AudioStreamOggVorbis OGGFile = AudioStreamOggVorbis.LoadFromFile(oggFilePath);
+			return OGGFile;
+        }
+
+        public bool CheckAudio()
+		{
+			bool checker = FileAccess.FileExists(memoryVariables.oggFilePath);
+			if (!checker)
+			{
+				GD.Print("File not found");
+				return false;
+			}
+			return true;
+		}
+
+
+        private void UpdateLoadAudio(string text)
+        {
+
+        }
 
         public void BuildEditor()
 		{
