@@ -5,10 +5,8 @@ using Godot.Collections;
 using Array = Godot.Collections.Array;
 
 public partial class Bar : Node2D
-{	
-
+{		
 	public PackedScene noteScene = GD.Load<PackedScene>("res://Components/BeatMakerComponents/note.tscn");
-
 	public Node2D grid;
 	public Label indexLabel;
 	public Control control;
@@ -16,12 +14,11 @@ public partial class Bar : Node2D
 	public Main.BeatMaker editor;
 	public VBoxContainer editorContainer;
 
-	// Convert Godot variables to C# variables
-	public int quartersCount = Utilities.Constants.QuartersCount;  // Assuming you have a Constants class with QUARTERS_COUNT defined
+	public int quartersCount = Utilities.Constants.QuartersCount;
 	public int index = 0;
 	public int trackIndex;
-	public Array filledCells;
-	public Array<Note> notes;
+	public Array filledCells  = new();
+	public Array<Note> notes = new();
 	public int xPos = 0;
 	public bool isPressed = false;
 	public bool isActive = false;
@@ -29,14 +26,22 @@ public partial class Bar : Node2D
 	public bool holdShift = false;
 
 	public override void _Ready()
-	{
+	{	
+		LoadNodes();
 		indexLabel.Text = index.ToString();
 		control.CustomMinimumSize = new Vector2(GetWidth(), GetHeight());
 		control.GuiInput += OnControlGuiInput;
-
 	}
 
-
+	public void LoadNodes()
+	{
+		grid = GetNode<Node2D>("Grid");
+		indexLabel = GetNode<Label>("Label");
+		control = GetNode<Control>("Control");
+		track = GetNode<Track>("../../");
+		editor = GetNode<Main.BeatMaker>("/root/BeatMaker");
+		editorContainer = GetNode<VBoxContainer>("/root/BeatMaker/EditorContainer");
+	}
 
     public int GetWidth()
 	{
@@ -59,7 +64,7 @@ public partial class Bar : Node2D
 		Position = new Vector2(xPos, 0);
 	}
 
-	public void UpdateScale(int value)
+	public void UpdateScale(float value)
 	{
 		Scale = new Vector2(value, 1);
 		Position = new Vector2(xPos, Position.Y);
@@ -87,7 +92,7 @@ public partial class Bar : Node2D
 		_ = filledCells.Append(x);
 		SwipeNote swipeNote = (SwipeNote)noteScene.Instantiate();
 		swipeNote.Position = new Vector2(x, 0);
-		notes.Append(swipeNote);
+        _ = notes.Append(swipeNote);
 		AddChild(swipeNote);
 		SortNotes();
 		UpdateNotesWidth();
@@ -119,7 +124,6 @@ public partial class Bar : Node2D
 	public Array GetNotesData()
 	{
 		var notesData = new Array();
-
 		foreach (Note note in notes)
 		{
 			 Dictionary noteData = new()
@@ -132,7 +136,6 @@ public partial class Bar : Node2D
 
 			notesData.Add(noteData);
 		}
-
 		return notesData;
 	}
 
@@ -144,11 +147,9 @@ public partial class Bar : Node2D
 			{
 				if (notes[j - 1].Position.X > notes[j].Position.X)
 				{
-					Note t = notes[j - 1];
-					notes[j - 1] = notes[j];
-					notes[j] = t;
-				}
-			}
+                    (notes[j], notes[j - 1]) = (notes[j - 1], notes[j]);
+                }
+            }
 		}
 	}
 
@@ -262,15 +263,6 @@ public partial class Bar : Node2D
 		}
 		return null;
 	}
-
-
-
-// func update_scale(val: int) -> void:
-// 	scale = Vector2(val, 1)
-// 	position = Vector2(x_pos * val, position.y)
-// 	index_label.set_scale(Vector2(1.0 / val, 1))
-// 	for note: StaticBody2D in notes:
-// 		note.update_scale(val)
 
     private void OnControlGuiInput(InputEvent @event)
     {

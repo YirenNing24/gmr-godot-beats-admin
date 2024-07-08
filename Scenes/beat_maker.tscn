@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dc4hx04j3bgn1"]
+[gd_scene load_steps=21 format=3 uid="uid://dc4hx04j3bgn1"]
 
 [ext_resource type="Script" path="res://Scenes/BeatMaker.cs" id="1_02n4t"]
 [ext_resource type="Theme" uid="uid://6wfg3gqntauh" path="res://Resources/Themes/file_button.tres" id="2_wfarr"]
@@ -29,6 +29,18 @@ bg_color = Color(0.0705882, 0.054902, 0.14902, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpkvg"]
 bg_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+
+[sub_resource type="ImageTexture" id="ImageTexture_ysfej"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_de7gh"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_k5vp3"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_ev5dq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6im11"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0w4fd"]
 
 [node name="BeatMaker" type="Control"]
 layout_mode = 3
@@ -191,6 +203,12 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 16.0
 grow_horizontal = 2
+theme_override_icons/grabber = SubResource("ImageTexture_ysfej")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_de7gh")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_k5vp3")
+theme_override_icons/tick = SubResource("ImageTexture_ev5dq")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_6im11")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_0w4fd")
 
 [node name="CursorStatic" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer" instance=ExtResource("4_opsx2")]
 
@@ -199,18 +217,19 @@ grow_horizontal = 2
 [node name="TracksContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer"]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -14.0
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
 initial_position = 2
 size = Vector2i(700, 500)
-visible = true
 theme = ExtResource("8_odtvq")
 ok_button_text = "Open"
 file_mode = 0

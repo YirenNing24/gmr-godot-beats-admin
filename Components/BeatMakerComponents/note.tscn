@@ -19,3 +19,4 @@ offset_bottom = 40.0
 [node name="AssignColor" type="Panel" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2

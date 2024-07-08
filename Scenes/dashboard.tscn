@@ -57,8 +57,6 @@ func _on_logout_log_out_button_pressed() -> void:
 func _on_user_status_changed(_status: Dictionary) -> void:
 	animation_player.play(\"OnlineStatus\")
 	
-
-
 func _on_create_upgrade_items_selected_upgrade_item(_upgrade_item_data: Dictionary) -> void:
 	pass # Replace with function body.
 "

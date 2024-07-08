@@ -137,7 +137,7 @@ public partial class Note : Node2D
 				}
 			}
 			else if (mouseEvent.ButtonIndex == MouseButton.Right)
-			{
+			{	
 				Delete();
 			}
 		}

@@ -28,19 +28,19 @@ namespace Main
 			public int mapStartPos;
 			public int trackLength;
 			public int trackSpeed;
-			public float trackTempo;
+			public float trackTempo = 130;
 			public bool mapInfoWasSaved;
 			public bool pendingExport;
 			public int waveFormLength;
 			public int waveFormScale;
-			public float tempoUpdateTimeOut;
-			public int tempoUpdateInProcess;
+			public float tempoUpdateTimeOut = 0;
+			public bool tempoUpdateInProcess = false;
 			public float uiScale;
-			public float scaleRatio;
+			public float scaleRatio = 1;
 			public int previousScaleRatio;
 			public float barSize;
 			public int barsCount;
-			public int quarterTimeInSeconds;
+			public float quarterTimeInSeconds;
 			public float sampleDurationInSeconds;
 			public int windowScrollSize = 0;
 			public bool pendingWScrollUpdate = false;
@@ -48,7 +48,7 @@ namespace Main
 			public int windowScrollLastVal = 0;
 			public int windowScrollAndCursorD = 0;
 			public int windowsScrollLastPos = 0;
-			public Array<Track> tracks;
+			public Array<Track> tracks = new();
 			public bool isConnecting = false;
 			public bool audioLoaded = false;
 		}
@@ -78,7 +78,6 @@ namespace Main
 			public Track activeTrack;
 			public VBoxContainer editorContainer;
 		}
-
 		public NodeVariables nodeVariables = new();
 
 		public override void _Ready()
@@ -90,6 +89,72 @@ namespace Main
 		{
 			LoadNodes();
 			CallDeferred("BuildEditor");
+		}
+
+		public void BuildEditor()
+		{
+			memoryVariables.loadPercent += 100;
+			FileMenuItems();
+			SetProcess(true);
+			SetProcessInput(true);
+			memoryVariables.windowScrollSize = (int)nodeVariables.windowScroll.GetMinimumSize().X;
+			UpdateControls();
+			UpdateLastFilePath(Utilities.Constants.LastFilePath);
+			SetupEditorDirectory();
+		}
+
+		public override void _Process(double delta)
+		{
+			// Only update scroll position if there's a pending update
+			if (memoryVariables.pendingWScrollUpdate)
+			{
+				nodeVariables.windowScroll.SetHScroll(memoryVariables.windowScrollSize);
+				memoryVariables.pendingWScrollUpdate = false;
+			}
+
+			// Get the current window size
+			Window window = GetWindow();
+			nodeVariables.tracksContainer.CustomMinimumSize = new Vector2(window.Size.X, 260);
+			nodeVariables.cursorContainer.Position = new Vector2(nodeVariables.cursorContainer.Position.X, (float)nodeVariables.windowScroll.GetVScrollBar().Value);
+			if (memoryVariables.tempoUpdateTimeOut > 0)
+			{
+				memoryVariables.tempoUpdateTimeOut -= (float)delta;
+			}
+
+			else if (memoryVariables.tempoUpdateTimeOut < 0)
+			{
+				memoryVariables.tempoUpdateTimeOut = 0;
+				memoryVariables.tempoUpdateInProcess = true;
+				int oldWaveFormLength = memoryVariables.waveFormLength;
+				int cursorValue = (int)nodeVariables.cursorSlider.Value;
+				int scrollValue = nodeVariables.windowScroll.ScrollHorizontal;
+				int dd = scrollValue - cursorValue;
+				SetParams();
+				RedrawMap();
+				int editorScale = memoryVariables.waveFormLength / oldWaveFormLength;
+				nodeVariables.cursorSlider.Value *= editorScale;
+				nodeVariables.windowScroll.ScrollHorizontal = (int)(nodeVariables.cursorSlider.Value + dd);
+				nodeVariables.cursorStatic.Position = new Vector2((float)nodeVariables.cursorSlider.Value, nodeVariables.cursorStatic.Position.Y);
+				memoryVariables.tempoUpdateInProcess = false;
+            }
+			memoryVariables.windowScrollLastVal = nodeVariables.windowScroll.ScrollHorizontal;
+			if (memoryVariables.isPlaying)
+			{
+				nodeVariables.cursorPlayback.Position = new Vector2(memoryVariables.trackSpeed * nodeVariables.audioStreamPlayer.GetPlaybackPosition()
+				* memoryVariables.scaleRatio, 0);
+			}
+			else
+			{
+				nodeVariables.cursorPlayback.Position = nodeVariables.cursorStatic.Position;
+			}
+			if (memoryVariables.isPlaying && memoryVariables.isFollowPlaying)
+			{
+				if (nodeVariables.cursorPlayback.Position.X >= nodeVariables.windowScroll.Size.X * 0.5)
+				{
+					nodeVariables.windowScroll.ScrollHorizontal = (int)(nodeVariables.cursorPlayback.Position.X - nodeVariables.windowScroll.Size.X * 0.5);
+				}
+			}
+
 		}
 
 		public void LoadNodes()
@@ -117,9 +182,33 @@ namespace Main
 		}
 
 		private void ConnectSignals()
-		{
+		{	
+			nodeVariables.playButton.Pressed += OnPlayButtonPressed;
 			nodeVariables.songfileDialog.FileSelected += OnSongFileDialogSelected;
 		}
+
+        private void OnPlayButtonPressed()
+        {
+            Play();
+        }
+
+        private void Play()
+        {
+            if (memoryVariables.isPlaying)
+			{
+				memoryVariables.isPlaying = false;
+				nodeVariables.audioStreamPlayer.Stop();
+			}
+			else
+			{
+				UnsetActiveNote();
+				UnsetActiveTrack();
+				float audioTrack = (float)(nodeVariables.cursorSlider.Value / memoryVariables.trackSpeed);
+				audioTrack /= memoryVariables.scaleRatio;
+				nodeVariables.audioStreamPlayer.Play(audioTrack);
+				GD.Print("Play");
+			}
+        }
 
         private void OnSongFileDialogSelected(string path)
         {
@@ -138,7 +227,6 @@ namespace Main
 			{
 				memoryVariables.audioLoadThread.WaitToFinish();	
 				EnableLoadSong(true);
-				return;
 			}
 			if (!CheckAudio())
 			{
@@ -200,25 +288,10 @@ namespace Main
 			return true;
 		}
 
-
         private void UpdateLoadAudio(string text)
         {
 
         }
-
-        public void BuildEditor()
-		{
-			memoryVariables.loadPercent += 100;
-			FileMenuItems();
-			SetProcess(true);
-			SetProcessInput(true);
-			// CallDeferred("SetProcess", true);
-			// CallDeferred("SetProcessInput", true);
-			memoryVariables.windowScrollSize = (int)nodeVariables.windowScroll.GetMinimumSize().X;
-			UpdateControls();
-			UpdateLastFilePath(Utilities.Constants.LastFilePath);
-			SetupEditorDirectory();
-		}
 
 		public void SetupEditorDirectory()
 		{
@@ -234,8 +307,10 @@ namespace Main
 		public void UpdateControls()
 		{
 			if (memoryVariables.audioLoaded)
-			{
+			{	
+				GD.Print("Loaded na ba???");
 				CallDeferred("AddTrack");
+
 			}
 			else
 			{
@@ -243,66 +318,31 @@ namespace Main
 			}
 		}
 
-		public override void _Process(double delta)
-		{
-			// Only update scroll position if there's a pending update
-			if (memoryVariables.pendingWScrollUpdate)
-			{
-				nodeVariables.windowScroll.SetHScroll(memoryVariables.windowScrollSize);
-				memoryVariables.pendingWScrollUpdate = false;
-			}
-
-			// Get the current window size
-			var window = GetWindow();
-			Vector2 newCustomMinSize = new Vector2(window.Size.X - 200, 260);
-
-			// Only update CustomMinimumSize if it has changed
-			if (nodeVariables.tracksContainer.CustomMinimumSize != newCustomMinSize)
-			{
-				nodeVariables.tracksContainer.CustomMinimumSize = newCustomMinSize;
-			}
-
-			// Only update cursor position if it has changed
-			Vector2 newCursorPos = new Vector2(nodeVariables.cursorContainer.Position.X, nodeVariables.windowScroll.ScrollVertical);
-			if (nodeVariables.cursorContainer.Position != newCursorPos)
-			{
-				nodeVariables.cursorContainer.Position = newCursorPos;
-			}
-
-			if (memoryVariables.tempoUpdateTimeOut > 0)
-			{
-				memoryVariables.tempoUpdateTimeOut -= (float)delta;
-				int oldWaveFormLength = memoryVariables.waveFormLength;
-				float cursorValue = (float)nodeVariables.cursorSlider.Value;
-				float scrollValue = (float)nodeVariables.windowScroll.ScrollHorizontal;
-				float dd = scrollValue - cursorValue;
-				SetParams();
-			}
-		}
-
 		public void SetParams()
 		{
 			memoryVariables.sampleDurationInSeconds = (float)memoryVariables.stream.GetLength();
-			memoryVariables.quarterTimeInSeconds = (int)(60 / memoryVariables.trackTempo);
+			memoryVariables.quarterTimeInSeconds = (60 / memoryVariables.trackTempo);
 			int cellWidth = Utilities.Constants.CellWidth;
 			int quartersCount = Utilities.Constants.QuartersCount;
 			int cellsInQuarterCount = Utilities.Constants.CellsInQuarterCount;
-			int barSize = cellWidth * quartersCount * cellsInQuarterCount;
-			memoryVariables.trackSpeed = barSize / (memoryVariables.quarterTimeInSeconds * quartersCount);
+			memoryVariables.barSize = cellWidth * quartersCount * cellsInQuarterCount;
+
+			memoryVariables.trackSpeed = (int)(memoryVariables.barSize / (memoryVariables.quarterTimeInSeconds * quartersCount));
 			memoryVariables.trackLength = (int)(memoryVariables.trackSpeed * memoryVariables.sampleDurationInSeconds);
-			memoryVariables.barsCount = (int)(memoryVariables.trackLength / memoryVariables.barSize);
+			memoryVariables.barsCount = (int)MathF.Round(memoryVariables.trackLength / memoryVariables.barSize);
 
 			memoryVariables.waveFormScale = memoryVariables.trackLength / Utilities.Constants.WaveformWidth;
 			memoryVariables.waveFormLength = memoryVariables.trackLength;
+
 			CallDeferred("DeferedSetParams");
 
 		}
 
 		public void DeferedSetParams()
 		{
-			nodeVariables.waveformContainer.Size = new Vector2(memoryVariables.waveFormLength, Utilities.Constants.WaveformHeight);
-			nodeVariables.cursorSlider.MaxValue = memoryVariables.waveFormLength;
-			nodeVariables.cursorSlider.CustomMinimumSize = new Vector2(memoryVariables.waveFormLength, 16);
+		 	nodeVariables.waveformContainer.Size = new Vector2(memoryVariables.waveFormLength, Utilities.Constants.WaveformHeight);
+		 	nodeVariables.cursorSlider.MaxValue = memoryVariables.waveFormLength;
+		 	nodeVariables.cursorSlider.CustomMinimumSize = new Vector2(memoryVariables.waveFormLength, 16);
 		}
 
 		public void RedrawMap()
@@ -359,7 +399,6 @@ namespace Main
 			nodeVariables.activeNote.SetActive(true);
 			Track noteBarTrack = note.bar.track;
 			SetActiveTrack(noteBarTrack);
-
 		}
 
 		public void UnsetActiveNote()
@@ -372,6 +411,12 @@ namespace Main
 			
 		}
 
+		public void UnsetActiveTrack()
+		{
+			nodeVariables.activeTrack?.SetActive(false);
+			nodeVariables.activeTrack = null;
+		}
+
 		public void ReDrawMap()
 		{
 			foreach(Track track in memoryVariables.tracks)
@@ -379,22 +424,24 @@ namespace Main
 				track.SetUp(memoryVariables.barsCount, true);
 			}
 		}
-		
+
 		public bool CopySong(string inputFilePath)
 		{
 			GD.Print("Copy started ", inputFilePath);
 			string fileName = inputFilePath.GetFile();
 			string fileFormat = fileName.GetExtension().ToLower();
+
 			memoryVariables.oggFilePath = memoryVariables.editorDir + "/" + "audio" + ".ogg" ;
-			if (fileFormat == ".ogg"){
+			if (fileFormat == "ogg"){
 				DirAccess dir = DirAccess.Open(memoryVariables.editorDir);
 				if (dir != null)
 				{
-                    _ = dir.Copy(inputFilePath, memoryVariables.oggFilePath);
+                    Error error = dir.Copy(inputFilePath, memoryVariables.oggFilePath);
+					GD.Print(error);
                 }
 			}
 			else
-			{
+			{	
 				return false;
 			}
 			GD.Print("Copy finished");
@@ -526,8 +573,7 @@ namespace Main
 			GD.Print("Data imported");
 			GD.Print("New track data:", memoryVariables.tracks);
 		}
-
-
+		
 		public void UpdateCursorLength()
 		{
 			int offset = 0;
@@ -543,14 +589,16 @@ namespace Main
 		{
 			for (int i = 0; i < 5; i++)
 			{
+
 				Track track = (Track)trackScene.Instantiate();
 				track.SetInfo();
 				track.SetUp(memoryVariables.barsCount);
 				track.trackIndex = i;
-				track.Position = new Vector2(0, (memoryVariables.tracks.Count + 1) * (Utilities.Constants.CellHeight + Utilities.Constants.TrackDistance));
+
 				track.SetStartPosition(memoryVariables.mapStartPos);
-				nodeVariables.tracksContainer.CallDeferred("AddChild", track);
-				memoryVariables.tracks.Append(track);
+				nodeVariables.tracksContainer.AddChild(track);
+				track.Position = new Vector2(0, (memoryVariables.tracks.Count + 1) * (Utilities.Constants.CellHeight + Utilities.Constants.TrackDistance));
+                _ = memoryVariables.tracks.Append(track);
 				SetActiveTrack(track);
 				UpdateCursorLength();
 				ScaleTo(0);
@@ -635,13 +683,11 @@ namespace Main
         public static string GetCurrDate()
 		{
 			return DateTime.Now.ToString("yyyy-MM-dd");
-		}
+		}	
 
 		public static void UpdateLastFilePath(string filePath)
 		{
 			Utilities.Constants.LastFilePath = filePath;
 		}
-
-
 	}
 }
