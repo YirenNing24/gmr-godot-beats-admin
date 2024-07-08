@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://blo2403ndota1"
+path="res://.godot/imported/X:IN-No Doubt.ogg-be0e6a167b55d11fe0aec0ba6d5e124f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/X:IN-No Doubt.ogg"
+dest_files=["res://.godot/imported/X:IN-No Doubt.ogg-be0e6a167b55d11fe0aec0ba6d5e124f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

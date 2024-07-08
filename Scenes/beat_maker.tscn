@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dc4hx04j3bgn1"]
+[gd_scene load_steps=15 format=3 uid="uid://dc4hx04j3bgn1"]
 
 [ext_resource type="Script" path="res://Scenes/BeatMaker.cs" id="1_02n4t"]
 [ext_resource type="Theme" uid="uid://6wfg3gqntauh" path="res://Resources/Themes/file_button.tres" id="2_wfarr"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cl44mg0anuotn" path="res://Components/BeatMakerComponents/start_input.tscn" id="4_yck8c"]
 [ext_resource type="PackedScene" uid="uid://bx3kq53c03p68" path="res://Components/BeatMakerComponents/cursor_playback.tscn" id="5_2mjt1"]
 [ext_resource type="PackedScene" uid="uid://cusiegrqreaoj" path="res://Components/BeatMakerComponents/bpm_input.tscn" id="5_syb4c"]
+[ext_resource type="Theme" uid="uid://c2og83gocxunk" path="res://Resources/Themes/file_dialog.tres" id="8_odtvq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3gkq"]
 bg_color = Color(0.164706, 0.152941, 0.235294, 1)
@@ -206,10 +207,18 @@ layout_mode = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(700, 500)
+visible = true
+theme = ExtResource("8_odtvq")
+ok_button_text = "Open"
+file_mode = 0
 
 [node name="ImportMap" type="FileDialog" parent="."]
 auto_translate_mode = 1
-size = Vector2i(207, 175)
+initial_position = 2
+size = Vector2i(700, 500)
 
 [node name="SaveMapDialog" parent="." instance=ExtResource("4_3ly17")]
 z_index = 1

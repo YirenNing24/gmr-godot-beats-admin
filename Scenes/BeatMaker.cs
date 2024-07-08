@@ -71,7 +71,7 @@ namespace Main
 			public CursorStatic cursorStatic;
 			public CursorPlayback cursorPlayback;
 			public FileDialog importMap;
-			public FileDialog fileDialog;
+			public FileDialog songfileDialog;
 			public SaveMapDialog saveMapDialog;
 			public Button playButton;
 			public Note activeNote;
@@ -107,15 +107,40 @@ namespace Main
 			nodeVariables.cursorStatic = GetNode<CursorStatic>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorStatic");
 			nodeVariables.cursorPlayback = GetNode<CursorPlayback>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/WindowScroll/VBoxContainer/WaveFormContainer/CursorContainer/CursorPlayback");
 			nodeVariables.importMap = GetNode<FileDialog>("ImportMap");
-			nodeVariables.fileDialog = GetNode<FileDialog>("FileDialog");
+			nodeVariables.songfileDialog = GetNode<FileDialog>("FileDialog");
 			nodeVariables.saveMapDialog = GetNode<SaveMapDialog>("SaveMapDialog");
 			nodeVariables.playButton = GetNode<Button>("EditorContainer/HBoxContainer2/Panel/VBoxContainer/Panel/HBoxContainer/PlayButton");
 			nodeVariables.editorContainer = GetNode<VBoxContainer>("EditorContainer");
 
 			memoryVariables.audioLoadThread = new GodotThread();
+			ConnectSignals();
 		}
 
-		public void BuildEditor()
+		private void ConnectSignals()
+		{
+			nodeVariables.songfileDialog.FileSelected += OnSongFileDialogSelected;
+		}
+
+        private void OnSongFileDialogSelected(string path)
+        {
+            memoryVariables.audioLoadThread.Start(new Callable(this, nameof(LoadSong)));
+
+			void LoadSong(string path)
+			{
+				LoadSongs(path);
+			}
+
+
+        }
+
+        public void LoadSongs(string path)
+        {
+			GD.Print(path);
+        }
+
+
+
+        public void BuildEditor()
 		{
 			memoryVariables.loadPercent += 100;
 			FileMenuItems();
@@ -126,6 +151,7 @@ namespace Main
 			memoryVariables.windowScrollSize = (int)nodeVariables.windowScroll.GetMinimumSize().X;
 			UpdateControls();
 			UpdateLastFilePath(Utilities.Constants.LastFilePath);
+			SetupEditorDirectory();
 		}
 
 		public void SetupEditorDirectory()
@@ -253,9 +279,9 @@ namespace Main
 
 		public void ImportAudio()
 		{
-			nodeVariables.fileDialog.Visible = true;
-			nodeVariables.fileDialog.CurrentFile = "";
-			nodeVariables.fileDialog.PopupCentered();
+			nodeVariables.songfileDialog.Visible = true;
+			nodeVariables.songfileDialog.CurrentFile = "";
+			nodeVariables.songfileDialog.PopupCentered();
 
 			EmitSignal(nameof(PreviewUpdated));
 		}
