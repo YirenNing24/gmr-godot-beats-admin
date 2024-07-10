@@ -80,7 +80,44 @@ namespace Main
 		}
 		public NodeVariables nodeVariables = new();
 
-		public override void _Ready()
+		private void ConnectSignals()
+		{	
+			nodeVariables.playButton.Pressed += OnPlayButtonPressed;
+			nodeVariables.songfileDialog.FileSelected += OnSongFileDialogSelected;
+			nodeVariables.windowScroll.MinimumSizeChanged += OnWindowScrollMinimumSizeChanged;
+			nodeVariables.cursorSlider.ValueChanged += OnCursorSliderValueChanged;
+		}
+
+        private void OnCursorSliderValueChanged(double value)
+        {
+            if (memoryVariables.tempoUpdateInProcess)
+			{
+				return;
+			}
+			nodeVariables.cursorStatic.Position = new Vector2((float)value, nodeVariables.cursorStatic.Position.Y);
+			if (memoryVariables.isPlaying)
+			{
+				float audioTrackTime = (float)(nodeVariables.cursorSlider.Value / memoryVariables.trackSpeed);
+				audioTrackTime /= memoryVariables.scaleRatio;
+				nodeVariables.audioStreamPlayer.Play(audioTrackTime);
+			}
+        }
+
+        private void OnWindowScrollMinimumSizeChanged()
+        {
+			int d = (int)(nodeVariables.cursorSlider.Value - nodeVariables.windowScroll.ScrollHorizontal);
+
+			GD.Print("Cursor Slider Value: ", nodeVariables.cursorSlider.Value);
+			GD.Print("windowScroll.ScrollHorizontal: ", nodeVariables.windowScroll.ScrollHorizontal);
+
+			if (d > memoryVariables.windowSize && !memoryVariables.pendingWScrollUpdate)
+			{
+				memoryVariables.windowScrollSize = nodeVariables.windowScroll.ScrollHorizontal + d;
+				memoryVariables.pendingWScrollUpdate = true;
+			}
+		}
+
+        public override void _Ready()
 		{
 			LoadEditor();
 		}
@@ -105,16 +142,13 @@ namespace Main
 
 		public override void _Process(double delta)
 		{
-			// Only update scroll position if there's a pending update
 			if (memoryVariables.pendingWScrollUpdate)
-			{
-				nodeVariables.windowScroll.SetHScroll(memoryVariables.windowScrollSize);
+			{	
+				nodeVariables.windowScroll.ScrollHorizontal = memoryVariables.windowScrollSize;
 				memoryVariables.pendingWScrollUpdate = false;
 			}
-
-			// Get the current window size
-			Window window = GetWindow();
-			nodeVariables.tracksContainer.CustomMinimumSize = new Vector2(window.Size.X, 260);
+			// Window window = GetWindow();
+			// nodeVariables.tracksContainer.CustomMinimumSize = new Vector2(window.Size.X - 200, 260);
 			nodeVariables.cursorContainer.Position = new Vector2(nodeVariables.cursorContainer.Position.X, (float)nodeVariables.windowScroll.GetVScrollBar().Value);
 			if (memoryVariables.tempoUpdateTimeOut > 0)
 			{
@@ -133,6 +167,7 @@ namespace Main
 				RedrawMap();
 				int editorScale = memoryVariables.waveFormLength / oldWaveFormLength;
 				nodeVariables.cursorSlider.Value *= editorScale;
+
 				nodeVariables.windowScroll.ScrollHorizontal = (int)(nodeVariables.cursorSlider.Value + dd);
 				nodeVariables.cursorStatic.Position = new Vector2((float)nodeVariables.cursorSlider.Value, nodeVariables.cursorStatic.Position.Y);
 				memoryVariables.tempoUpdateInProcess = false;
@@ -140,8 +175,8 @@ namespace Main
 			memoryVariables.windowScrollLastVal = nodeVariables.windowScroll.ScrollHorizontal;
 			if (memoryVariables.isPlaying)
 			{
-				nodeVariables.cursorPlayback.Position = new Vector2(memoryVariables.trackSpeed * nodeVariables.audioStreamPlayer.GetPlaybackPosition()
-				* memoryVariables.scaleRatio, 0);
+				nodeVariables.cursorPlayback.Position = new Vector2(memoryVariables.trackSpeed * 
+				nodeVariables.audioStreamPlayer.GetPlaybackPosition() * memoryVariables.scaleRatio, 0);
 			}
 			else
 			{
@@ -150,11 +185,11 @@ namespace Main
 			if (memoryVariables.isPlaying && memoryVariables.isFollowPlaying)
 			{
 				if (nodeVariables.cursorPlayback.Position.X >= nodeVariables.windowScroll.Size.X * 0.5)
-				{
+				{	
+					GD.Print("Third: ", nodeVariables.cursorPlayback.Position.X - nodeVariables.windowScroll.Size.X * 0.5);
 					nodeVariables.windowScroll.ScrollHorizontal = (int)(nodeVariables.cursorPlayback.Position.X - nodeVariables.windowScroll.Size.X * 0.5);
 				}
 			}
-
 		}
 
 		public void LoadNodes()
@@ -179,12 +214,6 @@ namespace Main
 
 			memoryVariables.audioLoadThread = new GodotThread();
 			ConnectSignals();
-		}
-
-		private void ConnectSignals()
-		{	
-			nodeVariables.playButton.Pressed += OnPlayButtonPressed;
-			nodeVariables.songfileDialog.FileSelected += OnSongFileDialogSelected;
 		}
 
         private void OnPlayButtonPressed()
@@ -308,9 +337,7 @@ namespace Main
 		{
 			if (memoryVariables.audioLoaded)
 			{	
-				GD.Print("Loaded na ba???");
 				CallDeferred("AddTrack");
-
 			}
 			else
 			{
@@ -321,7 +348,7 @@ namespace Main
 		public void SetParams()
 		{
 			memoryVariables.sampleDurationInSeconds = (float)memoryVariables.stream.GetLength();
-			memoryVariables.quarterTimeInSeconds = (60 / memoryVariables.trackTempo);
+			memoryVariables.quarterTimeInSeconds = 60 / memoryVariables.trackTempo;
 			int cellWidth = Utilities.Constants.CellWidth;
 			int quartersCount = Utilities.Constants.QuartersCount;
 			int cellsInQuarterCount = Utilities.Constants.CellsInQuarterCount;
@@ -589,20 +616,18 @@ namespace Main
 		{
 			for (int i = 0; i < 5; i++)
 			{
-
 				Track track = (Track)trackScene.Instantiate();
 				track.SetInfo();
 				track.SetUp(memoryVariables.barsCount);
 				track.trackIndex = i;
-
 				track.SetStartPosition(memoryVariables.mapStartPos);
 				nodeVariables.tracksContainer.AddChild(track);
 				track.Position = new Vector2(0, (memoryVariables.tracks.Count + 1) * (Utilities.Constants.CellHeight + Utilities.Constants.TrackDistance));
                 _ = memoryVariables.tracks.Append(track);
 				SetActiveTrack(track);
 				UpdateCursorLength();
-				ScaleTo(0);
 			}
+			ScaleTo(0);
 		}
 
 		public void SetActiveTrack(Track track)
@@ -640,10 +665,9 @@ namespace Main
 		public void ScaleTo(float dir)
 		{
 			if (memoryVariables.pendingWScrollUpdate)
-			{
+			{	
 				return;
 			}
-
 			float value = dir * memoryVariables.waveFormScale;
 			memoryVariables.uiScale = value;
 			float currentScale = memoryVariables.waveFormScale * memoryVariables.uiScale;

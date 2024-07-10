@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6vaju51l5lju"]
+
+[ext_resource type="Script" path="res://Beatmaker/Components/slanted_long_note_end.gd" id="1_n582h"]
+[ext_resource type="Texture2D" uid="uid://dhc3hdfbosvte" path="res://Beatmaker/Assets/Icons/note_end.png" id="2_njw76"]
+
+[node name="NoteEnd" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_n582h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 23.0
+texture = ExtResource("2_njw76")
+expand_mode = 1

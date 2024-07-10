@@ -1,3 +1,4 @@
+using BeatsEngine;
 using Godot;
 using Godot.Collections;
 using Main;
@@ -16,7 +17,7 @@ using Array = Godot.Collections.Array;
 	public Array<Bar> bars = new();
 	public Array<Dictionary> barsData = new();
 	public int barsCount = 0;
-	public Vector2 realSize = Vector2.Zero;
+	public Vector2 realSize;
 	public int startPos = 0	;
 	public float currentScale = (float)1.2;
 	public int trackIndex;
@@ -29,23 +30,23 @@ using Array = Godot.Collections.Array;
 		{	
 			LoadNodes();
 			SpawnBars();
-			SetProcess(true);
+
 		}
 
     public override void _Process(double delta)
     {
-		if (realSize != new Vector2() && !sizeUpdated)
-		{
+
+        if (realSize != null && !sizeUpdated)
+		{	
 			UpdateSize();
 			sizeUpdated = true;
 		}
 
-		if (!startPositionUpdated)
+        if (!startPositionUpdated)
 		{
 			UpdateStartPosition();
 			startPositionUpdated = true;
 		}
-
     }
 
     private void UpdateStartPosition()
@@ -65,44 +66,47 @@ using Array = Godot.Collections.Array;
 		editor.UpdateCursorLength();
 	}
 
-
-
-// func update_height() -> void:
-// 	custom_minimum_size = Vector2(size.x, get_height())
-// 	editor.update_cursor_length()
-
-
-
     private void LoadNodes()
     {
 		barsContainer = GetNode<Control>("./BarsContainer");
 		editor = GetNode<BeatMaker>("/root/BeatMaker");
     }
 
-	public void SpawnBars()
+    public void SetUp(int barCount, bool updateExisting = false)
 		{
-			int x = 0;
-			if (barsData.Count > 0)
-			
+			barsCount = barCount;
+			if (updateExisting)
 			{
-				GD.Print("bars counttsssss: ", barsData.Count);
-				foreach (Dictionary data in barsData)
-				{
-                    string dataIndex = (string)data["index"];
-                    string dataQuartersCount = (string)data["quarters_count"];
-					Bar bar = AddBar(x, dataIndex.ToInt(), dataQuartersCount.ToInt());
-					bar.SetNotesData((Array)data["notes"]);
-					x += bar.GetWidth();
-                }
-			} else 
-			{
-				foreach (int i in Enumerable.Range(0, barsCount))
-				{
-					Bar bar = AddBar(x, i, Utilities.Constants.QuartersCount);
-					x += bar.GetWidth();
-				}
+				RespawnBars();
 			}
 		}
+
+public void SpawnBars()
+{
+	int x = 0;
+	GD.Print("Spawning bars...");
+	if (barsData.Count > 0)
+	{
+		foreach (Dictionary data in barsData)
+		{
+			string dataIndex = (string)data["index"];
+			string dataQuartersCount = (string)data["quarters_count"];
+			Bar bar = AddBar(x, dataIndex.ToInt(), dataQuartersCount.ToInt());
+			bar.SetNotesData((Array)data["notes"]);
+			x += bar.GetWidth();
+			GD.Print("Bar added at x: {0}, Width: {1}", x, bar.GetWidth());
+		}
+	}
+	else 
+	{
+		foreach (int i in Enumerable.Range(0, barsCount))
+		{
+			Bar bar = AddBar(x, i, Utilities.Constants.QuartersCount);
+			x += bar.GetWidth();
+			GD.Print("Bar added at x: {0}, Width: {1}", x, bar.GetWidth());
+		}
+	}
+}
 
     private void ClearBars()
     {
@@ -116,16 +120,6 @@ using Array = Godot.Collections.Array;
 			barsContainer.RemoveChild(bar);
 		}
     }
-
-    public void SetUp(int barCount, bool updateExisting = false)
-		{
-			barsCount = barCount;
-			if (updateExisting)
-			{
-				RespawnBars();
-			}
-
-		}
 
 	public void SetStartPosition(int value)
 	{
@@ -193,16 +187,19 @@ using Array = Godot.Collections.Array;
 		bar.index = index;
 		bar.quartersCount = quartersCount;
 		bar.SetXPosition(x);
-		barsContainer.AddChild(bar);
+		CallDeferred("DeferredAddBar", bar);
 		_ = bars.Append(bar);
-		
-
 		return bar;
+	}
+
+	public void DeferredAddBar(Bar bar)
+	{
+		barsContainer.AddChild(bar);
 	}
 
 	public void RespawnBars()
 	{	
-		int currentBarsCount = bars.Count();
+		int currentBarsCount = bars.Count;
 		if (currentBarsCount < barsCount)
 		{
 			int x = (int)bars[currentBarsCount - 1].Position.X + bars[currentBarsCount - 1].GetWidth();

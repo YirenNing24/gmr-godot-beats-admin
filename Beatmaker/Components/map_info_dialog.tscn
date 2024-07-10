@@ -1,0 +1,207 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpl4mgii82vxw"]
+
+[ext_resource type="Theme" uid="uid://csmn6i3t0is3l" path="res://Beatmaker/Themes/file_dialog.tres" id="1_fbkd8"]
+[ext_resource type="Script" path="res://Beatmaker/Components/map_info_dialog.gd" id="1_ijsgf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn4o4"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.333333)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyew6"]
+bg_color = Color(0.0705882, 0.054902, 0.14902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.305882, 0.270588, 0.501961, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.32549)
+shadow_size = 60
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac48"]
+bg_color = Color(0.305882, 0.270588, 0.501961, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akh2i"]
+bg_color = Color(0.305882, 0.270588, 0.501961, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.305882, 0.270588, 0.501961, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u60d"]
+bg_color = Color(0.615686, 0.00784314, 0.705882, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl4wo"]
+bg_color = Color(0.305882, 0.270588, 0.501961, 0.266667)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="MapInfoDialog" type="Panel"]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sn4o4")
+script = ExtResource("1_ijsgf")
+
+[node name="MapInfoDialog" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -245.0
+offset_right = 300.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fbkd8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gyew6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapInfoDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.0
+offset_top = -237.0
+offset_right = 279.0
+offset_bottom = 232.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MapInfoDialog/VBoxContainer"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MapInfoDialog/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+theme_override_font_sizes/font_size = 22
+text = "Please enter beatmap details"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MapInfoDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.873298, 0.873298, 0.873298, 1)
+theme_override_font_sizes/font_size = 18
+text = "Beatmap maker"
+
+[node name="BeatmapMakerField" type="LineEdit" parent="MapInfoDialog/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "kaetaro13"
+editable = false
+
+[node name="Label2" type="Label" parent="MapInfoDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.873298, 0.873298, 0.873298, 1)
+theme_override_font_sizes/font_size = 18
+text = "Artist"
+
+[node name="ArtistField" type="LineEdit" parent="MapInfoDialog/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "Aespa"
+
+[node name="Label3" type="Label" parent="MapInfoDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.873298, 0.873298, 0.873298, 1)
+theme_override_font_sizes/font_size = 18
+text = "Title"
+
+[node name="TitleField" type="LineEdit" parent="MapInfoDialog/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "Supernova"
+
+[node name="Label4" type="Label" parent="MapInfoDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.873298, 0.873298, 0.873298, 1)
+theme_override_font_sizes/font_size = 18
+text = "Difficulty"
+
+[node name="DifficultyField" type="LineEdit" parent="MapInfoDialog/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "Ultra Hard"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapInfoDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MapInfoDialog/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MapInfoDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MapInfoDialog/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="MapInfoDialog/VBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.868985, 0.868985, 0.868985, 1)
+theme_override_styles/hover = SubResource("StyleBoxFlat_8ac48")
+theme_override_styles/normal = SubResource("StyleBoxFlat_akh2i")
+text = "Cancel"
+
+[node name="SaveButton" type="Button" parent="MapInfoDialog/VBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_5u60d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cl4wo")
+text = "Save"
+
+[connection signal="pressed" from="MapInfoDialog/VBoxContainer/VBoxContainer2/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MapInfoDialog/VBoxContainer/VBoxContainer2/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

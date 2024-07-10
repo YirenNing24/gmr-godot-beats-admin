@@ -31,6 +31,9 @@ public partial class Bar : Node2D
 		indexLabel.Text = index.ToString();
 		control.CustomMinimumSize = new Vector2(GetWidth(), GetHeight());
 		control.GuiInput += OnControlGuiInput;
+		
+
+
 	}
 
 	public void LoadNodes()
@@ -243,7 +246,7 @@ public partial class Bar : Node2D
 			{
 				if (note.Position.X > xPosition)
 				{
-					next.Append(note);
+                    _ = next.Append(note);
 
 				}
 			}

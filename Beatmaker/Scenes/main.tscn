@@ -1,0 +1,423 @@
+[gd_scene load_steps=30 format=3 uid="uid://d03pucxisbxjv"]
+
+[ext_resource type="Script" path="res://Beatmaker/Scenes/main.gd" id="1_4lm2j"]
+[ext_resource type="Theme" uid="uid://csmn6i3t0is3l" path="res://Beatmaker/Themes/file_dialog.tres" id="2_7fwbi"]
+[ext_resource type="Theme" uid="uid://ox8b3u5s2nr5" path="res://Beatmaker/Scenes/file_button.tres" id="3_3ksly"]
+[ext_resource type="PackedScene" uid="uid://3asw05b86j8q" path="res://Beatmaker/Components/bpm_input.tscn" id="3_7e23d"]
+[ext_resource type="Script" path="res://Beatmaker/Scenes/PlayButton.gd" id="3_naw2h"]
+[ext_resource type="PackedScene" uid="uid://coobf77s77ucm" path="res://Beatmaker/Components/start_pos_input.tscn" id="4_5x18j"]
+[ext_resource type="PackedScene" uid="uid://didp4xuev5bj1" path="res://Beatmaker/Components/waveform_node.tscn" id="4_byj1h"]
+[ext_resource type="FontFile" uid="uid://dcbjdaee834xb" path="res://Beatmaker/Assets/Fonts/argentum-sans.vf-regular.ttf" id="4_qakiy"]
+[ext_resource type="FontFile" uid="uid://ceu3oprm0ket2" path="res://Beatmaker/Assets/Fonts/argentum-sans.semibold.ttf" id="5_l3ycc"]
+[ext_resource type="Texture2D" uid="uid://cl03a572ayjdi" path="res://Beatmaker/Assets/Icons/songs_list.png" id="5_qoffe"]
+[ext_resource type="StyleBox" uid="uid://m5l2oe2ikeup" path="res://Beatmaker/Themes/play_button.tres" id="6_fovbi"]
+[ext_resource type="Texture2D" uid="uid://dxogh6snl2f4e" path="res://Beatmaker/Assets/Icons/songs_list_hover.png" id="6_i7f4p"]
+[ext_resource type="PackedScene" uid="uid://5s8oiae0e8cs" path="res://Beatmaker/Components/cursor_static.tscn" id="7_ctosv"]
+[ext_resource type="PackedScene" uid="uid://cahkuw6c120mu" path="res://Beatmaker/Components/cursor_play_back.tscn" id="8_eqm6n"]
+[ext_resource type="PackedScene" uid="uid://cpl4mgii82vxw" path="res://Beatmaker/Components/map_info_dialog.tscn" id="10_aht6x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6rke"]
+bg_color = Color(0.603327, 0.00868827, 0.692182, 1)
+shadow_color = Color(0.0214346, 0.0214346, 0.0214346, 0.6)
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b27j7"]
+bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4syrl"]
+bg_color = Color(0.0705882, 0.054902, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4km2c"]
+bg_color = Color(0.121569, 0.113725, 0.215686, 1)
+shadow_size = 3
+shadow_offset = Vector2(2, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2s6y"]
+bg_color = Color(0.615686, 0.00784314, 0.705882, 0.447059)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 0.0666667, 0.266667, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.180392)
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msqua"]
+bg_color = Color(0.878431, 0.223529, 0.992157, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.180392)
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mkqo"]
+bg_color = Color(0.614644, 0.00936547, 0.705014, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.180392)
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="ImageTexture" id="ImageTexture_hd5h1"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_hcjow"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_h1t5m"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_s1apj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4rogt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvskb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fd4hx"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_7fwbi")
+script = ExtResource("1_4lm2j")
+
+[node name="EditorContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="AppBar" type="Panel" parent="EditorContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u6rke")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/AppBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = -3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="FileMenuButton" type="MenuButton" parent="EditorContainer/AppBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_3ksly")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_qakiy")
+theme_override_font_sizes/font_size = 16
+text = "File"
+
+[node name="FileMenuButton2" type="MenuButton" parent="EditorContainer/AppBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_3ksly")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_qakiy")
+theme_override_font_sizes/font_size = 16
+text = "Authenticate"
+
+[node name="FileMenuButton3" type="MenuButton" parent="EditorContainer/AppBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_3ksly")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_qakiy")
+theme_override_font_sizes/font_size = 16
+text = "Help"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/HBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="NavigationTab" type="Panel" parent="EditorContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_b27j7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer/HBoxContainer/VBoxContainer/NavigationTab"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="EditorContainer/HBoxContainer/HBoxContainer/VBoxContainer/NavigationTab/VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("5_qoffe")
+texture_hover = ExtResource("6_i7f4p")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MenuBar" type="MenuBar" parent="EditorContainer/HBoxContainer/HBoxContainer/VBoxContainer/NavigationTab/VBoxContainer"]
+layout_mode = 2
+
+[node name="FileTab" type="Panel" parent="EditorContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4syrl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="EditorContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4km2c")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="AddLayer Button" type="Button" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qakiy")
+theme_override_font_sizes/font_size = 16
+text = "+ Add Layer"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayButton" type="Button" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_l3ycc")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = ExtResource("6_fovbi")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_d2s6y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_msqua")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6mkqo")
+theme_override_styles/normal = ExtResource("6_fovbi")
+disabled = true
+toggle_mode = true
+text = "Play"
+expand_icon = true
+script = ExtResource("3_naw2h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="StartPosInput" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2" instance=ExtResource("4_5x18j")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 20.0
+script = null
+
+[node name="BPMInput" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2" instance=ExtResource("3_7e23d")]
+unique_name_in_owner = true
+layout_mode = 2
+prefix = "BPM:"
+
+[node name="WindowScroll" type="ScrollContainer" parent="EditorContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="WaveformContainer" type="Control" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 111)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="WaveformNode" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer/WaveformContainer" instance=ExtResource("4_byj1h")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1599, 0)
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1599.0
+grow_horizontal = 1
+mouse_filter = 2
+
+[node name="CursorContainer" type="Control" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer/WaveformContainer"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 9.0
+grow_horizontal = 2
+
+[node name="CursorSlider" type="HSlider" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer/WaveformContainer/CursorContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = SubResource("ImageTexture_hd5h1")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_hcjow")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_h1t5m")
+theme_override_icons/tick = SubResource("ImageTexture_s1apj")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_4rogt")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_hvskb")
+value = 1.0
+scrollable = false
+
+[node name="CursorStatic" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer/WaveformContainer/CursorContainer" instance=ExtResource("7_ctosv")]
+unique_name_in_owner = true
+is_static = true
+
+[node name="CursorPlayBack" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer/WaveformContainer/CursorContainer" instance=ExtResource("8_eqm6n")]
+unique_name_in_owner = true
+
+[node name="Separator" type="Control" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TracksContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 60
+
+[node name="LeftTracksContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="RightTracksContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -14.99
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 2
+size = Vector2i(720, 500)
+theme = ExtResource("2_7fwbi")
+ok_button_text = "Open"
+file_mode = 0
+use_native_dialog = true
+
+[node name="ImportMap" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 2
+size = Vector2i(700, 500)
+theme = ExtResource("2_7fwbi")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fd4hx")
+
+[node name="MapInfoDialog" parent="." instance=ExtResource("10_aht6x")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="minimum_size_changed" from="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll" to="." method="_on_window_scroll_minimum_size_changed"]
+[connection signal="resized" from="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll" to="." method="_on_window_scroll_resized"]
+[connection signal="value_changed" from="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer/WaveformContainer/CursorContainer/CursorSlider" to="." method="_on_cursor_slider_value_changed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="file_selected" from="ImportMap" to="." method="_on_import_map_file_selected"]

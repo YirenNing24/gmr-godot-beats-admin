@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://jwb5x2jvsufi"]
+
+[ext_resource type="Script" path="res://Beatmaker/Components/layer.gd" id="1_xiu5o"]
+[ext_resource type="PackedScene" uid="uid://didp4xuev5bj1" path="res://Beatmaker/Components/waveform_node.tscn" id="2_ue4ux"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_hd5h1"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_hcjow"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_h1t5m"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_s1apj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4rogt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvskb"]
+
+[node name="Layer" type="ScrollContainer"]
+offset_right = 146.0
+offset_bottom = 106.0
+script = ExtResource("1_xiu5o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WaveformContainer" type="Control" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WaveformNode" parent="VBoxContainer/WaveformContainer" instance=ExtResource("2_ue4ux")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+script = null
+
+[node name="CursorContainer" type="Control" parent="VBoxContainer/WaveformContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 9.0
+grow_horizontal = 2
+
+[node name="CursorSlider" type="HSlider" parent="VBoxContainer/WaveformContainer/CursorContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = SubResource("ImageTexture_hd5h1")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_hcjow")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_h1t5m")
+theme_override_icons/tick = SubResource("ImageTexture_s1apj")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_4rogt")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_hvskb")
+value = 1.0
+scrollable = false
+
+[node name="CursorStatic" type="Node2D" parent="VBoxContainer/WaveformContainer/CursorContainer"]
+unique_name_in_owner = true
+
+[node name="CursorPlayBack" type="Node2D" parent="VBoxContainer/WaveformContainer/CursorContainer"]
+unique_name_in_owner = true
+
+[node name="Separator" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="TracksContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2

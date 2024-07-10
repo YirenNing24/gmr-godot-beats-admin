@@ -3,15 +3,12 @@ using Godot;
 
 public partial class SwipeNote : Note
 {
-
-
 	public bool IsSwipe = true;
 
 	public override void _Ready()
 	{
 		SetProcess(true);
 		LoadNodes();
-		
 	}
 
     public override void _Process(double delta)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cahkuw6c120mu"]
+
+[ext_resource type="Script" path="res://Beatmaker/Components/cursor_play_back.gd" id="1_0pgsd"]
+
+[node name="CursorPlayBack" type="Node2D"]
+script = ExtResource("1_0pgsd")

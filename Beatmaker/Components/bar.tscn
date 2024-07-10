@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj74imsghls41"]
+
+[ext_resource type="Script" path="res://Beatmaker/Components/bar.gd" id="1_hk7xb"]
+[ext_resource type="Script" path="res://Beatmaker/Components/Grid.gd" id="2_0ni8s"]
+
+[node name="Bar" type="Node2D"]
+script = ExtResource("1_hk7xb")
+
+[node name="IndexLabel" type="Label" parent="."]
+offset_left = 3.0
+offset_top = -24.0
+offset_right = 47.0
+offset_bottom = -1.0
+theme_override_font_sizes/font_size = 16
+text = "Index"
+
+[node name="Grid" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_0ni8s")
+
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]
