@@ -30,8 +30,9 @@ bg_color = Color(0.0705882, 0.054902, 0.14902, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4km2c"]
 bg_color = Color(0.121569, 0.113725, 0.215686, 1)
-shadow_size = 3
-shadow_offset = Vector2(2, 0)
+shadow_color = Color(0, 0, 0, 0.294118)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2s6y"]
 bg_color = Color(0.615686, 0.00784314, 0.705882, 0.447059)
@@ -93,6 +94,7 @@ shadow_offset = Vector2(1, 1)
 [sub_resource type="SpriteFrames" id="SpriteFrames_fd4hx"]
 
 [node name="Main" type="Control"]
+top_level = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,7 +113,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 1
+theme_override_constants/separation = 0
 
 [node name="AppBar" type="Panel" parent="EditorContainer"]
 unique_name_in_owner = true
@@ -167,7 +169,7 @@ theme_override_constants/separation = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="EditorContainer/HBoxContainer"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-theme_override_constants/separation = 1
+theme_override_constants/separation = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)

@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://bdo6l0nsp12rp"]
+
+[ext_resource type="Script" path="res://Components/CardBundleComponents/card_pack_settings.gd" id="1_8m5dk"]
+[ext_resource type="FontFile" uid="uid://ceu3oprm0ket2" path="res://Beatmaker/Assets/Fonts/argentum-sans.semibold.ttf" id="1_jcxoe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6fh8"]
+bg_color = Color(0.0705882, 0.0509804, 0.160784, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.211765)
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlba4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qpdiy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bj0n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kb2bw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mw61y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6gii"]
+
+[node name="CardPackSettings" type="Control"]
+custom_minimum_size = Vector2(576, 90)
+layout_mode = 3
+anchor_right = 0.3
+anchor_bottom = 0.0833333
+offset_right = -576.0
+offset_bottom = -90.0
+mouse_filter = 1
+script = ExtResource("1_8m5dk")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6fh8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 17.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PackName" type="Label" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 1)
+theme_override_fonts/font = ExtResource("1_jcxoe")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nlba4")
+text = "card pack name"
+uppercase = true
+
+[node name="CardCount" type="Label" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 1)
+theme_override_fonts/font = ExtResource("1_jcxoe")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nlba4")
+text = "10 cards"
+uppercase = true
+
+[node name="Button" type="Button" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qpdiy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6bj0n")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kb2bw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mw61y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n6gii")
+flat = true

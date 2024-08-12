@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwj4of5gllix"]
+
+[ext_resource type="FontFile" uid="uid://ct2crkiwgqdua" path="res://Beatmaker/Assets/Fonts/argentum-sans.medium.ttf" id="1_4l4k7"]
+[ext_resource type="Script" path="res://Components/CardBundleComponents/card_pack.gd" id="1_xg17p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1eysv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62k0j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5cm12"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8ipv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ypoxi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4o7a8"]
+
+[node name="CardPack" type="Control"]
+custom_minimum_size = Vector2(180, 210)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_xg17p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PackImage" type="TextureRect" parent="VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(80, 180)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PackName" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_4l4k7")
+text = "JIM BEAM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1eysv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_62k0j")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5cm12")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_m8ipv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ypoxi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4o7a8")
+flat = true

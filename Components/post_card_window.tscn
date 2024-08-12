@@ -221,7 +221,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
-columns = 10
+columns = 8
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="item_selected" from="VBoxContainer/HBoxContainer/Panel/HBoxContainer/HBoxContainer3/CardFilter" to="." method="_on_card_filter_item_selected"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgo03ngjmc8p"]
+[gd_scene load_steps=20 format=3 uid="uid://dgo03ngjmc8p"]
 
 [ext_resource type="Texture2D" uid="uid://bx0brthougm5" path="res://Resources/Icons/add-user-pink-icon.png" id="1_a71bv"]
 [ext_resource type="Script" path="res://Components/post_card_bundle_window.gd" id="1_sd1ti"]
 [ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="3_qvh6k"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_f76if"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="5_ndw8x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itb4x"]
 bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
@@ -117,6 +119,18 @@ bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 2
+
+[sub_resource type="Resource" id="Resource_yphqb"]
+script = ExtResource("5_ndw8x")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_076uu"]
+script = ExtResource("5_ndw8x")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
 
 [node name="PostCardBundleWindow" type="VBoxContainer" groups=["TaskWindows"]]
 auto_translate_mode = 1
@@ -233,7 +247,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_n7gja")
 selected = 0
 item_count = 2
 popup/item_0/text = "Listed"
-popup/item_0/id = 0
 popup/item_1/text = "Posted"
 popup/item_1/id = 1
 
@@ -264,13 +277,20 @@ layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
+script = ExtResource("4_f76if")
+wheel_scroll_damper = SubResource("Resource_yphqb")
+dragging_scroll_damper = SubResource("Resource_076uu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="CardPackContainer" type="GridContainer" parent="Panel/VBoxContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+columns = 7
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_vertical = 3
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

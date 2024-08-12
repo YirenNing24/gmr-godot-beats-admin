@@ -20,7 +20,7 @@ var host: String = BKMREngine.host
 
 #region for Contracts
 # Function to update saved stat points by making an API request to the server.
-func update_contracts(contract_list: Dictionary) -> Node:
+func update_contracts(contract_list: Dictionary) -> void:
 	# Prepare the HTTP request.
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
 	UpdateContracts = prepared_http_req.request
@@ -35,7 +35,6 @@ func update_contracts(contract_list: Dictionary) -> Node:
 	
 	# Send the POST request to update stat points on the server.
 	BKMREngine.send_post_request(UpdateContracts, request_url, payload)
-	return self
 	
 # Callback function triggered when the server responds to the stat points update request.
 func _on_UpdateContracts_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:

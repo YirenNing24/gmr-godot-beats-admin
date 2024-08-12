@@ -51,5 +51,8 @@ public partial class BKMRLogger : Node
         }
     }
 
-
+    internal static void Info(Variant variant)
+    {
+        throw new NotImplementedException();
+    }
 }

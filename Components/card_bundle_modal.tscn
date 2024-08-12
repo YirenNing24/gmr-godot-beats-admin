@@ -148,7 +148,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
-columns = 10
+columns = 8
 
 [node name="Panel" type="Panel" parent="Panel"]
 auto_translate_mode = 1
@@ -235,7 +235,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dyljq")
 selected = 0
 item_count = 2
 popup/item_0/text = "Listed"
-popup/item_0/id = 0
 popup/item_1/text = "Posted"
 popup/item_1/id = 1
 

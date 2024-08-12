@@ -46,7 +46,8 @@ func _ready() -> void:
 	connect_signal() 
 
 func connect_signal() -> void:
-	var _connect: int = list_for_sale_button.pressed.connect(_on_list_for_sale_button_pressed)
+	if !list_for_sale_button.pressed.is_connected(_on_list_for_sale_button_pressed):
+		var _connect: int = list_for_sale_button.pressed.connect(_on_list_for_sale_button_pressed)
 
 func _on_post_card_window_selected_post_card(card_data: Dictionary, filter: String) -> void:
 	populate_card_labels(card_data, filter)

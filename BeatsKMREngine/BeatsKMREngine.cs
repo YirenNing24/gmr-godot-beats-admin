@@ -11,7 +11,8 @@ namespace BeatsEngine
     {
         public bool session = false;
         // Create an instance of Auth as a property
-        public Auth Auth = new();
+        public AuthMiddle Auth = new();
+        public Contracts Contracts;
 
         // Constant representing the plugin version
         private const string version = "0.1";
@@ -22,6 +23,14 @@ namespace BeatsEngine
         // Static fields for server connection
         public static string port = ":8086";
         public static string host = "http://" + "localhost" + port;
+
+
+
+        // public override void _Ready()
+        // {
+        //     Auth = new();
+        //     Contracts = new();
+        // }
 
         /// <summary>
         /// Partial class representing an extended HttpRequest with WeakRef.
@@ -62,7 +71,7 @@ namespace BeatsEngine
         /// <param name="httpNode">The HttpRequestInfo instance to use for the request.</param>
         /// <param name="requestUrl">The URL to send the request to.</param>
         /// <param name="payload">The payload to send with the request.</param>
-        public async void SendLoginRequest(HttpRequestInfo httpNode, string requestUrl, Dictionary payload)
+        public async void SendLoginRequest(HttpRequest httpNode, string requestUrl, Dictionary payload)
         {
             string[] headers =
             {
@@ -85,7 +94,7 @@ namespace BeatsEngine
             _ = httpNode.Request(requestUrl, headers, HttpClient.Method.Post, query);
         }
 
-        public async void SendPostRequest(HttpRequestInfo httpNode, string requestUrl, Dictionary payload)
+        public async void SendPostRequest(HttpRequest httpNode, string requestUrl, Dictionary payload)
         {
             string[] headers =
             {
@@ -108,10 +117,25 @@ namespace BeatsEngine
             _ = httpNode.Request(requestUrl, headers, HttpClient.Method.Post, query);
         }
 
+        public async void SendGetRequest(HttpRequest httpNode, string requestUrl)
+        {
+            string[] headers =
+            {
+                "content-Type: application/json",
+                "x-bkmr-plugin-version: " + version,
+                "x-bkmr-godot-version: " + godotVersion
+            };
+            headers = AddJWTRefreshTokenHeaders(headers);
+            if (!httpNode.IsInsideTree())
+            {
+                await ToSignal(GetTree().CreateTimer(0.05), "timeout");
+            }
 
-// func free_request(weak_ref: Variant, object: HTTPRequest) -> void:
-// 	if (weak_ref.get_ref()):
-		// object.queue_free()
+            BKMRLogger.Debug("Method: POST");
+            BKMRLogger.Debug("request_url: " + requestUrl.ToString());
+            BKMRLogger.Debug("headers: " + headers.ToString());
+            _ = httpNode.Request(requestUrl, headers, HttpClient.Method.Get);
+        }
 
         public void FreeRequest(WeakRef weakRef, HttpRequest httpRequest)
         {

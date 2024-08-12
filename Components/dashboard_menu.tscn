@@ -410,7 +410,7 @@ theme_override_colors/font_color = Color(0.537958, 0.519348, 0.674469, 1)
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_y5v8i")
-text = "Contracts and settings"
+text = "SONG BANK AND BEATMAP MAKER"
 uppercase = true
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="."]
@@ -418,7 +418,7 @@ auto_translate_mode = 1
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 
-[node name="PostCardWindow" type="Button" parent="VBoxContainer7" groups=["DashboardMenuButton"]]
+[node name="SongBankWindow" type="Button" parent="VBoxContainer7" groups=["DashboardMenuButton"]]
 auto_translate_mode = 1
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -435,7 +435,7 @@ text = "Song Bank"
 alignment = 0
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer7/PostCardWindow"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer7/SongBankWindow"]
 auto_translate_mode = 1
 layout_mode = 0
 offset_left = 17.0
@@ -445,7 +445,7 @@ offset_bottom = 41.0
 texture = ExtResource("5_47yqy")
 expand_mode = 1
 
-[node name="PostCardBundleWindow" type="Button" parent="VBoxContainer7" groups=["DashboardMenuButton"]]
+[node name="Main" type="Button" parent="VBoxContainer7"]
 auto_translate_mode = 1
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -462,7 +462,7 @@ text = "Beatmap maker"
 alignment = 0
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer7/PostCardBundleWindow"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer7/Main"]
 auto_translate_mode = 1
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 0
@@ -472,3 +472,5 @@ offset_right = 47.0
 offset_bottom = 37.0
 texture = ExtResource("6_uhxjo")
 expand_mode = 1
+
+[connection signal="pressed" from="VBoxContainer7/Main" to="." method="_on_main_pressed"]

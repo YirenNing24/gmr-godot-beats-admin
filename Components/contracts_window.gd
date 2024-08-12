@@ -10,7 +10,7 @@ signal update_contract_request_completed
 @onready var card_marketplace_address: LineEdit = %CardMarketplaceAddress
 @onready var bundle_marketplace_address: LineEdit = %BundleMarketplaceAddress
 @onready var card_item_upgrade_address: LineEdit = %CardItemUpgradeAddress
-@onready var card_marketplace_upgrade_item_address: LineEdit = %CardItemUpgradeMarketplaceAddress
+@onready var card_marketplace_upgrade_item_address: LineEdit = %CardMarketplaceUpgradeItemAddress
 
 @onready var update_contract_button: Button = %UpdateContractButton
 
@@ -27,18 +27,20 @@ func signal_connect() -> void:
 	BKMREngine.Contract.get_contracts_complete.connect(_on_get_contracts_complete)
 	BKMREngine.Contract.contract_update_complete.connect(_on_update_contract_complete)
 
+	
 func check_permissions() -> void:
 	for line_edit: LineEdit in get_tree().get_nodes_in_group("ContractLineEdits"):
 		if BKMREngine.Auth.permission != "0":
 			line_edit.editable = false
 			update_contract_button.disabled = true
 			
+			
 func _on_update_contract_button_button_up() -> void:
 	var contracts: Dictionary = {
 		"beatsAddress": beats_address.text, 
 		"gmrAddress": gmr_address.text, 
 		"cardAddress": card_address.text, 
-		"bundleAddress": card_marketplace_address.text, 
+		"bundleAddress": bundle_address.text, 
   		"cardMarketplaceAddress": card_marketplace_address.text, 
 		"bundleMarketplaceAddress": bundle_marketplace_address.text,
 		"cardItemUpgradeAddress": card_item_upgrade_address.text,
@@ -47,6 +49,7 @@ func _on_update_contract_button_button_up() -> void:
 	update_contract_request_sent.emit()
 	BKMREngine.Contract.update_contracts(contracts)
 	
+	
 func _on_get_contracts_complete(contracts: Array) -> void:
 	if !contracts.is_empty():
 		var latest_contracts_list: Dictionary = contracts[0]
@@ -54,6 +57,7 @@ func _on_get_contracts_complete(contracts: Array) -> void:
 			for line_edit: LineEdit in get_tree().get_nodes_in_group("ContractLineEdits"):
 				if address_name.to_lower() == line_edit.name.to_lower():
 					line_edit.text = latest_contracts_list[address_name]
+	check_permissions()
 	
 func _on_update_contract_complete(_data: Dictionary) -> void:
 	update_contract_request_completed.emit()

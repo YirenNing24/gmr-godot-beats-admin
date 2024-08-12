@@ -1,4 +1,5 @@
 extends Node
+class_name auth
 
 #TODO when password error wrong, values still gets added
 
@@ -132,7 +133,7 @@ func _on_LoginPlayer_request_completed(_result: int, response_code: int, headers
 			print("Unknown server error")
 #endregion
 
-
+	
 #region Register functions
 func register_player(player: Dictionary) -> void:
 	# This function will be called every 4 minutes
@@ -145,7 +146,7 @@ func register_player(player: Dictionary) -> void:
 	BKMRLogger.info("Calling BKMREngine to validate an existing player session")
 	# Create the payload with lookup and access tokens
 	var payload: Dictionary = player
-	# Log the payload details
+	# Log the payload details	
 	BKMRLogger.debug("Validate session payload: " + str(payload))
 	var request_url: String = host + "/admin/register/"
 	# Send the POST request for session validation
@@ -167,9 +168,9 @@ func _on_RegisterPlayer_completed(_result: int, response_code: int, headers: Arr
 			BKMRLogger.error("BKMREngine register user failure: " + str(json_body.error))
 			return
 			
-		var result_body: Dictionary = json_body
-		var _bkmr_result: Dictionary = BKMREngine.build_result(result_body)
-		bkmr_regiser_player_complete.emit(json_body)
+		else:	
+			
+			bkmr_regiser_player_complete.emit(json_body)
 	else:
 		# Trigger the completion of the session check with an empty result in case of failure
 		bkmr_regiser_player_complete.emit({})

@@ -7,7 +7,11 @@ const BKMRLogger: Script = preload("res://BeatsKMREngine/utils/BKMRLogger.gd")
 # HTTPRequest object for minting cards.
 var GetCardsStock: HTTPRequest = null
 var wrGetCardsStock: WeakRef = null
-signal get_cards_stock_complete(cards: Array)
+signal get_cards_stock_complete(cards: Array[Dictionary])
+
+var GetCardsUnpacked: HTTPRequest = null
+var wrGetCardsUnpacked: WeakRef = null
+signal get_cards_unpacked_complete(cards: Array[Dictionary])
 
 var GetListedCards: HTTPRequest = null
 var wrGetListedCards: WeakRef = null
@@ -20,6 +24,10 @@ signal populate_card_list_complete()
 var GetCardUpgradeStock: HTTPRequest = null
 var wrGetCardUpgradeStock: WeakRef = null
 signal get_card_upgrade_stock_complete(cards: Array)
+
+var GetCardPacks: HTTPRequest = null
+var wrGetCardPacks: WeakRef = null
+signal get_card_packs_complete(cards: Array)
 
 # Host URL for server communication.
 var host: String = BKMREngine.host
@@ -36,6 +44,7 @@ func get_card_stock() -> void:
 	
 	BKMREngine.send_get_request(GetCardsStock, request_url)
 	
+
 # Callback function
 func _on_GetCardsStock_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
@@ -56,6 +65,40 @@ func _on_GetCardsStock_request_completed(_result: int, response_code: int, heade
 			get_cards_stock_complete.emit(json_body)
 	else:
 		get_cards_stock_complete.emit({ "error": "Error retrieving cards" })
+	
+	
+func get_card_unpacked() -> void:
+	# Prepare the HTTP request.
+	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
+	GetCardsUnpacked = prepared_http_req.request
+	wrGetCardsUnpacked = prepared_http_req.weakref
+	
+	var _get_cards_unpacked: int = GetCardsUnpacked.request_completed.connect(_on_GetCardsUnpacked_request_completed)
+	var request_url: String = host + "/admin/card/unpacked"
+	
+	BKMREngine.send_get_request(GetCardsUnpacked, request_url)
+	
+	
+func _on_GetCardsUnpacked_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
+	if is_instance_valid(GetCardsUnpacked):
+		BKMREngine.free_request(wrGetCardsUnpacked, GetCardsUnpacked)
+	
+	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
+	if json_body == null:
+		get_cards_unpacked_complete.emit({ "error": "Error retrieving cards" })
+		return
+		
+	if status_check:
+		if json_body.is_empty():
+			get_cards_unpacked_complete.emit([])
+		elif json_body.has("error"):
+			get_cards_unpacked_complete.emit(json_body.error)
+		elif json_body:
+			get_cards_unpacked_complete.emit(json_body)
+	else:
+		get_cards_unpacked_complete.emit({ "error": "Error retrieving cards" })
+	
 	
 func get_listed_cards() -> void:
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
@@ -93,6 +136,7 @@ func _on_GetPostedCards_request_completed(_result: int, response_code: int, head
 		get_listed_cards_complete.emit({"error": "Error retrieving contracts"})
 #endregion 
 
+
 func populate_card_list_from_contract(password: String) -> void:
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
 	PopulateCardList = prepared_http_req.request
@@ -128,6 +172,7 @@ func _on_PopulateCardListFromContract_request_completed(_result: int, response_c
 	#else:
 		#populate_card_list_complete.emit({"error": "Error retrieving contracts"})
 
+
 func get_card_upgrade_stock() -> void:
 	# Prepare the HTTP request.
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
@@ -161,3 +206,36 @@ func _on_GetCardUpgradeStock_request_completed(_result: int, response_code: int,
 	else:
 		get_card_upgrade_stock_complete.emit({ "error": "Error retrieving cards" })
 	
+
+
+func get_card_packs() -> void:
+	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
+	GetCardPacks = prepared_http_req.request
+	wrGetCardPacks = prepared_http_req.weakref
+	
+	var _get_listed_cards: int = GetCardPacks.request_completed.connect(_on_GetCardPacks_request_completed)
+	var request_url: String = host + "/admin/cardpacks/"
+	
+	BKMREngine.send_get_request(GetCardPacks, request_url)
+	
+	
+func _on_GetCardPacks_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
+	if is_instance_valid(GetCardPacks):
+		BKMREngine.free_request(wrGetCardPacks, GetCardPacks)
+	
+	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
+	if json_body == null:
+		get_card_packs_complete.emit({ "error": "Error retrieving packs" })
+		return
+		
+	if status_check:
+		if json_body.is_empty():
+			get_card_packs_complete.emit([])
+		elif json_body.has("error"):
+			get_card_packs_complete.emit(json_body.error)
+		elif json_body:
+			print(json_body)
+			get_card_packs_complete.emit(json_body)
+	else:
+		get_card_packs_complete.emit({ "error": "Error retrieving cards" })

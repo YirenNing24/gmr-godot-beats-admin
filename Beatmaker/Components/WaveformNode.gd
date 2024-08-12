@@ -3,7 +3,6 @@ extends ColorRect
 var audio_stream: AudioStream
 var audio_preview: Variant
 
-
 var preview: Variant
 var loaded: bool = false
 
@@ -17,8 +16,6 @@ var preview_len: float
 const COLOR: Color = Color("#00ffff")
 var step: int = 2
 
-
-
 func _process(_delta: float) -> void:
 	queue_redraw()
 
@@ -27,14 +24,13 @@ func generate_waveform(stream: AudioStreamOggVorbis) -> void:
 	var preview_generator: AudioStreamPreviewGenerator = AudioStreamPreviewGenerator.new()
 	var _connection_id: int = preview_generator.preview_complete.connect(_on_generate_preview_complete)
 	audio_preview = preview_generator.generate_preview(stream)
-	#preview_len = audio_preview.length()
-	
+
 func _on_generate_preview_complete(_generated_preview: Variant) -> void:
 	if !loaded:
 		loaded = true
 		queue_redraw()
 		set_process(true)
-	
+
 func set_scroll(value: int) -> void:
 	if last_scroll_val != value:
 		last_scroll_val = value
@@ -63,16 +59,15 @@ func set_viewport_rect(rect: Rect2) -> void:
 		viewport_rect = rect
 		queue_redraw()
 
-#func _draw_waveform():
-	#
-	#var viewport_size = viewport_rect.size
-	#var viewport_position = viewport_rect.position
-	#
-	#for i in range(0, full_size.x, step):
-		#if i >= viewport_position.x and i < viewport_position.x + viewport_size.x:
-			#var ofs = i * preview_len / full_size.x
-			#var ofs_n = (i + step) * preview_len / full_size.x
-			#var maxi = preview.get_max(ofs, ofs_n) * 0.5 + 0.5
-			#var mini = preview.get_min(ofs, ofs_n) * 0.5 + 0.5
-			#
-			#draw_line(Vector2(i + 1, viewport_size.y * 0.05 + mini * viewport_size.y * 0.9), Vector2(i + 1, viewport_size.y * 0.05 + maxi * viewport_size.y * 0.9), COLOR, step, false)
+func _draw_waveform() -> void:
+	var viewport_size: Vector2 = viewport_rect.size
+	var viewport_position: Vector2 = viewport_rect.position
+
+	for i: int in range(0, full_size.x, step):
+		if i >= viewport_position.x and i < viewport_position.x + viewport_size.x:
+			var ofs: float = i * preview_len / full_size.x
+			var ofs_n: float = (i + step) * preview_len / full_size.x
+			var maximum: float = preview.get_max(ofs, ofs_n) * 0.5 + 0.5
+			var minimum: float = preview.get_min(ofs, ofs_n) * 0.5 + 0.5
+
+			draw_line(Vector2(i + 1, viewport_size.y * 0.05 + minimum * viewport_size.y * 0.9), Vector2(i + 1, viewport_size.y * 0.05 + maximum * viewport_size.y * 0.9), COLOR, step, false)

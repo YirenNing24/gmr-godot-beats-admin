@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://rtrumilttw77"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mq4r"]
+bg_color = Color(0.0705882, 0.0509804, 0.160784, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.211765)
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06rh5"]
+
+[node name="CardPackContent" type="Control"]
+custom_minimum_size = Vector2(621, 90)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_4mq4r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CardName" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_06rh5")
+text = "card name"
+uppercase = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Weight" type="Label" parent="Panel/HBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_06rh5")
+text = "WEIGHT:"
+uppercase = true

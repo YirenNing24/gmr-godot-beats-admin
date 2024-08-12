@@ -13,13 +13,19 @@ var ListCardUpgrade: HTTPRequest = null
 var wrListCardUpgrade: WeakRef = null
 signal list_card_upgrade_complete(message: Dictionary)
 
+
+var ListCardPack: HTTPRequest = null
+var wrListCardPack: WeakRef = null
+signal list_card_pack_complete(message: Dictionary)
+
+
 var UpdateList: HTTPRequest = null
 var wrUpdateList: WeakRef = null
 signal update_list_complete(message: Dictionary)
 
-
 # Host URL for server communication.
 var host: String = BKMREngine.host
+
 
 #region for minting a card
 func list_card(list_card_data: Dictionary) -> Node:
@@ -35,6 +41,7 @@ func list_card(list_card_data: Dictionary) -> Node:
 	
 	BKMREngine.send_post_request(ListCard, request_url, payload)
 	return self
+	
 	
 # Callback function
 func _on_ListCard_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -76,6 +83,7 @@ func update_card_list() -> Node:
 	BKMREngine.send_get_request(UpdateList, request_url)
 	return self
 	
+	
 # Callback function
 func _on_UpdateList_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.
@@ -115,6 +123,7 @@ func list_card_upgrade(list_card_data: Dictionary) -> Node:
 	BKMREngine.send_post_request(ListCardUpgrade, request_url, payload)
 	return self
 	
+	
 # Callback function
 func _on_ListCardUpgrade_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.
@@ -138,4 +147,45 @@ func _on_ListCardUpgrade_request_completed(_result: int, response_code: int, hea
 			
 	else:
 		list_card_upgrade_complete.emit(json_body)
-		
+	
+	
+	
+func list_card_pack(list_card_pack_data: Dictionary) -> void:
+	# Prepare the HTTP request.
+	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
+	ListCardPack = prepared_http_req.request
+	wrListCardPack = prepared_http_req.weakref
+	
+	var _list_card: int = ListCardPack.request_completed.connect(_on_ListCardPack_request_completed)
+	
+	var payload: Dictionary = list_card_pack_data
+	var request_url: String = host + "/admin/list/card-pack"
+	
+	BKMREngine.send_post_request(ListCardPack, request_url, payload)
+
+	
+
+# Callback function
+func _on_ListCardPack_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+	# Check the HTTP response status.
+	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
+	
+	# Free the request resources.
+	if is_instance_valid(ListCardPack):
+		BKMREngine.free_request(wrListCardPack, ListCardPack)
+	
+	# Parse the JSON body received from the server.
+	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
+	if json_body == null:
+		list_card_pack_complete.emit({"error": "Error listing card"})
+		return
+	if status_check:
+		if json_body.has("success"):
+			BKMRLogger.info(json_body.success)
+			list_card_pack_complete.emit(json_body)
+		else:
+			list_card_pack_complete.emit(json_body)
+			
+	else:
+		list_card_pack_complete.emit(json_body)
+	

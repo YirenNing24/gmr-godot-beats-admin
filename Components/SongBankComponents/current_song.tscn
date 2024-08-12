@@ -1,0 +1,140 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtw3intog8ivj"]
+
+[ext_resource type="Script" path="res://Components/SongBankComponents/current_song.gd" id="1_36ivj"]
+[ext_resource type="FontFile" uid="uid://ctx3jbghh0fhf" path="res://Beatmaker/Assets/Fonts/argentum-sans.black.ttf" id="2_ejwtg"]
+[ext_resource type="FontFile" uid="uid://ceu3oprm0ket2" path="res://Beatmaker/Assets/Fonts/argentum-sans.semibold.ttf" id="3_v2xms"]
+[ext_resource type="Texture2D" uid="uid://dg01m0qe6rqhm" path="res://Beatmaker/Assets/Icons/play-solid.svg" id="4_7v8ky"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iv1y1"]
+bg_color = Color(0.193992, 0.156773, 0.371732, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncvl8"]
+bg_color = Color(0.308208, 0.257201, 0.56065, 1)
+border_color = Color(0.105882, 0.105882, 0.105882, 0.113725)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.207843)
+shadow_size = 5
+anti_aliasing_size = 0.215
+
+[node name="CurrentSong" type="Control"]
+custom_minimum_size = Vector2(477, 60)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 477.0
+offset_bottom = 60.0
+script = ExtResource("1_36ivj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(477, 60)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_iv1y1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_right = -40.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SongTitleCurrent" type="Label" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
+theme_override_fonts/font = ExtResource("2_ejwtg")
+theme_override_font_sizes/font_size = 24
+text = "POM POM"
+clip_text = true
+
+[node name="TimeLabelCurrent" type="Label" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
+theme_override_fonts/font = ExtResource("3_v2xms")
+theme_override_font_sizes/font_size = 18
+text = "fasdsasasadaadadada"
+clip_text = true
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ncvl8")
+
+[node name="a" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/Panel"]
+self_modulate = Color(1, 1, 1, 0.698039)
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.95837
+offset_top = -11.5
+offset_right = 9.04163
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_7v8ky")
+expand_mode = 1
+
+[node name="CurrentSongPlayButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -28.0
+offset_right = 29.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2

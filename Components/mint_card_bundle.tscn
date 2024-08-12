@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c58q8vpc3bix8"]
+[gd_scene load_steps=42 format=3 uid="uid://c58q8vpc3bix8"]
 
 [ext_resource type="Texture2D" uid="uid://cybnfqvn10vm" path="res://Resources/Icons/card-icon-pink.png" id="1_cy5pp"]
 [ext_resource type="Script" path="res://Components/mint_card_bundle.gd" id="1_dnai6"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dv1xofu8ab6j" path="res://Resources/Icons/clear-icon.png" id="4_sxb03"]
 [ext_resource type="Texture2D" uid="uid://ca8vqj6nyerwh" path="res://Resources/Icons/reset-icon.png" id="5_02rq8"]
 [ext_resource type="Texture2D" uid="uid://iwo3lov1pd51" path="res://Resources/Icons/submit-icon.png" id="6_nxx1t"]
+[ext_resource type="FontFile" uid="uid://ceu3oprm0ket2" path="res://Beatmaker/Assets/Fonts/argentum-sans.semibold.ttf" id="8_p8dpb"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="9_24vll"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="10_q7mir"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_765iu"]
 bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)
@@ -49,6 +52,33 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b7y4k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yuujf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ton3m"]
+content_margin_left = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878431, 0.223529, 0.992157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n34uh"]
+content_margin_left = 20.0
+content_margin_right = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.164706, 0.152941, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeb8w"]
 content_margin_left = 0.0
@@ -146,28 +176,25 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ton3m"]
-content_margin_left = 10.0
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.878431, 0.223529, 0.992157, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="Resource" id="Resource_wyepb"]
+script = ExtResource("10_q7mir")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n34uh"]
-content_margin_left = 20.0
-content_margin_right = 0.0
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.164706, 0.152941, 0.235294, 1)
+[sub_resource type="Resource" id="Resource_dp64m"]
+script = ExtResource("10_q7mir")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoo62"]
+bg_color = Color(0.281052, 0.692021, 0.298662, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.282353, 0.690196, 0.298039, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -220,7 +247,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nlba4")
-text = "Mint Card bundle"
+text = "Mint Card PACK"
 horizontal_alignment = 1
 uppercase = true
 
@@ -269,6 +296,7 @@ theme_override_constants/separation = 15
 
 [node name="Panel" type="Panel" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
 auto_translate_mode = 1
+visible = false
 custom_minimum_size = Vector2(258.42, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_duqd7")
@@ -341,108 +369,11 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_b7y4k")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yuujf")
 flat = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
-auto_translate_mode = 1
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-
-[node name="ClearImageButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer"]
-auto_translate_mode = 1
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_c30c6")
-theme_override_font_sizes/font_size = 12
-theme_override_styles/focus = SubResource("StyleBoxFlat_eeb8w")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4gdcx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_8muqt")
-theme_override_styles/normal = SubResource("StyleBoxFlat_cyfy3")
-text = "CLEAR IMAGE"
-
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/ClearImageButton"]
-auto_translate_mode = 1
-layout_mode = 0
-offset_left = 9.0
-offset_top = 5.0
-offset_right = 29.0
-offset_bottom = 25.0
-texture = ExtResource("4_sxb03")
-expand_mode = 1
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-
-[node name="ResetFieldsButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer2"]
-auto_translate_mode = 1
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_c30c6")
-theme_override_font_sizes/font_size = 12
-theme_override_styles/focus = SubResource("StyleBoxFlat_tt3id")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3xfhx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_hcq11")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ad3ke")
-text = "RESET FIELDS"
-
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer2/ResetFieldsButton"]
-auto_translate_mode = 1
-layout_mode = 0
-offset_left = 9.0
-offset_top = 5.00001
-offset_right = 29.0
-offset_bottom = 25.0
-texture = ExtResource("5_02rq8")
-expand_mode = 1
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-
-[node name="SubmitButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer3"]
-auto_translate_mode = 1
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_c30c6")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_tt3id")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wd1bt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_eme1b")
-theme_override_styles/normal = SubResource("StyleBoxFlat_c3lxy")
-text = "SUBMIT"
-
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer3/SubmitButton"]
-auto_translate_mode = 1
-layout_mode = 0
-offset_left = 9.0
-offset_top = 5.00001
-offset_right = 29.0
-offset_bottom = 25.0
-texture = ExtResource("6_nxx1t")
-expand_mode = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 30
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
@@ -450,7 +381,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="CardNameField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="PackNameField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
+placeholder_text = "Pack Name"
+caret_blink = true
+
+[node name="DescriptionField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
 auto_translate_mode = 1
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
@@ -463,39 +406,237 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
 placeholder_text = "Description"
 caret_blink = true
 
-[node name="CardNameField2" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="ContentsField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
 auto_translate_mode = 1
+visible = false
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 size_flags_horizontal = 5
-size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
 theme_override_font_sizes/font_size = 22
 theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
-placeholder_text = "Quantity"
+placeholder_text = "Contents"
+editable = false
 caret_blink = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+[node name="StartTimeField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+visible = false
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 6.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
+placeholder_text = "Start time"
+caret_blink = true
+
+[node name="EndTimeField" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+visible = false
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 6.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
+placeholder_text = "End time"
+caret_blink = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3"]
+auto_translate_mode = 1
+visible = false
+layout_mode = 2
+
+[node name="ClearImageButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_c30c6")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_eeb8w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4gdcx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8muqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cyfy3")
+text = "CLEAR IMAGE"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/ClearImageButton"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 29.0
+offset_bottom = 25.0
+texture = ExtResource("4_sxb03")
+expand_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="ResetFieldsButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_c30c6")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_tt3id")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3xfhx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hcq11")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ad3ke")
+text = "RESET FIELDS"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer2/ResetFieldsButton"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 5.00001
+offset_right = 29.0
+offset_bottom = 25.0
+texture = ExtResource("5_02rq8")
+expand_mode = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="ReviewButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_c30c6")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_tt3id")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wd1bt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eme1b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c3lxy")
+text = "REVIEW"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/ReviewButton"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 5.00001
+offset_right = 29.0
+offset_bottom = 25.0
+texture = ExtResource("6_nxx1t")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.223529, 0.992157, 1)
+theme_override_fonts/font = ExtResource("8_p8dpb")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nlba4")
+text = "CARD PACK SETTINGS"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("9_24vll")
+wheel_scroll_damper = SubResource("Resource_wyepb")
+dragging_scroll_damper = SubResource("Resource_dp64m")
+allow_horizontal_scroll = false
+
+[node name="CardPackSettingsContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="CardContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 30
-alignment = 1
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/CardContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="AddCardButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/CardContainer/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_c30c6")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_tt3id")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wd1bt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eme1b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eoo62")
+text = "ADD CARD"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer2/CardContainer/HBoxContainer/AddCardButton"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 5.00001
+offset_right = 29.0
+offset_bottom = 25.0
+texture = ExtResource("6_nxx1t")
+expand_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/CardContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/VBoxContainer2/CardContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.22
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="CardsContainer" type="GridContainer" parent="Panel/VBoxContainer/VBoxContainer2/CardContainer/HBoxContainer2/ScrollContainer"]
 unique_name_in_owner = true
 auto_translate_mode = 1
-mode = 2
-title = "Open a File"
-initial_position = 2
-size = Vector2i(608, 400)
-ok_button_text = "Open"
-file_mode = 0
-access = 2
-filters = PackedStringArray(".png")
-use_native_dialog = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 7
 
-[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/Panel/UploadBackground/OpenFileDialogButton" to="." method="_on_open_file_dialog_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/ClearImageButton" to="." method="_on_clear_image_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer3/SubmitButton" to="." method="_on_submit_button_pressed"]
-[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/CardContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/ReviewButton" to="." method="_on_review_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer2/CardContainer/HBoxContainer/AddCardButton" to="." method="_on_add_card_button_pressed"]

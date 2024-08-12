@@ -369,7 +369,7 @@ func set_audio_player_stream(audio_stream: AudioStreamOggVorbis) -> void:
 func update_controls() -> void:
 	if audio_loaded:
 		#add_song_button.set_disabled(true)
-		#play_button.set_disabled(false)
+		play_button.set_disabled(false)
 		#import_map_button.set_disabled(false)
 		#save_map_button.set_disabled(false)
 		#zoom_in_button.set_disabled(false)
@@ -380,8 +380,7 @@ func update_controls() -> void:
 		#$"%AddMemberContainer".show()
 		#
 	elif not audio_loaded:
-		pass
-		#play_button.set_disabled(true)
+		play_button.set_disabled(true)
 		#import_map_button.set_disabled(true)
 		#save_map_button.set_disabled(true)
 		#zoom_in_button.set_disabled(true)

@@ -19,24 +19,32 @@ func tween_kill() -> void:
 
 func _on_submit_confirmation_panel_request_sent() -> void:
 	fake_loader()
+	
+	
 func _on_mint_card_window_request_completed() -> void:
 	tween_kill()
 	visible = false
 
 func _on_post_card_window_get_cards_request_sent() -> void:
 	fake_loader()
+	
+	
 func _on_post_card_window_get_cards_request_completed() -> void:
 	tween_kill()
 	visible = false
 	
 func _on_post_modal_list_card_request_sent() -> void:
 	fake_loader()
+	
+	
 func _on_post_modal_list_card_request_completed() -> void:
 	tween_kill()
 	visible = false
 
 func _on_card_bundle_modal_get_cards_request_sent() -> void:
 	fake_loader()
+	
+	
 func _on_card_bundle_modal_get_cards_request_completed() -> void:
 	tween_kill()
 	visible = false

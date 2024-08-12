@@ -40,6 +40,8 @@ const BKMRLogger: Script = preload("res://BeatsKMREngine/utils/BKMRLogger.gd")
 @onready var Stocks: Node = Node.new()
 @onready var List: Node = Node.new()
 @onready var NFT: Node = Node.new()
+@onready var Song: Node = Node.new()
+@onready var Gacha: Node = Node.new()
 
 # Configuration dictionaries
 @onready var config: Dictionary = {}
@@ -63,7 +65,8 @@ var players_script: Script = preload("res://BeatsKMREngine/Players/Players.gd")
 var stocks_script: Script = preload("res://BeatsKMREngine/Stocks/Stocks.gd")
 var list_script: Script = preload("res://BeatsKMREngine/List/List.gd")
 var nft_script: Script = preload("res://BeatsKMREngine/NFT/NFT.gd")
-
+var song_script: Script = preload("res://BeatsKMREngine/Song/Song.gd")
+var gacha_script: Script = preload("res://BeatsKMREngine/Gacha/Gacha.gd")
 
 
 # Called when the node is added to the scene tree
@@ -99,6 +102,9 @@ func initialize_script() -> void:
 	Stocks.set_script(stocks_script)
 	List.set_script(list_script)
 	NFT.set_script(nft_script)
+	Song.set_script(song_script)
+	Gacha.set_script(gacha_script)
+
 
 func add_child_nodes() -> void:
 	#Add child nodes for different modules
@@ -115,6 +121,7 @@ func add_child_nodes() -> void:
 	add_child(Players)
 	add_child(List)
 	add_child(NFT)
+	add_child(Song)
 	
 	# Print end timestamp for debugging purposes
 	print("BKMR ready end timestamp: " + str(BKMRUtils.get_timestamp()))

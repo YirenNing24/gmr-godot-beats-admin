@@ -3,7 +3,7 @@ using Godot.Collections;
 
 namespace BeatsEngine
 {
-	public partial class Auth : Node
+	public partial class AuthMiddle : Node
 	{
         [Signal]
         public delegate void BKMRRegisterPlayerCompleteEventHandler(Dictionary<string, string> message);
@@ -59,7 +59,9 @@ namespace BeatsEngine
         /// <param name="username">The username of the player.</param>
         /// <param name="password">The password of the player.</param>
         public void LoginPlayer(string username, string password)
-        {
+        {   
+
+            
             var preparedHTTPRequest = BKMREngine.PrepareHTTPRequest();
             loginPlayer = preparedHTTPRequest.Request;
             wrLoginPlayer = preparedHTTPRequest.WeakRef;
@@ -97,8 +99,9 @@ namespace BeatsEngine
         private void OnLoginPlayerRequestCompleted(long result, long responseCode, string[] headers, byte[] body)
         {
             bool statusCheck = BKMRUtils.CheckHttpResponse((int)responseCode, headers, body);
-            Variant jsonBody = Json.ParseString(body.GetStringFromUtf8());
             BKMREngine.FreeRequest(wrLoginPlayer, loginPlayer);
+            Variant jsonBody = Json.ParseString(body.GetStringFromUtf8());
+
 
             if (statusCheck)
             {
@@ -179,7 +182,7 @@ namespace BeatsEngine
             var requestUrl = host + "/admin/register";
 
             // Send the POST request to initiate player registration
-            BKMREngine.SendPostRequest(preparedHTTPRequest, requestUrl, payload);
+            BKMREngine.SendPostRequest(registerPlayer, requestUrl, payload);
         }
 
         /// <summary>
@@ -193,6 +196,7 @@ namespace BeatsEngine
         {
             // Check the HTTP response status
             bool statusCheck = BKMRUtils.CheckHttpResponse((int)responseCode, headers, body);
+            BKMREngine.FreeRequest(wrLoginPlayer, loginPlayer);
             var jsonBody = Json.ParseString(body.GetStringFromUtf8());
 
             // If the status check fails, emit an empty signal and return early
@@ -313,20 +317,9 @@ namespace BeatsEngine
             SceneTreeTimer timer = GetTree().CreateTimer(240.0);
             timer.Timeout += RenewAccessTokenTimer;
             timer.Timeout += RequestNewAccessToken;
-        }
-    
-        
+        } 
     }
 
 
-// func logout_player() -> void:
-// 	# Clear the logged-in player information
-// 	logged_in_player = ""
-// 	# Remove stored session if any and log the deletion success
-// 	refresh_token = ""
-// 	access_token = ""
-// 	# Emit signal indicating completion of player logout
-// 	bkmr_logout_complete.emit()
-// 	get_tree().quit()
 
 }

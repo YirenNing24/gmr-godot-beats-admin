@@ -241,6 +241,7 @@ func _on_card_position_2_field_text_changed(position2_value: String) -> void:
 		error_label.text = "Card position 2 field is empty"
 
 func _on_card_group_field_text_changed(group_value: String) -> void:
+	print(group_value)
 	if group_value != "":
 		card_group_field.text = group_value
 		card_group_field.caret_column = card_group_field.text.length()

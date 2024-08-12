@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bnq1m5as3wuaj"]
+[gd_scene load_steps=36 format=3 uid="uid://bnq1m5as3wuaj"]
 
 [ext_resource type="Texture2D" uid="uid://dpblib2iw1vs8" path="res://Resources/Logos/ b_coin_icon.png" id="1_v5xh8"]
 [ext_resource type="StyleBox" uid="uid://df5agxqinoq3w" path="res://Resources/CustomResource/notif_button.tres" id="2_4w10o"]
@@ -17,11 +17,16 @@
 [ext_resource type="PackedScene" uid="uid://rw3ac10w1pgk" path="res://Components/update_listings_window.tscn" id="13_0ew6x"]
 [ext_resource type="PackedScene" uid="uid://cs6lqxjmv25nc" path="res://Components/create_upgrade_items.tscn" id="14_c2hjp"]
 [ext_resource type="PackedScene" uid="uid://bjiddvytdh4ip" path="res://Components/submit_confirmation_panel.tscn" id="14_y10sy"]
+[ext_resource type="PackedScene" uid="uid://bdymjrfpsihtn" path="res://Components/song_bank_window.tscn" id="15_bvjtw"]
 [ext_resource type="PackedScene" uid="uid://50n8up858rsy" path="res://Components/post_modal.tscn" id="15_tdkvx"]
 [ext_resource type="PackedScene" uid="uid://cxh7pmywa2pla" path="res://Components/loading_panel.tscn" id="15_uawtf"]
+[ext_resource type="PackedScene" uid="uid://d03pucxisbxjv" path="res://Beatmaker/Scenes/main.tscn" id="16_3nw0u"]
 [ext_resource type="PackedScene" uid="uid://crjg7loomwq1" path="res://Components/card_bundle_modal.tscn" id="18_b23bo"]
 [ext_resource type="PackedScene" uid="uid://qpuxejv50say" path="res://Components/CardUpgradeComponents/card_upgrade_item_modal.tscn" id="19_hpl2d"]
+[ext_resource type="PackedScene" uid="uid://cwcbvcr0wc72s" path="res://Components/CardBundleComponents/post_card_pack_modal.tscn" id="20_2wjjp"]
 [ext_resource type="PackedScene" uid="uid://bhpk2s08oaokn" path="res://Components/confirm_password_modal.tscn" id="20_hx7xy"]
+[ext_resource type="PackedScene" uid="uid://dmfcgxkml2kal" path="res://Components/CardBundleComponents/mint_card_pack_modal.tscn" id="23_0sjqc"]
+[ext_resource type="PackedScene" uid="uid://tv4lm0kflvrb" path="res://Components/are_you_sure_modal.tscn" id="24_x1u8y"]
 
 [sub_resource type="GDScript" id="GDScript_1jxv4"]
 script/source = "extends Control
@@ -35,15 +40,18 @@ func _ready() -> void:
 	name_initial_label.text = USERDATA.username[0]
 	connect_signal()
 	
+	
 func connect_signal() -> void:
 	BKMREngine.Websocket.notification_status.connect(_on_user_status_changed)
 	
+	
 func _on_dash_board_menu_dashboard_menu_button_pressed(button_name: String) -> void:
-	for window: VBoxContainer in get_tree().get_nodes_in_group(\"TaskWindows\"):
+	for window: Variant in get_tree().get_nodes_in_group(\"TaskWindows\"):
 		if window.name == button_name:
 			window.visible = true
 		else:
 			window.visible = false
+	
 	
 func _on_profile_button_pressed() -> void:
 	if logout_modal.visible:
@@ -51,11 +59,14 @@ func _on_profile_button_pressed() -> void:
 	else:
 		logout_modal.visible = true
 
+
 func _on_logout_log_out_button_pressed() -> void:
 	BKMREngine.Auth.logout_player()
 
+
 func _on_user_status_changed(_status: Dictionary) -> void:
 	animation_player.play(\"OnlineStatus\")
+	
 	
 func _on_create_upgrade_items_selected_upgrade_item(_upgrade_item_data: Dictionary) -> void:
 	pass # Replace with function body.
@@ -314,6 +325,7 @@ layout_mode = 2
 
 [node name="DashboardWindow" parent="VBoxContainer/HBoxContainer2" groups=["TaskWindows"] instance=ExtResource("5_5bj3f")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="MintCardWindow" parent="VBoxContainer/HBoxContainer2" groups=["TaskWindows"] instance=ExtResource("6_05c8g")]
@@ -353,6 +365,11 @@ layout_mode = 2
 [node name="CreateUpgradeItems" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("14_c2hjp")]
 visible = false
 layout_mode = 2
+
+[node name="SongBankWindow" parent="VBoxContainer/HBoxContainer2" groups=["TaskWindows"] instance=ExtResource("15_bvjtw")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Logout" parent="." instance=ExtResource("9_osgux")]
 unique_name_in_owner = true
@@ -404,6 +421,10 @@ grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="PostCardPackModal" parent="." instance=ExtResource("20_2wjjp")]
+visible = false
+layout_mode = 0
+
 [node name="CardUpgradeItemModal" parent="." instance=ExtResource("19_hpl2d")]
 visible = false
 layout_mode = 0
@@ -429,6 +450,10 @@ anchor_bottom = 0.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
+[node name="MintCardPackModal" parent="." instance=ExtResource("23_0sjqc")]
+visible = false
+layout_mode = 0
+
 [node name="ConfirmPasswordModal" parent="." instance=ExtResource("20_hx7xy")]
 visible = false
 custom_minimum_size = Vector2(1920, 1080)
@@ -442,15 +467,30 @@ grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="AreYouSureModal" parent="." instance=ExtResource("24_x1u8y")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Main" parent="." instance=ExtResource("16_3nw0u")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer2/Panel/ProfileButton" to="." method="_on_profile_button_pressed"]
 [connection signal="dashboard_menu_button_pressed" from="VBoxContainer/HBoxContainer2/DashboardMenu" to="." method="_on_dash_board_menu_dashboard_menu_button_pressed"]
 [connection signal="request_completed" from="VBoxContainer/HBoxContainer2/MintCardWindow" to="LoadingPanel" method="_on_mint_card_window_request_completed"]
 [connection signal="review_button_pressed" from="VBoxContainer/HBoxContainer2/MintCardWindow" to="SubmitConfirmationPanel" method="_on_mint_card_window_review_button_pressed"]
+[connection signal="add_card_button_pressed" from="VBoxContainer/HBoxContainer2/MintCardBundleWindow" to="CardBundleModal" method="_on_mint_card_bundle_window_add_card_button_pressed"]
+[connection signal="on_card_pack_settings_pressed" from="VBoxContainer/HBoxContainer2/MintCardBundleWindow" to="MintCardPackModal" method="_on_mint_card_bundle_window_on_card_pack_settings_pressed"]
 [connection signal="update_contract_request_completed" from="VBoxContainer/HBoxContainer2/ContractsWindow" to="LoadingPanel" method="_on_contracts_window_update_contract_request_completed"]
 [connection signal="update_contract_request_sent" from="VBoxContainer/HBoxContainer2/ContractsWindow" to="LoadingPanel" method="_on_contracts_window_update_contract_request_sent"]
 [connection signal="get_cards_request_completed" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="LoadingPanel" method="_on_post_card_window_get_cards_request_completed"]
 [connection signal="get_cards_request_sent" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="LoadingPanel" method="_on_post_card_window_get_cards_request_sent"]
 [connection signal="selected_post_card" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="PostModal" method="_on_post_card_window_selected_post_card"]
+[connection signal="card_pack_button_pressed" from="VBoxContainer/HBoxContainer2/PostCardBundleWindow" to="PostCardPackModal" method="_on_post_card_bundle_window_card_pack_button_pressed"]
 [connection signal="update_card_button_pressed" from="VBoxContainer/HBoxContainer2/UpdateListingsWindow" to="ConfirmPasswordModal" method="_on_update_listings_window_update_card_button_pressed"]
 [connection signal="create_upgrade_item_request_complete" from="VBoxContainer/HBoxContainer2/CreateUpgradeItems" to="LoadingPanel" method="_on_create_upgrade_items_create_upgrade_item_request_complete"]
 [connection signal="create_upgrade_item_request_sent" from="VBoxContainer/HBoxContainer2/CreateUpgradeItems" to="LoadingPanel" method="_on_create_upgrade_items_create_upgrade_item_request_sent"]
@@ -459,7 +499,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="request_sent" from="SubmitConfirmationPanel" to="LoadingPanel" method="_on_submit_confirmation_panel_request_sent"]
 [connection signal="list_card_request_completed" from="PostModal" to="LoadingPanel" method="_on_post_modal_list_card_request_completed"]
 [connection signal="list_card_request_sent" from="PostModal" to="LoadingPanel" method="_on_post_modal_list_card_request_sent"]
-[connection signal="get_cards_request_completed" from="CardBundleModal" to="LoadingPanel" method="_on_card_bundle_modal_get_cards_request_completed"]
-[connection signal="get_cards_request_sent" from="CardBundleModal" to="LoadingPanel" method="_on_card_bundle_modal_get_cards_request_sent"]
-[connection signal="selected_post_card" from="CardBundleModal" to="PostModal" method="_on_card_bundle_modal_selected_post_card"]
+[connection signal="selected_card" from="CardBundleModal" to="VBoxContainer/HBoxContainer2/MintCardBundleWindow" method="_on_card_bundle_modal_selected_card"]
 [connection signal="password_field_submitted" from="ConfirmPasswordModal" to="VBoxContainer/HBoxContainer2/UpdateListingsWindow" method="_on_confirm_password_modal_password_field_submitted"]
+[connection signal="are_you_sure_no_pressed" from="AreYouSureModal" to="VBoxContainer/HBoxContainer2/MintCardBundleWindow" method="_on_are_you_sure_modal_are_you_sure_no_pressed"]
+[connection signal="are_you_sure_yes_pressed" from="AreYouSureModal" to="VBoxContainer/HBoxContainer2/MintCardBundleWindow" method="_on_are_you_sure_modal_are_you_sure_yes_pressed"]

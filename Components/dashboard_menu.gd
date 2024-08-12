@@ -22,3 +22,6 @@ func _on_dashboard_menu_button_pressed(button_name: String) -> void:
 			else:
 				button.button_pressed = true
 	dashboard_menu_button_pressed.emit(button_name)
+
+func _on_main_pressed() -> void:
+	var _scene: int = get_tree().change_scene_to_file("res://Beatmaker/Scenes/main.tscn")

@@ -9,6 +9,11 @@ var MintCards: HTTPRequest = null
 var wrMintCards: WeakRef = null
 signal mint_cards_complete(message: Dictionary)
 
+
+var MintCardPack: HTTPRequest = null
+var wrMintCardPack: WeakRef = null
+signal mint_card_pack_complete(message: Dictionary)
+
 var CreateUpgradeItem: HTTPRequest = null
 var wrCreateUpgradeItem: WeakRef = null
 signal create_upgrade_item_complete(message: Dictionary)
@@ -32,7 +37,7 @@ func mint_cards(mint_card_data: Dictionary) -> Node:
 	BKMREngine.send_post_request(MintCards, request_url, payload)
 	return self
 	
-# Callback function
+	
 func _on_MintCards_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
@@ -70,7 +75,7 @@ func create_upgrade_item(create_upgrade_item_data: Dictionary) -> Node:
 	BKMREngine.send_post_request(CreateUpgradeItem, request_url, payload)
 	return self
 	
-# Callback function
+	
 func _on_CreateUpgradeItem_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
@@ -93,5 +98,39 @@ func _on_CreateUpgradeItem_request_completed(_result: int, response_code: int, h
 	else:
 		create_upgrade_item_complete.emit(json_body)
 		
-
-# Function to retrive profile pic from the server.
+	
+func mint_card_pack(mint_card_pack_data: Dictionary) -> void:
+	# Prepare the HTTP request.
+	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
+	MintCardPack = prepared_http_req.request
+	wrMintCardPack = prepared_http_req.weakref
+	
+	var _mint_cardss: int = MintCardPack.request_completed.connect(_on_MintCardPack_request_completed)
+	
+	var payload: Dictionary = mint_card_pack_data
+	var request_url: String = host + "/admin/create_card_pack"
+	
+	BKMREngine.send_post_request(MintCardPack, request_url, payload)
+	
+	
+func _on_MintCardPack_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+	# Check the HTTP response status.
+	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
+	
+	# Free the request resources.
+	if is_instance_valid(MintCards):
+		BKMREngine.free_request(wrMintCardPack, MintCardPack)
+	
+	# Parse the JSON body received from the server.
+	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
+	if json_body == null:
+		mint_card_pack_complete.emit({"error": "Error minting card pack"})
+		return
+	if status_check:
+		if json_body.has("success"):
+			mint_card_pack_complete.emit(json_body)
+		else:
+			mint_card_pack_complete.emit(json_body)
+	else:
+		mint_card_pack_complete.emit({"error": "Error minting card pack"})
+#endregion
