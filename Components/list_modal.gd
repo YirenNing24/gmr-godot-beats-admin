@@ -33,6 +33,7 @@ var type: String
 func _ready() -> void:
 	BKMREngine.List.list_card_complete.connect(_on_list_card_complete)
 	
+	
 func _process(_delta: float ) -> void:
 	if timer != null:
 		var time_left: int = int(timer.time_left)
@@ -166,8 +167,10 @@ func _on_visibility_changed() -> void:
 	else:
 		pass
 
+
 func _on_list_card_complete(_data: Dictionary) -> void:
 	visible = false
+
 
 func _on_cancel_button_button_up() -> void:
 	_on_visibility_changed()

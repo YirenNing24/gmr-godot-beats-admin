@@ -52,7 +52,7 @@ func _on_card_bundle_modal_selected_card(card_data: Dictionary) -> void:
 	
 	var chosen_card: Control = chosen_card_scene.instantiate()
 	chosen_card.name = card_data.name
-	chosen_card.get_node("CardImage").texture = card_data.texture
+	#chosen_card.get_node("CardImage").texture = card_data.texture
 	cards_container.add_child(chosen_card)
 
 
@@ -73,8 +73,6 @@ func _on_are_you_sure_modal_are_you_sure_yes_pressed() -> void:
 		"cardPackData": card_pack_data,
 		"packName": pack_name_field.text
 	}
-		
-	
 	BKMREngine.Gacha.create_card_pack_settings(pack_data)
 
 

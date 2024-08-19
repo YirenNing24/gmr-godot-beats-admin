@@ -31,37 +31,28 @@ func _on_visibility_changed() -> void:
 		
 		
 func _on_get_cards_complete(cards: Array) -> void:
-	
-	print("ehhhh:", cards)
 	# Clear existing cards
 	for card: Control in card_container.get_children():
 		card.queue_free()
 	
-	# Cache to store images by card name
-	var image_cache: Dictionary = {}
 	for card_data: Dictionary in cards:
-		if card_data.has("name"):
-			var card: Control = card_scene.instantiate()
-			var card_name: String = card_data.name
-			# Check if the image is already cached
-			if image_cache.has(card_name):
-				card.get_node("HBoxContainer/CardImage").texture = image_cache[card_name]
-			else:
-				var string_array: String = card_data.imageByte
-				var card_image: PackedByteArray = JSON.parse_string(string_array)
-				var image: Image = Image.new()
-				var error: Error = image.load_png_from_buffer(card_image)
-				if error != OK:
-					print("Error loading image", error)
-				else:
-					var card_pic: Texture = ImageTexture.create_from_image(image)
-					# Cache the image texture
-					image_cache[card_name] = card_pic
-					card.get_node("HBoxContainer/CardImage").texture = card_pic
+		var card: Control = card_scene.instantiate()
+		var card_name: String = card_data.name
+		var string_array: String = card_data.imageByte
+		var card_image: PackedByteArray = JSON.parse_string(string_array)
+		var image: Image = Image.new()
+		var error: Error = image.load_png_from_buffer(card_image)
+		if error != OK:
+			print("Error loading image", error)
+		else:
+			var card_pic: Texture = ImageTexture.create_from_image(image)
+			# Cache the image texture
 
-			card.get_node("HBoxContainer/CardNameLabel").text = card_name
-			card.get_node("Button").pressed.connect(_on_card_selected.bind(card_data))
-			card_container.add_child(card)
+			card.get_node("HBoxContainer/CardImage").texture = card_pic
+
+		card.get_node("HBoxContainer/CardNameLabel").text = card_name
+		card.get_node("Button").pressed.connect(_on_card_selected.bind(card_data))
+		card_container.add_child(card)
 	get_cards_request_completed.emit()
 	
 	

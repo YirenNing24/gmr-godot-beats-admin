@@ -514,7 +514,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
 theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
-item_count = 5
+item_count = 6
 popup/item_0/text = "Common"
 popup/item_1/text = "Uncommon"
 popup/item_1/id = 1
@@ -524,6 +524,8 @@ popup/item_3/text = "Ultra Rare"
 popup/item_3/id = 3
 popup/item_4/text = "Star"
 popup/item_4/id = 4
+popup/item_5/text = "Genesis"
+popup/item_5/id = 5
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 26)

@@ -1,6 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4myipxv7a2ns"]
-
-[ext_resource type="Texture2D" uid="uid://cd5qfpsjv64db" path="res://Resources/Icons/no-picture-icon.png" id="1_3b6gl"]
+[gd_scene load_steps=3 format=3 uid="uid://d4myipxv7a2ns"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfsw2"]
 
@@ -27,7 +25,6 @@ grow_vertical = 2
 auto_translate_mode = 1
 custom_minimum_size = Vector2(159.83, 200.76)
 layout_mode = 2
-texture = ExtResource("1_3b6gl")
 expand_mode = 1
 stretch_mode = 4
 

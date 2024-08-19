@@ -65,16 +65,18 @@ func _on_card_bundle_modal_selected_post_card(card_data: Dictionary, filter: Str
 	
 func populate_card_labels(card_data: Dictionary, filter: String) -> void:
 	visible = true
-	if card_data.has("imageByte"):
-		var string_array: String = card_data.imageByte
-		var card_image: PackedByteArray = JSON.parse_string(string_array)
-		var image: Image = Image.new()
-		var error: Error = image.load_png_from_buffer(card_image)
-		if error != OK:
-			print("Error loading image", error)
-		else:
-			var card_pic: Texture =  ImageTexture.create_from_image(image)
-			uploaded_image.texture = card_pic
+	#if card_data.has("imageByte"):
+		#pass
+		#var string_array: String = card_data.imageByte
+		#var card_image: PackedByteArray = JSON.parse_string(string_array)
+		#var image: Image = Image.new()
+		#var error: Error = image.load_png_from_buffer(card_image)
+		#if error != OK:
+			#print("Error loading image", error)
+		#else:
+			#pass
+			#var card_pic: Texture =  ImageTexture.create_from_image(image)
+			#uploaded_image.texture = card_pic
 	
 
 		#artist_label.text = card_data.artist

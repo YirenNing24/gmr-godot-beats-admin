@@ -16,8 +16,10 @@ var preview_len: float
 const COLOR: Color = Color("#00ffff")
 var step: int = 2
 
+
 func _process(_delta: float) -> void:
 	queue_redraw()
+
 
 func generate_waveform(stream: AudioStreamOggVorbis) -> void:
 	loaded = false
@@ -25,17 +27,20 @@ func generate_waveform(stream: AudioStreamOggVorbis) -> void:
 	var _connection_id: int = preview_generator.preview_complete.connect(_on_generate_preview_complete)
 	audio_preview = preview_generator.generate_preview(stream)
 
+
 func _on_generate_preview_complete(_generated_preview: Variant) -> void:
 	if !loaded:
 		loaded = true
 		queue_redraw()
 		set_process(true)
 
+
 func set_scroll(value: int) -> void:
 	if last_scroll_val != value:
 		last_scroll_val = value
 		viewport_rect.position = Vector2(value, 0)
 		queue_redraw()
+
 
 func _draw() -> void:
 	if audio_preview != null: 
@@ -49,15 +54,18 @@ func _draw() -> void:
 			var min_value: float = audio_preview.get_min(offset_start, offset_end) * 0.5 + 0.5
 			draw_line(Vector2(pixel_x, min_value * rect_size.y), Vector2(pixel_x + 1, max_value * rect_size.y), Color("ffff39b0"), 1, false)
 
+
 func update() -> void:
 	if not updated:
 		updated = true
 		queue_redraw()
 
+
 func set_viewport_rect(rect: Rect2) -> void:
 	if viewport_rect.position.x != rect.position.x or viewport_rect.position.y != rect.position.y or viewport_rect.size.x != rect.size.x or viewport_rect.size.y != rect.size.y:
 		viewport_rect = rect
 		queue_redraw()
+
 
 func _draw_waveform() -> void:
 	var viewport_size: Vector2 = viewport_rect.size
