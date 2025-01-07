@@ -31,7 +31,7 @@ signal list_card_request_completed
 
 @onready var list_for_sale_button: Button = %ListForSaleButton
 @onready var cancel_listing_button: Button = %CancelListingButton
-@onready var pack_button: Button = %PackButton
+
 
 @onready var transfer_button: Button = %TransferButton
 
@@ -45,28 +45,22 @@ func _ready() -> void:
 	init_buttons()
 	connect_signal() 
 
+
 func connect_signal() -> void:
 	if !list_for_sale_button.pressed.is_connected(_on_list_for_sale_button_pressed):
 		var _connect: int = list_for_sale_button.pressed.connect(_on_list_for_sale_button_pressed)
-
+	
+	
 func _on_post_card_window_selected_post_card(card_data: Dictionary, filter: String) -> void:
 	populate_card_labels(card_data, filter)
+	
 	
 func _on_card_bundle_modal_selected_post_card(card_data: Dictionary, filter: String) -> void:
 	populate_card_labels(card_data, filter)
 	
+	
 func populate_card_labels(card_data: Dictionary, filter: String) -> void:
 	visible = true
-	var string_array: String = card_data.imageByte
-	var card_image: PackedByteArray = JSON.parse_string(string_array)
-	var image: Image = Image.new()
-	var error: Error = image.load_png_from_buffer(card_image)
-	if error != OK:
-		print("Error loading image", error)
-	else:
-		var card_pic: Texture =  ImageTexture.create_from_image(image)
-		uploaded_image.texture = card_pic
-		
 	artist_label.text = card_data.artist
 	card_name.text = card_data.name
 	era_label.text = card_data.era 
@@ -97,28 +91,39 @@ func populate_card_labels(card_data: Dictionary, filter: String) -> void:
 	
 	card_filter = filter
 	init_buttons()
+	card_texture(card_data)
+	
+	if card_data.has("packed") and card_data.packed:
+		list_for_sale_button.disabled = true
+	
+	
+func card_texture(card_data: Dictionary) -> void:
+	var card_texture_name: String = "res://Resources/CardTextures/" + card_data.name.replace(" ", "_").to_lower() + ".png"
+	var card_image: Texture = load(card_texture_name)
+	uploaded_image.texture = card_image
+	
 	
 func _on_list_for_sale_button_pressed() -> void:
 	list_for_sale_button_pressed.emit(data_card, image_card)
-
+	
+	
 func _on_transfer_button_pressed() -> void:
 	transfer_card_button_pressed.emit(data_card, image_card)
-
+	
+	
 func init_buttons() -> void:
 	for button: Button in get_tree().get_nodes_in_group("ListedButtons"):
 		match card_filter:
 			"Listed":
 				button.disabled = false
 				cancel_listing_button.disabled = true
-				pack_button.disabled = true
 			"Posted":
 				button.disabled = true
 				cancel_listing_button.disabled = false
-				pack_button.disabled = true
 			"Pack":
 				button.disabled = true
 				cancel_listing_button.disabled = true
-				pack_button.disabled = false
+				
 				
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("close_modal"):
@@ -127,17 +132,21 @@ func _input(event: InputEvent) -> void:
 		for label: Label in get_tree().get_nodes_in_group("ConfirmationErrorLabels"):
 			label. queue_free()
 	
+	
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			if visible:
 				visible = false
 
+
 func _on_list_modal_list_card_request_sent() -> void:
 	list_card_request_sent.emit()
 
+
 func _on_list_card_completed(_data: Dictionary) -> void:
 	list_card_request_completed.emit()
+
 
 func _on_list_modal_list_card_complete() -> void:
 	BKMREngine.Stocks.get_listed_cards()

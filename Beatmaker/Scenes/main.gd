@@ -359,7 +359,7 @@ func load_song(input_file_path: String) -> void:
 	load_waveform()
 	set_params()
 	audio_loaded = true
-	update_controls()
+	update_controls.call_deferred()
 	update_last_file_path(input_file_path)
 	update_load_audio(tr("Audio Loaded"))
 
@@ -527,7 +527,7 @@ func export_data() -> void:
 	ogg_file_path = editor_dir + "/" + "audio" + ".ogg"
 	
 	if file_format == "ogg":
-		var _copy_directoty: Error = dir_new.copy(ogg_file_path, new_dir)
+		var _copy_directory: Error = dir_new.copy(ogg_file_path, new_dir)
 		var error: Error = DirAccess.get_open_error()
 		print(error)
 	else :

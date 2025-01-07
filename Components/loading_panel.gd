@@ -12,10 +12,13 @@ func fake_loader() -> void:
 	
 	var _wheel_loader: PropertyTweener = tween.tween_property(loading_wheel, "value", 100, 3.0).set_trans(Tween.TRANS_LINEAR)
 	var _loader_fake: CallbackTweener = tween.tween_callback(fake_loader)
+	var _timer: int = get_tree().create_timer(15).timeout.connect(tween_kill)
+	
 	
 func tween_kill() -> void:
 	if tween:
 		tween.kill()
+		visible = false
 
 func _on_submit_confirmation_panel_request_sent() -> void:
 	fake_loader()

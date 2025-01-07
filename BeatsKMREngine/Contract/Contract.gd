@@ -59,7 +59,7 @@ func _on_UpdateContracts_request_completed(_result: int, response_code: int, hea
 			contract_update_complete.emit(json_body)
 
 # Function to retrive profile pic from the server.
-func get_contracts() -> Node:
+func get_contracts() -> void:
 	# Prepare an HTTP request for fetching private inbox data.
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
 	GetContracts = prepared_http_req.request
@@ -69,16 +69,16 @@ func get_contracts() -> Node:
 	var _contracts: int = GetContracts.request_completed.connect(_onGetGetContracts_request_completed)
 	
 	# Log the initiation of the request to retrieve inbox messages.
-	BKMRLogger.info("Calling BKMREngine to get card inventory data")
+	BKMRLogger.info("Calling BKMREngine to get contracts")
 	
 	# Construct the request URL for fetching private inbox data for the specified user.
 	var request_url: String = host + "/admin/contracts"
 	
 	# Send a GET request to retrieve the private inbox data.
-	await BKMREngine.send_get_request(GetContracts, request_url)
+	BKMREngine.send_get_request(GetContracts, request_url)
 	
 	# Return the current node for method chaining.
-	return self as Node
+	
 
 # Callback function to handle the completion of the private inbox data retrieval request.
 func _onGetGetContracts_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:

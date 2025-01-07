@@ -93,7 +93,6 @@ func _on_LoginPlayer_request_completed(_result: int, response_code: int, headers
 	# Check the HTTP response status and free the request resources
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
 	
-	BKMREngine.free_request(wrLoginPlayer, LoginPlayer)
 	# Process the response based on the status check
 	if status_check:
 		# Parse the JSON body of the response

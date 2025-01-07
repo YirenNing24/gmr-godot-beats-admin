@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://cwcbvcr0wc72s"]
 
-[ext_resource type="Script" path="res://Components/CardBundleComponents/post_card_pack_modal.gd" id="1_3o4ni"]
+[ext_resource type="Script" uid="uid://b02550tfonr4m" path="res://Components/CardBundleComponents/post_card_pack_modal.gd" id="1_3o4ni"]
 [ext_resource type="Texture2D" uid="uid://po7672807uk" path="res://Resources/Icons/confirm-icon.png" id="1_l85m7"]
 [ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="3_ciy1s"]
 [ext_resource type="PackedScene" uid="uid://d2ojx5i67mui0" path="res://Components/list_modal.tscn" id="4_7c38j"]

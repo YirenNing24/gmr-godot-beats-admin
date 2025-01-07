@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bdymjrfpsihtn" path="res://Components/song_bank_window.tscn" id="15_bvjtw"]
 [ext_resource type="PackedScene" uid="uid://50n8up858rsy" path="res://Components/post_modal.tscn" id="15_tdkvx"]
 [ext_resource type="PackedScene" uid="uid://cxh7pmywa2pla" path="res://Components/loading_panel.tscn" id="15_uawtf"]
-[ext_resource type="PackedScene" uid="uid://d03pucxisbxjv" path="res://Beatmaker/Scenes/main.tscn" id="16_3nw0u"]
+[ext_resource type="PackedScene" uid="uid://dab1vcgqr6agx" path="res://Components/mission_window.tscn" id="16_o8sh0"]
 [ext_resource type="PackedScene" uid="uid://crjg7loomwq1" path="res://Components/card_bundle_modal.tscn" id="18_b23bo"]
 [ext_resource type="PackedScene" uid="uid://qpuxejv50say" path="res://Components/CardUpgradeComponents/card_upgrade_item_modal.tscn" id="19_hpl2d"]
 [ext_resource type="PackedScene" uid="uid://cwcbvcr0wc72s" path="res://Components/CardBundleComponents/post_card_pack_modal.tscn" id="20_2wjjp"]
@@ -145,7 +145,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hyg4v"]
 _data = {
-"OnlineStatus": SubResource("Animation_7jbqh")
+&"OnlineStatus": SubResource("Animation_7jbqh")
 }
 
 [node name="Dashboard" type="Control"]
@@ -371,6 +371,10 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="MintCardBundleWindow2" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("16_o8sh0")]
+visible = false
+layout_mode = 2
+
 [node name="Logout" parent="." instance=ExtResource("9_osgux")]
 unique_name_in_owner = true
 visible = false
@@ -401,7 +405,7 @@ grow_vertical = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_hyg4v")
+&"": SubResource("AnimationLibrary_hyg4v")
 }
 
 [node name="SubmitConfirmationPanel" parent="." instance=ExtResource("14_y10sy")]
@@ -474,17 +478,10 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="Main" parent="." instance=ExtResource("16_3nw0u")]
-visible = false
-layout_mode = 2
-anchors_preset = 0
-
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer5/VBoxContainer2/Panel/ProfileButton" to="." method="_on_profile_button_pressed"]
 [connection signal="dashboard_menu_button_pressed" from="VBoxContainer/HBoxContainer2/DashboardMenu" to="." method="_on_dash_board_menu_dashboard_menu_button_pressed"]
 [connection signal="request_completed" from="VBoxContainer/HBoxContainer2/MintCardWindow" to="LoadingPanel" method="_on_mint_card_window_request_completed"]
 [connection signal="review_button_pressed" from="VBoxContainer/HBoxContainer2/MintCardWindow" to="SubmitConfirmationPanel" method="_on_mint_card_window_review_button_pressed"]
-[connection signal="add_card_button_pressed" from="VBoxContainer/HBoxContainer2/MintCardBundleWindow" to="CardBundleModal" method="_on_mint_card_bundle_window_add_card_button_pressed"]
-[connection signal="on_card_pack_settings_pressed" from="VBoxContainer/HBoxContainer2/MintCardBundleWindow" to="MintCardPackModal" method="_on_mint_card_bundle_window_on_card_pack_settings_pressed"]
 [connection signal="update_contract_request_completed" from="VBoxContainer/HBoxContainer2/ContractsWindow" to="LoadingPanel" method="_on_contracts_window_update_contract_request_completed"]
 [connection signal="update_contract_request_sent" from="VBoxContainer/HBoxContainer2/ContractsWindow" to="LoadingPanel" method="_on_contracts_window_update_contract_request_sent"]
 [connection signal="get_cards_request_completed" from="VBoxContainer/HBoxContainer2/PostCardWindow" to="LoadingPanel" method="_on_post_card_window_get_cards_request_completed"]

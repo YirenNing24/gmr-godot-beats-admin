@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://50n8up858rsy"]
+[gd_scene load_steps=29 format=3 uid="uid://50n8up858rsy"]
 
 [ext_resource type="Script" path="res://Components/post_modal.gd" id="1_au6gk"]
 [ext_resource type="Texture2D" uid="uid://po7672807uk" path="res://Resources/Icons/confirm-icon.png" id="1_h6i5b"]
-[ext_resource type="Texture2D" uid="uid://ccub0lo38tqbg" path="res://Resources/Card Samples/leeseo_lovedive_le_trainee.png" id="2_k1213"]
+[ext_resource type="Texture2D" uid="uid://dyyl3qtgvee8p" path="res://Resources/CardTextures/aria_no_doubt_genesis.png" id="2_k1213"]
 [ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="3_i02kh"]
 [ext_resource type="PackedScene" uid="uid://d2ojx5i67mui0" path="res://Components/list_modal.tscn" id="5_1t7eg"]
 [ext_resource type="PackedScene" uid="uid://dnwjijxqcg7il" path="res://Components/transfer_modal.tscn" id="6_apv1o"]
@@ -47,13 +47,6 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgkgs"]
 bg_color = Color(0.878431, 0.223529, 0.992157, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxinh"]
-bg_color = Color(0.749876, 0.548682, 0.234868, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -676,19 +669,6 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="PackButton" type="Button" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxFlat_ypu32")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_kq37o")
-theme_override_styles/hover = SubResource("StyleBoxFlat_8sfkx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vgkgs")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lxinh")
-text = "CHOOSE FOR PACK"
-
 [node name="ListForSaleButton" type="Button" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/HBoxContainer2" groups=["ListedButtons"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 40)
@@ -701,6 +681,12 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_8sfkx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vgkgs")
 theme_override_styles/normal = ExtResource("3_i02kh")
 text = "LIST FOR SALE"
+
+[node name="PackButton" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ConfirmationContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)

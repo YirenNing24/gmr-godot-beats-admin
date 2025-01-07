@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dx6ilddy21g34"]
 
-[ext_resource type="Script" path="res://Components/contracts_window.gd" id="1_0rn53"]
+[ext_resource type="Script" uid="uid://bmk307edjx1f4" path="res://Components/contracts_window.gd" id="1_0rn53"]
 [ext_resource type="Texture2D" uid="uid://cybnfqvn10vm" path="res://Resources/Icons/card-icon-pink.png" id="1_dcrlt"]
 [ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="3_nlg51"]
 
@@ -397,6 +397,37 @@ theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_rw1kd")
 text = "Card Marketplace upgrade item address"
+
+[node name="Label4" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.745098)
+theme_override_font_sizes/font_size = 25
+text = "Player soul address"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="PlayerSoulAddress" type="LineEdit" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2/VBoxContainer3" groups=["ContractLineEdits"]]
+unique_name_in_owner = true
+auto_translate_mode = 1
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxFlat_g87qv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_e88fp")
+placeholder_text = "Player soul address"
+caret_blink = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer2/VBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0.890196, 0.988235, 0.607843)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_rw1kd")
+text = "Player soul address"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="button_up" from="Panel/VBoxContainer/VBoxContainer2/HBoxContainer2/VBoxContainer/HBoxContainer2/UpdateContractButton" to="." method="_on_update_contract_button_button_up"]

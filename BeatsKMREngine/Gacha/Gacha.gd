@@ -41,9 +41,6 @@ func _on_CreateCardPackSettings_request_completed(_result: int, response_code: i
 	# Check the HTTP response status.
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
 	
-	# Free the request resources.
-	BKMREngine.free_request(wrCreateCardPackSettings, CreateCardPackSettings)
-	
 	# Parse the JSON body received from the server.
 	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
 	
@@ -88,9 +85,7 @@ func _onGetGetPackSettings_request_completed(_result: int, response_code: int, h
 	# Check if the HTTP response indicates success.
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
 	
-	# Free the HTTP request resource if it is still valid.
-	if is_instance_valid(GetPackSettings):
-		BKMREngine.free_request(wrGetPackSettings, GetPackSettings)
+
 	
 	# If the HTTP response indicates success, parse the JSON response body.
 	if status_check:

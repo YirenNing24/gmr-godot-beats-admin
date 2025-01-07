@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://crjg7loomwq1"]
 
-[ext_resource type="Script" path="res://Components/card_bundle_modal.gd" id="1_mqeuq"]
+[ext_resource type="Script" uid="uid://cueky7logxlhu" path="res://Components/card_bundle_modal.gd" id="1_mqeuq"]
 [ext_resource type="Texture2D" uid="uid://bx0brthougm5" path="res://Resources/Icons/add-user-pink-icon.png" id="2_xpejx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac3us"]
@@ -235,6 +235,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dyljq")
 selected = 0
 item_count = 2
 popup/item_0/text = "Listed"
+popup/item_0/id = 0
 popup/item_1/text = "Posted"
 popup/item_1/id = 1
 

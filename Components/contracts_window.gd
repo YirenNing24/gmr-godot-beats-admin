@@ -19,9 +19,11 @@ signal update_contract_request_completed
 func _ready() -> void:
 	signal_connect()
 	
+	
 func _on_visibility_changed() -> void:
 	if visible:
 		BKMREngine.Contract.get_contracts()
+		
 		
 func signal_connect() -> void:
 	BKMREngine.Contract.get_contracts_complete.connect(_on_get_contracts_complete)
@@ -36,7 +38,7 @@ func check_permissions() -> void:
 			
 			
 func _on_update_contract_button_button_up() -> void:
-	var contracts: Dictionary = {
+	var contracts: Dictionary[String, String] = {
 		"beatsAddress": beats_address.text, 
 		"gmrAddress": gmr_address.text, 
 		"cardAddress": card_address.text, 
@@ -44,7 +46,8 @@ func _on_update_contract_button_button_up() -> void:
   		"cardMarketplaceAddress": card_marketplace_address.text, 
 		"bundleMarketplaceAddress": bundle_marketplace_address.text,
 		"cardItemUpgradeAddress": card_item_upgrade_address.text,
-		"cardMarketplaceUpgradeItemAddress": card_marketplace_upgrade_item_address.text
+		"cardMarketplaceUpgradeItemAddress": card_marketplace_upgrade_item_address.text,
+		"playerSoulAddress": %PlayerSoulAddress.text
 	}
 	update_contract_request_sent.emit()
 	BKMREngine.Contract.update_contracts(contracts)
@@ -58,6 +61,7 @@ func _on_get_contracts_complete(contracts: Array) -> void:
 				if address_name.to_lower() == line_edit.name.to_lower():
 					line_edit.text = latest_contracts_list[address_name]
 	check_permissions()
+	
 	
 func _on_update_contract_complete(_data: Dictionary) -> void:
 	update_contract_request_completed.emit()

@@ -21,5 +21,5 @@ func write_json_file(file_path: String, data: Dictionary) -> void:
 		print("File cant be opened to write", file_path)
 		return 
 		
-	file.store_line(JSON.stringify(data))
+	var _file: bool = file.store_line(JSON.stringify(data))
 	file.close()

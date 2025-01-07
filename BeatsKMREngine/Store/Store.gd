@@ -22,12 +22,7 @@ var wrBuyCard: WeakRef = null
 var cards_for_sale: Array = []
 
 # Function to get store items based on item type.
-# This function sends an HTTP GET request to the BKMREngine API to retrieve store items of the specified type.
-# Parameters:
-#   - item_type: The type of store items to retrieve.
-# Returns:
-#   - Node: The current Node.
-func get_store_items(item_type: String) -> Node:
+func get_store_items(item_type: String) -> void:
 	# Prepare HTTP request
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
 	GetCards = prepared_http_req.request
@@ -43,20 +38,10 @@ func get_store_items(item_type: String) -> Node:
 	var request_url: String = host + "/api/store/cards/get?itemType=" + item_type
 	
 	# Send the HTTP GET request asynchronously
-	await BKMREngine.send_get_request(GetCards, request_url)
+	BKMREngine.send_get_request(GetCards, request_url)
 	
-	# Return the current Node
-	return self
-
+	
 # Callback function triggered when the get cards request is completed.
-# This function handles the response from the BKMREngine API after requesting store items.
-# Parameters:
-#   - _result: The result of the HTTP request.
-#   - response_code: The HTTP response code.
-#   - headers: The response headers.
-#   - body: The response body containing store item data in a packed byte array.
-# Returns:
-#   - void
 func _onGetCards_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check if the HTTP response is successful
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
@@ -75,12 +60,6 @@ func _onGetCards_request_completed(_result: int, response_code: int, headers: Ar
 		get_cards_complete.emit()
 
 # Function to initiate the purchase of a card from the store.
-# Parameters:
-#   - token_id: The unique identifier of the card to be purchased.
-#   - card_name: The name of the card being purchased.
-#   - username: The username of the user making the purchase.
-# Returns:
-#   - Node: The current node (self).
 func buy_card(token_id: String, card_name: String, username: String) -> Node:
 	# Prepare HTTP request
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
@@ -108,13 +87,6 @@ func buy_card(token_id: String, card_name: String, username: String) -> Node:
 
 
 # Callback function triggered upon the completion of the buy card request.
-# Parameters:
-#   - _result: The result of the HTTP request.
-#   - response_code: The HTTP response code received.
-#   - headers: An array containing the HTTP response headers.
-#   - body: PackedByteArray containing the response body.
-# Returns:
-#   - void
 func _onBuyCard_request_completed(_result: Dictionary, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)

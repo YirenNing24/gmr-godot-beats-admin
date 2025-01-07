@@ -423,3 +423,4 @@ layout_mode = 1
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="file_selected" from="ImportMap" to="." method="_on_import_map_file_selected"]
+[connection signal="map_info_saved" from="MapInfoDialog" to="." method="_on_map_info_dialog_map_info_saved"]

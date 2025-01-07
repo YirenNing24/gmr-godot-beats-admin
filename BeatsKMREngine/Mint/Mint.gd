@@ -23,7 +23,7 @@ signal create_upgrade_item_complete(message: Dictionary)
 var host: String = BKMREngine.host
 
 #region for minting a card
-func mint_cards(mint_card_data: Dictionary) -> Node:
+func mint_cards(mint_card_data: Dictionary) -> void:
 	# Prepare the HTTP request.
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
 	MintCards = prepared_http_req.request
@@ -35,16 +35,11 @@ func mint_cards(mint_card_data: Dictionary) -> Node:
 	var request_url: String = host + "/admin/mint-card"
 	
 	BKMREngine.send_post_request(MintCards, request_url, payload)
-	return self
 	
 	
 func _on_MintCards_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
-	
-	# Free the request resources.
-	if is_instance_valid(MintCards):
-		BKMREngine.free_request(wrMintCards, MintCards)
 	
 	# Parse the JSON body received from the server.
 	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
@@ -80,9 +75,7 @@ func _on_CreateUpgradeItem_request_completed(_result: int, response_code: int, h
 	# Check the HTTP response status.
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
 	
-	# Free the request resources.
-	if is_instance_valid(CreateUpgradeItem ):
-		BKMREngine.free_request(wrCreateUpgradeItem , CreateUpgradeItem )
+
 	
 	# Parse the JSON body received from the server.
 	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
@@ -116,10 +109,6 @@ func mint_card_pack(mint_card_pack_data: Dictionary) -> void:
 func _on_MintCardPack_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
-	
-	# Free the request resources.
-	if is_instance_valid(MintCards):
-		BKMREngine.free_request(wrMintCardPack, MintCardPack)
 	
 	# Parse the JSON body received from the server.
 	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())

@@ -99,8 +99,9 @@ func _on_post_modal_list_for_sale_button_pressed(card_data: Dictionary, card_pic
 	
 	data_card = card_data
 	image_card = card_pic
-
-	var _connect: int = submit_button.pressed.connect(submit_button_pressed)
+	
+	if !submit_button.pressed.is_connected(submit_button_pressed):
+		var _connect: int = submit_button.pressed.connect(submit_button_pressed)
 
 
 func _on_post_card_pack_modal_list_for_sale_button_pressed(card_data: Dictionary, card_pic: Texture, item_type: String) -> void:
@@ -137,6 +138,7 @@ func submit_button_pressed() -> void:
 		
 		
 func _on_submitted(token_id: String) -> void:
+	@warning_ignore("unsafe_call_argument")
 	var listing_data: Dictionary = {
 		"currencyName": currency_name,
 		"tokenId": token_id,

@@ -43,24 +43,29 @@ var card_skill: String
 
 var uploaded_image_buffer: PackedByteArray
 
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready() -> void:
 	signal_connect()
 
+
 func signal_connect() -> void:
-	BKMREngine.Mint.mint_cards_complete.connect(_on_mint_cards_complete)
-	
+	BKMREngine.Mint.mint_cards_complete.connect(_on_mint_cards_complete)	
 	for fields: LineEdit in get_tree().get_nodes_in_group("MintCardFields"):
 		var _connect: int = fields.focus_exited.connect(_on_fields_focus_exited)
+		
 		
 func _on_mint_cards_complete(_message: Dictionary) -> void:
 	request_completed.emit()
 	
+	
 func _on_fields_focus_exited() -> void:
 	error_label.text = ""
 	
+	
 func _on_open_file_dialog_button_pressed() -> void:
 	file_dialog.visible = true
+
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	var image_buffer: PackedByteArray = FileAccess.get_file_as_bytes(path)
@@ -77,10 +82,12 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		upload_background.self_modulate = "ffffff00"
 		%UploadLabel.visible = false
 
+
 func _on_clear_image_button_pressed() -> void:
 	uploaded_image.texture = null
 	upload_background.self_modulate = "ffffff"
 	%UploadLabel.visible = true
+
 
 #region Field error checkers
 func _on_card_description_field_text_changed(description_value: String) -> void:
@@ -90,6 +97,7 @@ func _on_card_description_field_text_changed(description_value: String) -> void:
 		error_label.text = ""
 	else:
 		error_label.text = "Description field is empty"
+
 
 func _on_card_supply_field_text_changed(supply_value: String) -> void:
 	if supply_value.is_valid_int():
@@ -102,6 +110,7 @@ func _on_card_supply_field_text_changed(supply_value: String) -> void:
 	if supply_value == "":
 		error_label.text = "Supply value field is empty"
 	
+	
 func _on_artist_name_field_text_changed(artist_name_value: String) -> void:
 	if artist_name_value != "":
 		artist_name = artist_name_value.capitalize()
@@ -112,6 +121,7 @@ func _on_artist_name_field_text_changed(artist_name_value: String) -> void:
 	else:
 		error_label.text = "Artist name field is empty"
 	
+	
 func _on_era_name_field_text_changed(card_era_name_value: String) -> void:
 	if card_era_name_value != "":
 		era_name = card_era_name_value.capitalize()
@@ -121,8 +131,10 @@ func _on_era_name_field_text_changed(card_era_name_value: String) -> void:
 	else:
 		error_label.text = "Era name field is empty"
 		
+		
 func _on_rarity_name_field_item_selected(index: int) -> void:
 	rarity_name = rarity_name_field.get_item_text(index)
+		
 		
 func _on_card_score_boost_field_text_changed(scoreboost_value: String) -> void:
 	if scoreboost_value.is_valid_int():
@@ -135,6 +147,7 @@ func _on_card_score_boost_field_text_changed(scoreboost_value: String) -> void:
 	if scoreboost_value == "":
 		error_label.text = "Scoreboost field is empty"
 		
+		
 func _on_card_heal_boost_field_text_changed(healboost_value: String) -> void:
 	if healboost_value.is_valid_int():
 		card_healboost_field.text = healboost_value
@@ -145,6 +158,7 @@ func _on_card_heal_boost_field_text_changed(healboost_value: String) -> void:
 		error_label.text = "You can only use number values here"
 	if healboost_value == "":
 		error_label.text = "Healboost field is empty"
+
 
 func _on_card_level_field_text_changed(level_value: String) -> void:
 	if level_value.is_valid_int():
@@ -157,6 +171,7 @@ func _on_card_level_field_text_changed(level_value: String) -> void:
 	if level_value == "":
 		error_label.text = "Level value field is empty"
 		
+		
 func _on_card_experience_field_text_changed(experience_value: String) -> void:
 	if experience_value.is_valid_int():
 		card_experience_field.text = experience_value
@@ -167,6 +182,7 @@ func _on_card_experience_field_text_changed(experience_value: String) -> void:
 		error_label.text = "You can only use number values here"
 	if experience_value == "":
 		error_label.text = "Experience field is empty"
+		
 		
 func _on_card_stars_field_text_changed(stars_value: String) -> void:
 	if stars_value.is_valid_int():
@@ -179,12 +195,14 @@ func _on_card_stars_field_text_changed(stars_value: String) -> void:
 	if stars_value == "":
 		error_label.text = "Stars count field is empty"
 
+
 func _on_card_breakthrough_field_item_selected(index: int) -> void:
 	var breakthrough_value: String = card_breakthrough_field.get_item_text(index)
 	if breakthrough_value == "True":
 		card_breakthrough = true
 	else:
 		card_breakthrough = false
+		
 		
 func _on_card_awaken_count_field_text_changed(awaken_value: String) -> void:
 	if awaken_value.is_valid_int():
@@ -197,6 +215,7 @@ func _on_card_awaken_count_field_text_changed(awaken_value: String) -> void:
 	if awaken_value == "":
 		error_label.text = "Awaken count field is empty"
 
+
 func _on_card_boost_count_field_text_changed(boost_count_value: String) -> void:
 	if boost_count_value.is_valid_int():
 		card_boost_count_field.text = boost_count_value
@@ -208,6 +227,7 @@ func _on_card_boost_count_field_text_changed(boost_count_value: String) -> void:
 	if boost_count_value == "":
 		error_label.text = "Boost count field is empty"
 
+
 func _on_card_slot_field_text_changed(slot_value: String) -> void:
 	if slot_value != "":
 		card_slot_field.text = slot_value.capitalize()
@@ -215,6 +235,7 @@ func _on_card_slot_field_text_changed(slot_value: String) -> void:
 		error_label.text = ""
 	else:
 		error_label.text = "Card slot field is empty"
+
 
 func _on_card_tier_field_text_changed(tier_value: String) -> void:
 	if tier_value != "":
@@ -224,6 +245,7 @@ func _on_card_tier_field_text_changed(tier_value: String) -> void:
 	else:
 		error_label.text = "Card tier field is empty"
 	
+	
 func _on_card_position_field_text_changed(position1_value: String) -> void:
 	if position1_value != "":
 		card_position_field.text = position1_value.capitalize()
@@ -231,6 +253,7 @@ func _on_card_position_field_text_changed(position1_value: String) -> void:
 		error_label.text = ""
 	else:
 		error_label.text = "Card position field is empty"
+	
 	
 func _on_card_position_2_field_text_changed(position2_value: String) -> void:
 	if position2_value != "":
@@ -240,8 +263,8 @@ func _on_card_position_2_field_text_changed(position2_value: String) -> void:
 	else:
 		error_label.text = "Card position 2 field is empty"
 
+
 func _on_card_group_field_text_changed(group_value: String) -> void:
-	print(group_value)
 	if group_value != "":
 		card_group_field.text = group_value
 		card_group_field.caret_column = card_group_field.text.length()
@@ -249,15 +272,17 @@ func _on_card_group_field_text_changed(group_value: String) -> void:
 	else:
 		error_label.text = "Card group field is empty"
 
+
 func _on_card_skill_field_item_selected(index: int) -> void:
 	card_skill = card_skill_field.get_item_text(index)
+
 
 func _submit_error_check() -> void:
 		for fields: LineEdit in get_tree().get_nodes_in_group("MintCardFields"):
 			if fields.text == "":
 				pass
-
 #endregion
+
 
 func _on_review_button_pressed() -> void:
 	var data: Array = []
@@ -284,6 +309,7 @@ func _on_review_button_pressed() -> void:
 			
 	if empty_field == false:
 		submit_card_data_review()
+		
 		
 func submit_card_data_review() -> void:
 	var card_name: String = artist_name + " " + era_name + " " + rarity_name

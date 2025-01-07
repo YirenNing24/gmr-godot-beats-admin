@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://dlyu3q7co780a"]
 
 [ext_resource type="Texture2D" uid="uid://cybnfqvn10vm" path="res://Resources/Icons/card-icon-pink.png" id="1_eqkwr"]
-[ext_resource type="Script" path="res://Components/mint_card_window.gd" id="1_ipx8t"]
+[ext_resource type="Script" uid="uid://xtbimre7eqwh" path="res://Components/mint_card_window.gd" id="1_ipx8t"]
 [ext_resource type="Texture2D" uid="uid://cgym8xeg0rtsd" path="res://Resources/Icons/upload-picture-icon.png" id="2_bu8lb"]
 [ext_resource type="FontFile" uid="uid://ppvw26qavbge" path="res://Resources/Fonts/HankenGrotesk-ExtraBold.ttf" id="4_0c5rm"]
 [ext_resource type="Texture2D" uid="uid://dv1xofu8ab6j" path="res://Resources/Icons/clear-icon.png" id="4_wy8q7"]
@@ -516,6 +516,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
 item_count = 6
 popup/item_0/text = "Common"
+popup/item_0/id = 0
 popup/item_1/text = "Uncommon"
 popup/item_1/id = 1
 popup/item_2/text = "Rare"
@@ -706,6 +707,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
 item_count = 2
 popup/item_0/text = "False"
+popup/item_0/id = 0
 popup/item_1/text = "True"
 popup/item_1/id = 1
 
@@ -916,6 +918,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ton3m")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n34uh")
 item_count = 3
 popup/item_0/text = "Heal"
+popup/item_0/id = 0
 popup/item_1/text = "DoubleUp"
 popup/item_1/id = 1
 popup/item_2/id = 2

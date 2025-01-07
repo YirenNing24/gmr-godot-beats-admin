@@ -58,10 +58,10 @@ func _process(_delta: float) -> void:
 	#socket.poll()
 
 	# Set authentication headers for the WebSocket handshake
-	socket.set_handshake_headers(auth_header)
-
-	# Get the current state of the WebSocket
-	socket_state = socket.get_ready_state()
+	#socket.set_handshake_headers(auth_header)
+#
+	## Get the current state of the WebSocket
+	#socket_state = socket.get_ready_state()
 	
 	# Handle different WebSocket states
 	match socket_state:

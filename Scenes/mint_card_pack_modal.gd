@@ -37,9 +37,11 @@ func _on_visibility_changed() -> void:
 		
 
 func _on_submit_button_pressed() -> void:
-	var mint_card_pack_data: Dictionary = {
+	@warning_ignore("unsafe_call_argument")
+	var mint_card_pack_data: Dictionary[String, Variant] = {
 		"name": %PackName.text,
 		"description": "test",
+		
 		"supply": int(%Quantity.text),
 		"imageByte": uploaded_image_buffer
 	}

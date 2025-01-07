@@ -1,15 +1,15 @@
 [gd_scene load_steps=42 format=3 uid="uid://c58q8vpc3bix8"]
 
 [ext_resource type="Texture2D" uid="uid://cybnfqvn10vm" path="res://Resources/Icons/card-icon-pink.png" id="1_cy5pp"]
-[ext_resource type="Script" path="res://Components/mint_card_bundle.gd" id="1_dnai6"]
+[ext_resource type="Script" uid="uid://crc6gjtarabaw" path="res://Components/mint_card_bundle.gd" id="1_dnai6"]
 [ext_resource type="Texture2D" uid="uid://cgym8xeg0rtsd" path="res://Resources/Icons/upload-picture-icon.png" id="2_w23et"]
 [ext_resource type="FontFile" uid="uid://ppvw26qavbge" path="res://Resources/Fonts/HankenGrotesk-ExtraBold.ttf" id="3_c30c6"]
 [ext_resource type="Texture2D" uid="uid://dv1xofu8ab6j" path="res://Resources/Icons/clear-icon.png" id="4_sxb03"]
 [ext_resource type="Texture2D" uid="uid://ca8vqj6nyerwh" path="res://Resources/Icons/reset-icon.png" id="5_02rq8"]
 [ext_resource type="Texture2D" uid="uid://iwo3lov1pd51" path="res://Resources/Icons/submit-icon.png" id="6_nxx1t"]
 [ext_resource type="FontFile" uid="uid://ceu3oprm0ket2" path="res://Beatmaker/Assets/Fonts/argentum-sans.semibold.ttf" id="8_p8dpb"]
-[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="9_24vll"]
-[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="10_q7mir"]
+[ext_resource type="Script" uid="uid://d08krlboohuim" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="9_24vll"]
+[ext_resource type="Script" uid="uid://bvptkty7icmmn" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="10_q7mir"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_765iu"]
 bg_color = Color(0.0313726, 0.0196078, 0.0941176, 1)

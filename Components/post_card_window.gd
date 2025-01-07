@@ -35,33 +35,37 @@ func _on_get_cards_complete(cards: Array) -> void:
 	for card: Control in card_container.get_children():
 		card.queue_free()
 	
-	for card_data: Dictionary in cards:
-		var card: Control = card_scene.instantiate()
-		var card_name: String = card_data.name
-		var string_array: String = card_data.imageByte
-		var card_image: PackedByteArray = JSON.parse_string(string_array)
-		var image: Image = Image.new()
-		var error: Error = image.load_png_from_buffer(card_image)
-		if error != OK:
-			print("Error loading image", error)
-		else:
-			var card_pic: Texture = ImageTexture.create_from_image(image)
-			# Cache the image texture
+	for card_metadata: Dictionary in cards:
+		if card_metadata.has("metadata"):
+			var card_data: Dictionary = card_metadata["metadata"]
 
-			card.get_node("HBoxContainer/CardImage").texture = card_pic
+			# Only process cards that have a "name" field
+			if card_data.has("name"):
+				var card_name: String = card_data["name"]
+				
+				# Cache the image texture
+				var card_image: Texture = load("res://Resources/CardTextures/" + card_name.replace(" ", "_").to_lower() + ".png")
 
-		card.get_node("HBoxContainer/CardNameLabel").text = card_name
-		card.get_node("Button").pressed.connect(_on_card_selected.bind(card_data))
-		card_container.add_child(card)
+				# Instantiate and configure the card
+				var card: Control = card_scene.instantiate()
+				card.get_node("HBoxContainer/CardImage").texture = card_image
+				card.get_node("HBoxContainer/CardNameLabel").text = card_name
+				card.get_node("Button").pressed.connect(_on_card_selected.bind(card_data))
+				
+				# Add the card to the container
+				card_container.add_child(card)
+	
+	# Emit the signal after all valid cards are processed
 	get_cards_request_completed.emit()
+
 	
-	
+
 func _on_card_selected(card_data: Dictionary) -> void:
 	selected_post_card.emit(card_data, filter_match)
 
 
 func post_card_for_sale(token_id: String) -> void:
-	var _card_listing_data: Dictionary = {
+	var _card_listing_data: Dictionary[String, String] = {
 		"tokenId": token_id
 	}
 

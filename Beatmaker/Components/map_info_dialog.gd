@@ -6,15 +6,15 @@ signal map_info_saved
 @onready var artist_field: LineEdit = $"%ArtistField"
 @onready var title_field: LineEdit = $"%TitleField"
 
-const AUDIO_FIELD_NAMES: Array = [
+const AUDIO_FIELD_NAMES: Array[String] = [
 	"TITLE",
 	"ARTIST"
 ]
-var audio_info: Dictionary = {}
+var audio_info: Dictionary[String, String] = {}
 var audio_file_name: String = ""
 var beatmap_maker: String
 var session_file_path: String = "user://editor/session"
-var session_data: Dictionary = {}
+var session_data: Dictionary[String, Variant] = {}
 
  
 func setup(audio_name: String, audio_comments: String) -> void:
@@ -22,10 +22,12 @@ func setup(audio_name: String, audio_comments: String) -> void:
 	init_audio_inputs(audio_comments)
 	init_map_inputs()
 
+
 func init_audio_inputs(audio_comments: String) -> void:
 	parse_audio_comments(audio_comments)
 	if title_field.text == "":
 		title_field.text = audio_file_name
+
 
 func init_map_inputs() -> void:
 	session_data = UTILITIES.read_json_file(session_file_path)
@@ -34,6 +36,7 @@ func init_map_inputs() -> void:
 		return 
 	beatmap_maker = str(session_data.beatmap_maker)
 	beatmap_maker_field.text = beatmap_maker
+
 
 func parse_audio_comments(audio_comments: String) -> void:
 	for characters: String in audio_comments:
@@ -46,29 +49,32 @@ func parse_audio_comments(audio_comments: String) -> void:
 					var n: LineEdit = audio_c.get_node(node_name)
 					n.text = value
 
+
 func apply_map_inputs() -> void:
 	beatmap_maker =  beatmap_maker_field.text
 	session_data["beatmap_maker"] = beatmap_maker
 	UTILITIES.write_json_file(session_file_path, session_data)
 	
-func set_data(beatmap_maker_data: String, audio_data: Dictionary) -> void:
+	
+func set_data(beatmap_maker_data: String, audio_data: Dictionary[String, Variant]) -> void:
 	beatmap_maker_field.text = str(beatmap_maker_data)
 	set_audio_inputs_from(audio_data)
 	apply_map_inputs()
 	apply_audio_inputs()
 	
-func set_audio_inputs_from(data: Dictionary) -> void:
+	
+func set_audio_inputs_from(data: Dictionary[String, String]) -> void:
 	artist_field.text = data["artist"]
 	title_field.text= data["title"]
 	
 	if title_field.get_text() == "":
 		title_field.set_text(audio_file_name)
 		
+		
 func apply_audio_inputs() -> void:
 	audio_info["artist"] = artist_field.text
 	audio_info["title"] = title_field.text
 	
-#func _on_confirmed() -> void:
 
 func _on_save_button_pressed() -> void:
 	if  beatmap_maker_field.text == "" or title_field.text == "":
@@ -76,7 +82,6 @@ func _on_save_button_pressed() -> void:
 		visible = false
 		position = pos
 		return
-		
 	apply_map_inputs()
 	apply_audio_inputs()
 	map_info_saved.emit()

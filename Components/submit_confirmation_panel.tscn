@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjiddvytdh4ip"]
+[gd_scene load_steps=10 format=3 uid="uid://bjiddvytdh4ip"]
 
 [ext_resource type="Script" path="res://Components/submit_confirmation_panel.gd" id="1_fgxkb"]
 [ext_resource type="StyleBox" uid="uid://swwmbq60e0jw" path="res://Resources/CustomResource/SignInButton.tres" id="1_kuvq5"]
 [ext_resource type="Texture2D" uid="uid://po7672807uk" path="res://Resources/Icons/confirm-icon.png" id="2_6srkn"]
-[ext_resource type="Texture2D" uid="uid://ccub0lo38tqbg" path="res://Resources/Card Samples/leeseo_lovedive_le_trainee.png" id="2_176li"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3ygg"]
 bg_color = Color(0, 0, 0, 0.847059)
@@ -172,7 +171,6 @@ custom_minimum_size = Vector2(310.59, 480)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource("2_176li")
 expand_mode = 1
 stretch_mode = 5
 

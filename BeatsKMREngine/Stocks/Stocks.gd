@@ -32,6 +32,7 @@ signal get_card_packs_complete(cards: Array)
 # Host URL for server communication.
 var host: String = BKMREngine.host
 
+
 #region for retrieving cards
 func get_card_stock() -> void:
 	# Prepare the HTTP request.
@@ -41,7 +42,6 @@ func get_card_stock() -> void:
 	
 	var _get_cards_stock: int = GetCardsStock.request_completed.connect(_on_GetCardsStock_request_completed)
 	var request_url: String = host + "/admin/card/stock"
-	
 	BKMREngine.send_get_request(GetCardsStock, request_url)
 	
 
@@ -78,7 +78,7 @@ func get_card_unpacked() -> void:
 	
 	BKMREngine.send_get_request(GetCardsUnpacked, request_url)
 	
-	
+
 func _on_GetCardsUnpacked_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
 	if is_instance_valid(GetCardsUnpacked):
@@ -109,7 +109,8 @@ func get_listed_cards() -> void:
 	var request_url: String = host + "/admin/card/listed"
 	
 	BKMREngine.send_get_request(GetListedCards, request_url)
-
+	
+	
 # Callback function
 func _on_GetPostedCards_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.
@@ -146,6 +147,7 @@ func populate_card_list_from_contract(password: String) -> void:
 	var request_url: String = host + "/admin/update/populate-card-list"
 	
 	BKMREngine.send_post_request(PopulateCardList, request_url, { "password": password })
+
 
 # Callback function
 func _on_PopulateCardListFromContract_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -184,7 +186,7 @@ func get_card_upgrade_stock() -> void:
 	
 	BKMREngine.send_get_request(GetCardUpgradeStock, request_url)
 
-	
+
 # Callback function
 func _on_GetCardUpgradeStock_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
@@ -205,7 +207,6 @@ func _on_GetCardUpgradeStock_request_completed(_result: int, response_code: int,
 			get_card_upgrade_stock_complete.emit(json_body)
 	else:
 		get_card_upgrade_stock_complete.emit({ "error": "Error retrieving cards" })
-	
 
 
 func get_card_packs() -> void:
@@ -221,9 +222,6 @@ func get_card_packs() -> void:
 	
 func _on_GetCardPacks_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)
-	if is_instance_valid(GetCardPacks):
-		BKMREngine.free_request(wrGetCardPacks, GetCardPacks)
-	
 	var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
 	if json_body == null:
 		get_card_packs_complete.emit({ "error": "Error retrieving packs" })

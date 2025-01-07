@@ -7,13 +7,13 @@ const version: String = "0.1"
 var godot_version: String = Engine.get_version_info().string
 
 # Configuration variables
-var host_ip: String = "localhost"
-#var host_ip: String = "api.gmetarave.art"
-var port: String = ":8086"
+const host_ip: String = "admin.gmetarave.asia"
+#var host_ip: String = "admin.gmetarave.com"
+const port: String = ":8086"
 #var host: String = "http://" + host_ip
 
 #var google_server_client_id: String = "484949065971-ujoksdio9417hnvd5goaclrvlnsv6704.apps.googleusercontent.com"
-var host: String = "http://" + "localhost" + port
+var host: String = "https://" + host_ip
 
 var session: bool = false
 
@@ -45,13 +45,13 @@ const BKMRLogger: Script = preload("res://BeatsKMREngine/utils/BKMRLogger.gd")
 
 # Configuration dictionaries
 @onready var config: Dictionary = {}
-var auth_config: Dictionary = {
+const auth_config: Dictionary = {
 	"session_duration_seconds": 0,
 	"saved_session_expiration_days": 30
 }
 
 # Loaded scripts for various modules
-var auth_script: Script = preload("res://BeatsKMREngine/Auth/Auth.gd")
+const auth_script: Script = preload("res://BeatsKMREngine/Auth/Auth.gd")
 var websocket_script: Script = load("res://BeatsKMREngine/Websocket/Websocket.gd")
 var inventory_script: Script = load("res://BeatsKMREngine/Inventory/Inventory.gd")
 var profile_script: Script = load("res://BeatsKMREngine/Profile/Profile.gd")
@@ -86,6 +86,7 @@ func _ready() -> void:
 	add_child_nodes()
 	#get_server_time()
 	
+	
 func initialize_script() -> void:
 	# Initialize script
 	Auth.set_script(auth_script)
@@ -104,8 +105,8 @@ func initialize_script() -> void:
 	NFT.set_script(nft_script)
 	Song.set_script(song_script)
 	Gacha.set_script(gacha_script)
-
-
+	
+	
 func add_child_nodes() -> void:
 	#Add child nodes for different modules
 	add_child(Auth)
@@ -126,20 +127,23 @@ func add_child_nodes() -> void:
 	# Print end timestamp for debugging purposes
 	print("BKMR ready end timestamp: " + str(BKMRUtils.get_timestamp()))
 	
+	
 func get_server_time() -> void:
 	var _connect: int = get_tree().create_timer(5).timeout.connect(get_server_time)
 	if session == false:
 		return
 	Websocket.get_server_time()
-
+	
 	#time_server = server_time.serverTime
 	#ping = latency
+	
 	
 # Frees an HTTP request object using a WeakRef.
 func free_request(weak_ref: Variant, object: HTTPRequest) -> void:
 	if (weak_ref.get_ref()):
 		object.queue_free()
-
+	
+	
 # Prepares an HTTP request and returns a dictionary containing the request object and its WeakRef.`
 func prepare_http_request() -> Dictionary:
 	var request: HTTPRequest = HTTPRequest.new()
@@ -153,7 +157,8 @@ func prepare_http_request() -> Dictionary:
 		"weakref": weak_ref
 	}
 	return return_dict as Dictionary
-
+	
+	
 # Sends a GET request using the provided HTTPRequest object to the specified URL.
 func send_get_request(http_node: HTTPRequest, request_url: String) -> void:
 	var headers: Array = [
@@ -171,8 +176,7 @@ func send_get_request(http_node: HTTPRequest, request_url: String) -> void:
 	BKMRLogger.debug("headers: " + str(headers))
 	var _get_request_send: Error = http_node.request(request_url, headers, HTTPClient.METHOD_GET) 
 	
-#localhost:8081/api/social/mutual/nashar2
-
+	
 # Sends a POST request using the provided HTTPRequest object to the specified URL with the given payload.
 func send_post_request(http_node: HTTPRequest, request_url: String, payload: Dictionary) -> void:
 	var headers: Array = [
@@ -193,6 +197,7 @@ func send_post_request(http_node: HTTPRequest, request_url: String, payload: Dic
 	#BKMRLogger.debug("query: " + str(query))
 	var _request_post_send: Error = http_node.request(request_url, headers, HTTPClient.METHOD_POST, query)
 
+
 func send_login_request(http_node: HTTPRequest, request_url: String, payload: Dictionary) -> void:
 	var headers: Array = [
 		"content-Type: application/json",
@@ -212,11 +217,13 @@ func send_login_request(http_node: HTTPRequest, request_url: String, payload: Di
 	BKMRLogger.debug("query: " + str(query))
 	var _request_post_send: Error = http_node.request(request_url, headers, HTTPClient.METHOD_POST, query)
 
+
 # Adds JWT token headers to the provided array of headers.
 func add_jwt_token_headers(headers: Array = []) -> Array:
 	if Auth.access_token != null:
 		headers.append("Authorization: Bearer " + Auth.access_token)
 	return headers as Array
+	
 	
 # Adds JWT token headers for LOGIN and AUTO_LOGIN.
 func add_jwt_refresh_token_headers(headers: Array = []) -> Array:
@@ -224,9 +231,11 @@ func add_jwt_refresh_token_headers(headers: Array = []) -> Array:
 		headers.append("Authorization: Bearer " + Auth.refresh_token)
 	return headers as Array
 
+
 # Checks if a specified string is present in the given URL.
 func check_string_in_url(test_string: String, url: String) -> bool:
 	return test_string in url
+
 
 # Builds a result dictionary based on the response body.
 func build_result(body: Dictionary) -> Dictionary:
@@ -240,6 +249,7 @@ func build_result(body: Dictionary) -> Dictionary:
 		"success": success,
 		"error": error
 	}
+
 
 # Checks if the authentication module is ready.
 func check_auth_ready() -> void:
