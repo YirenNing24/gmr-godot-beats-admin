@@ -10,9 +10,11 @@ func _ready() -> void:
 	dashboard_button.button_pressed = true
 	connect_signal()
 	
+	
 func connect_signal() -> void:
 	for button: Button in get_tree().get_nodes_in_group("DashboardMenuButton"):
 		var _connect: int = button.pressed.connect(_on_dashboard_menu_button_pressed.bind(button.name))
+		
 		
 func _on_dashboard_menu_button_pressed(button_name: String) -> void:
 	for button: Button in get_tree().get_nodes_in_group("DashboardMenuButton"):
@@ -22,6 +24,7 @@ func _on_dashboard_menu_button_pressed(button_name: String) -> void:
 			else:
 				button.button_pressed = true
 	dashboard_menu_button_pressed.emit(button_name)
-
+	
+	
 func _on_main_pressed() -> void:
 	var _scene: int = get_tree().change_scene_to_file("res://Beatmaker/Scenes/main.tscn")

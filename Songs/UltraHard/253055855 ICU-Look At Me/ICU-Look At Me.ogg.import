@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://gn36a23j8ugl"
+path="res://.godot/imported/ICU-Look At Me.ogg-48ec55f65731dac20c010f81762d51c7.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/UltraHard/253055855 ICU-Look At Me/ICU-Look At Me.ogg"
+dest_files=["res://.godot/imported/ICU-Look At Me.ogg-48ec55f65731dac20c010f81762d51c7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

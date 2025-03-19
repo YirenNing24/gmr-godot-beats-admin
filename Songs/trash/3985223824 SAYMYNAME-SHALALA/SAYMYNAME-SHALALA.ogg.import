@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d2vrso5bxophg"
+path="res://.godot/imported/SAYMYNAME-SHALALA.ogg-88efbe30da1c68830b463cf17559da68.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/trash/3985223824 SAYMYNAME-SHALALA/SAYMYNAME-SHALALA.ogg"
+dest_files=["res://.godot/imported/SAYMYNAME-SHALALA.ogg-88efbe30da1c68830b463cf17559da68.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

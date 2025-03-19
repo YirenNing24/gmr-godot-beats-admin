@@ -39,13 +39,13 @@ var audio_loaded: bool = false
 var map_start_pos: int = 0
 var track_length: float
 var track_speed: float
-var track_tempo: int = 130
+var track_tempo: float = 130
 var map_info_was_saved: bool = false
 var pending_export: bool = false
 
 var waveform_length: float
 var waveform_scale: int
-var tempo_update_timeout: int = 0
+var tempo_update_timeout: float = 0.0
 var tempo_update_in_process: bool = false
 
 var ui_scale: int
@@ -79,8 +79,10 @@ func _ready() -> void:
 	load_editor()
 	filemenu_button_items()
 	
+	
 func load_editor() -> void:
 	call_deferred('build_editor')
+	
 	
 func build_editor() -> void:
 	load_percent += 100
@@ -92,36 +94,44 @@ func build_editor() -> void:
 	setup_editor_directory()
 	update_last_file_path(EDITOR_C.last_file_path)
 	
+	
 func _process(delta: float) -> void:
 	if pending_wscroll_update:
 		window_scroll.set_h_scroll(int(window_scroll_size))
 		pending_wscroll_update = false
+
 	var window: Window = get_window()	
 	tracks_container.custom_minimum_size = Vector2(window.size.x - 200, 260)
 	cursor_container.position = Vector2(cursor_container.position.x, window_scroll.get_v_scroll())
 
+	# Debugging: Print timeout before checking
+
 	if tempo_update_timeout > 0:
-		tempo_update_timeout -= int(delta)
-	elif tempo_update_timeout < 0:
+		tempo_update_timeout -= delta
+	elif tempo_update_timeout < 0:  # Changed from < 0 to <= 0
 		tempo_update_timeout = 0
 		tempo_update_in_process = true
+
 		@warning_ignore("narrowing_conversion")
 		var old_waveform_length: int = waveform_length
 		var cursor_value: int = int(cursor_slider.value)
 		var scroll_value: int = window_scroll.get_h_scroll()
 		var delta_scroll: int = scroll_value - cursor_value
+
 		set_params()
 		redraw_map()
+
 		@warning_ignore("narrowing_conversion")
 		var editor_scale: float = waveform_length / old_waveform_length
-		cursor_slider.value = cursor_slider.value * editor_scale
+		cursor_slider.value *= editor_scale
 		window_scroll.set_h_scroll(int(cursor_slider.value + delta_scroll))
 
 		cursor_static.position = Vector2(cursor_slider.value, cursor_static.position.y)
 		tempo_update_in_process = false
 		window_scroll_last_val = window_scroll.get_h_scroll()
-		
+
 	waveform_node.update()
+
 	if is_playing:
 		cursor_playback.position = Vector2(track_speed * audio_stream_player.get_playback_position() * scale_ratio, 0)
 	else:
@@ -132,37 +142,50 @@ func _process(delta: float) -> void:
 			@warning_ignore("narrowing_conversion")
 			window_scroll.set_h_scroll(cursor_playback.position.x - window_scroll.size.x * 0.5)
 
+	
+func _on_bpm_input_changed_value(value: float) -> void:
+	if track_tempo != bpm_input.value:
+		track_tempo = bpm_input.value
+		tempo_update_timeout = 1.0
+		print("tempo updated to", track_tempo)
+
+
+
 func update_last_file_path(file_path: String) -> void:
 	EDITOR_C.last_file_path = file_path
+
 
 func setup_editor_directory() -> void:
 	editor_dir = "user://editor"
 	if not DirAccess.open(editor_dir):
 		var _make_directory: Error = DirAccess.make_dir_absolute(editor_dir)
 	
+	
 func set_params() -> void:
-	sample_duration_in_sec = stream.get_length()
-	quarter_time_in_sec = 60.0 / track_tempo
-	@warning_ignore("narrowing_conversion")
-	var cell_width: int = EDITOR_C.CELL_WIDTH
-	var quarters_count: int = EDITOR_C.QUARTERS_COUNT
-	var cells_in_quarter_count: int = EDITOR_C.CELLS_IN_QUARTER_COUNT
-	bar_size = float(cell_width * quarters_count * cells_in_quarter_count)
-	track_speed = bar_size / (quarter_time_in_sec * quarters_count)
-	track_length = round(track_speed * sample_duration_in_sec)
-	
-	bars_count = round(track_length / bar_size)
-	
-	@warning_ignore("narrowing_conversion")
-	waveform_scale = track_length / EDITOR_C.WAVEFORM_W
-	waveform_length = track_length
+	if stream != null:
+		sample_duration_in_sec = stream.get_length()
+		quarter_time_in_sec = 60.0 / track_tempo
+		@warning_ignore("narrowing_conversion")
+		var cell_width: int = EDITOR_C.CELL_WIDTH
+		var quarters_count: int = EDITOR_C.QUARTERS_COUNT
+		var cells_in_quarter_count: int = EDITOR_C.CELLS_IN_QUARTER_COUNT
+		bar_size = float(cell_width * quarters_count * cells_in_quarter_count)
+		track_speed = bar_size / (quarter_time_in_sec * quarters_count)
+		track_length = round(track_speed * sample_duration_in_sec)
+		
+		bars_count = round(track_length / bar_size)
+		
+		@warning_ignore("narrowing_conversion")
+		waveform_scale = track_length / EDITOR_C.WAVEFORM_W
+		waveform_length = track_length
 
-	call_deferred('deferred_set_params')
-	cursor_playback.speed = track_speed
-	ui_scale = 0
-	scale_ratio = 1
-	previous_scale_ratio = 1
-	scale_to(0)
+		call_deferred('deferred_set_params')
+		cursor_playback.speed = track_speed
+		ui_scale = 0
+		scale_ratio = 1
+		previous_scale_ratio = 1
+		scale_to(0)
+	
 	
 func deferred_set_params() -> void:
 	window_scroll.get_h_scroll_bar().modulate = Color(0, 0, 0, 0)
@@ -173,7 +196,8 @@ func deferred_set_params() -> void:
 	
 func load_waveform() -> void:
 	waveform_node.generate_waveform(stream)
-
+	
+	
 func play() -> void:
 	if is_playing:
 		is_playing = false
@@ -187,13 +211,15 @@ func play() -> void:
 		audio_stream_player.play(audio_track)
 		
 	play_button.set_playing(is_playing)
-
+	
+	
 func cursor_focus() -> void:
 	if is_playing:
 		play()
 	@warning_ignore("narrowing_conversion")
 	window_scroll.set_h_scroll(cursor_static.position.x - EDITOR_C.CURSOR_FOCUS_OFFSET)
-
+	
+	
 func scale_to(dir: float) -> void:
 	if pending_wscroll_update:
 		return 
@@ -208,7 +234,8 @@ func scale_to(dir: float) -> void:
 		ui_scale -= value
 		return 
 	call_deferred('deferred_scale_to')
-
+	
+	
 func deferred_scale_to() -> void:
 	var scale_d: float = scale_ratio / previous_scale_ratio
 	var cursor_value: float = cursor_slider.value
@@ -227,7 +254,8 @@ func deferred_scale_to() -> void:
 		track.update_scale(scale_ratio)
 	@warning_ignore("narrowing_conversion")
 	previous_scale_ratio = scale_ratio
-
+	
+	
 func _on_cursor_slider_value_changed(value: float) -> void:
 	if tempo_update_in_process:
 		return 
@@ -236,7 +264,8 @@ func _on_cursor_slider_value_changed(value: float) -> void:
 		var audio_track_time: float = cursor_slider.value / track_speed
 		audio_track_time = audio_track_time / scale_ratio
 		audio_stream_player.play(audio_track_time)
-
+	
+	
 func _on_bpm_input_tempo_changed(value: float) -> void:
 	if track_tempo != bpm_input.value:
 		@warning_ignore("narrowing_conversion")
@@ -244,7 +273,8 @@ func _on_bpm_input_tempo_changed(value: float) -> void:
 		@warning_ignore("narrowing_conversion")
 		tempo_update_timeout = 1.0
 		print("tempo updated to", track_tempo)
-
+	
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('ui_hold_ctrl'):
 		hold_ctrl = true
@@ -253,15 +283,18 @@ func _input(event: InputEvent) -> void:
 		hold_ctrl = false
 		print('hold_ctrl: ', hold_ctrl)
 		
+		
 func _on_window_scroll_minimum_size_changed() -> void:
 	var d: float = cursor_slider.value - window_scroll.get_h_scroll()
 	if d > window_size and not pending_wscroll_update:
 		window_scroll_size = window_scroll.get_h_scroll() + d
 		pending_wscroll_update = true
-
+	
+	
 func _on_window_scroll_resized() -> void:
 	pass # Replace with function body.
-
+	
+	
 func filemenu_button_items() -> void:
 	var popup: PopupMenu = file_menu_button.get_popup()
 	if not popup.index_pressed.is_connected(_on_filemenu_button_index_pressed):
@@ -279,43 +312,58 @@ func filemenu_button_items() -> void:
 	popup.add_item('Exit', 7)
 	
 	disabled_app_bar_items()
-	
+		
+		
 func disabled_app_bar_items() -> void:
 	var popup: PopupMenu = file_menu_button.get_popup()
 	popup.set_item_disabled(4, true)
 	popup.set_item_disabled(5, true)
-
-func _on_filemenu_button_index_pressed(index: int) -> void:
-	if index == 0:
-		import_audio()
 	
-	elif index == 6:
-		map_info_dialog.visible = true
-	elif index == 7:
-		var _reset: Error = get_tree().change_scene_to_file('res://Scenes/main.tscn')
-
+	
+func _on_filemenu_button_index_pressed(index: int) -> void:
+	match index:
+		0:
+			import_audio()
+		1:
+			import_beatmap()
+	
+		6:
+			map_info_dialog.visible = true
+		7:
+			var _reset: Error = get_tree().change_scene_to_file('res://Scenes/main.tscn')
+	
+	
 func _on_map_info_dialog_map_info_saved() -> void:
 	map_info_was_saved = true
 	export_data()
-
+	
+	
 func import_audio() -> void:
 	file_dialog.visible = true
-
 	file_dialog.current_file = ""
 	file_dialog.popup_centered()
 	preview_updated.emit()
-
+	
+	
 func update_load_audio(_text: String) -> void:
 	#if add_map_button.disabled:
 		#add_map_button.set_text(text)
 	pass
+	
+	
+func import_beatmap() -> void:
+	%ImportMap.visible = true
+	%ImportMap.current_file = ""
+	%ImportMap.popup_centered()
 
 func _on_import_map_file_selected(path: String) -> void:
 	import_data(path)
-
+	
+	
 func _on_file_dialog_file_selected(path: String) -> void:
 	var _start_thread: Error = audio_load_thread.start(load_song.bind(path))
-
+	
+	
 func check_audio() -> bool:
 	var checker: bool = FileAccess.file_exists(ogg_file_path)
 	if not checker:
@@ -323,7 +371,8 @@ func check_audio() -> bool:
 #		show_notice(ogg_file_path + ("file not found"))
 		return false
 	return true
-
+	
+	
 func is_song_loaded(audio_data: AudioStreamOggVorbis) -> bool:
 	if audio_data == null:
 #		show_notice("error")
@@ -332,14 +381,16 @@ func is_song_loaded(audio_data: AudioStreamOggVorbis) -> bool:
 	else:
 		return true
 		
+		
 func load_ogg(path: String) -> AudioStreamOggVorbis:
 	var ogg_file: AudioStreamOggVorbis = AudioStreamOggVorbis.load_from_file(path)
 	return ogg_file as AudioStreamOggVorbis
 	
+	
 func load_song(input_file_path: String) -> void:
 	print("Loading started ", input_file_path)
 	enable_load_song(false)
-	update_load_audio(tr("Loading..."))
+	update_load_audio.call_deferred(tr("Loading..."))
 	var is_copied: bool = copy_song(input_file_path)
 	if not is_copied:
 		audio_load_thread.wait_to_finish()
@@ -509,6 +560,7 @@ func export_data() -> void:
 	var data: Dictionary = {
 		audio = map_info_dialog.audio_info, 
 		beatmap_maker = map_info_dialog.beatmap_maker, 
+		difficulty = map_info_dialog.difficulty_field.text,
 		audio_file = map_info_dialog.audio_info.artist + "-" + map_info_dialog.audio_info.title + ".ogg",
 		date = get_curr_date(), 
 		tempo = track_tempo, 
@@ -554,32 +606,50 @@ func enable_load_song(enabled: bool) -> void:
 		#add_map_button.disabled = true
 		
 func import_data(path: String) -> void:
+	print("path beatmap: ", path)
+	
+	# Read JSON data
 	var data: Dictionary = UTILITIES.read_json_file(path)
 	if data == null:
 		return
-	var data_tempo: String = data.tempo
+	
+	# Construct correct audio file path
+	var folder_path: String = path.get_base_dir()
+	var audio_path: String = folder_path + "/" + data.audio_file
+	load_song(audio_path)  # Use the full path
+
+	# Set tempo and start position
+	var data_tempo: float = data.tempo
 	track_tempo = int(data_tempo)
-	bpm_input.set_tempo(track_tempo)
-	var data_start_positon: String = data.start.pos
+	%BPMInput.set_tempo(track_tempo)
+	
+	var data_start_positon: float = data.start_pos
 	@warning_ignore("narrowing_conversion")
-	map_start_pos = float(data_start_positon) / EDITOR_C.CELL_EXPORT_SCALE
-	set_start_input.input.set_value(map_start_pos)
-	map_info_dialog.set_data(data.creator, data.audio)
+	map_start_pos = data_start_positon / EDITOR_C.CELL_EXPORT_SCALE
+	set_start_input.value = map_start_pos
+	
+	# Set beatmap info
+	map_info_dialog.set_data(data.beatmap_maker, data.audio)
 	map_info_was_saved = false
 	pending_export = false
+	
+	# Clear existing tracks and set parameters
 	clear_tracks()
 	set_params()
 	scale_to(0)
+	
 	@warning_ignore("narrowing_conversion")
 	var y: int = EDITOR_C.CELL_HEIGHT + EDITOR_C.TRACK_DISTANCE
-	for track_data: Dictionary in data.tracks:
-		var t: Control = track_scene.instance()
+	for i: int in range(min(5, data.tracks.size())):
+		var track_data: Dictionary = data.tracks[i]
+		var t: Control = track_scene.instantiate()
 		t.set_data(track_data)
 		t.set_position(Vector2(0, y))
 		t.set_start_position(map_start_pos)
 		tracks_container.add_child(t)
 		tracks.append(t)
 		y += t.get_height()
+
 	update_cursor_length()
 	update_last_file_path(path)
 	print("data imported")

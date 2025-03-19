@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bbiiknxnmcqqc"
+path="res://.godot/imported/X:IN-No Doubt.ogg-4a19a8ac4f55b2c76283ad76f39aea9b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/trash/3362012056 X:IN-No Doubt/X:IN-No Doubt.ogg"
+dest_files=["res://.godot/imported/X:IN-No Doubt.ogg-4a19a8ac4f55b2c76283ad76f39aea9b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

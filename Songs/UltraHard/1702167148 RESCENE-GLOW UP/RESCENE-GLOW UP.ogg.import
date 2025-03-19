@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://pok35ktttwmn"
+path="res://.godot/imported/RESCENE-GLOW UP.ogg-8b04d9641da47b397898f881cf6b956c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/UltraHard/1702167148 RESCENE-GLOW UP/RESCENE-GLOW UP.ogg"
+dest_files=["res://.godot/imported/RESCENE-GLOW UP.ogg-8b04d9641da47b397898f881cf6b956c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

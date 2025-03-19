@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://btu2yh8r2ht6j"]
 
-[ext_resource type="Script" path="res://Beatmaker/Components/track.gd" id="1_k06ys"]
+[ext_resource type="Script" uid="uid://d2hmdyrxnp3w1" path="res://Beatmaker/Components/track.gd" id="1_k06ys"]
 
 [node name="Track" type="Control"]
 layout_mode = 3

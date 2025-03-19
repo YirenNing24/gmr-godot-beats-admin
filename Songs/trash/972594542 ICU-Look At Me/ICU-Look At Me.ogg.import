@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bjtn8jgy4f8ie"
+path="res://.godot/imported/ICU-Look At Me.ogg-d4eb7b1a545dfaefc9e65ccee8703d4a.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/trash/972594542 ICU-Look At Me/ICU-Look At Me.ogg"
+dest_files=["res://.godot/imported/ICU-Look At Me.ogg-d4eb7b1a545dfaefc9e65ccee8703d4a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

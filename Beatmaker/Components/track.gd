@@ -39,8 +39,8 @@ func spawn_bars() -> void:
 	var x: int = 0
 	if bars_data != []:
 		for data: Dictionary in bars_data:
-			var data_index: String = data.index
-			var data_quarters_count: String = data.quarters_count
+			var data_index: String = str(data.index)
+			var data_quarters_count: String = str(data.quarters_count)
 			var bar: Node2D = add_bar(x, int(data_index), int(data_quarters_count))
 			bar.set_notes_data(data.notes)
 			x += bar.get_width()

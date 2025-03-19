@@ -5,6 +5,7 @@ signal map_info_saved
 @onready var beatmap_maker_field: LineEdit = %BeatmapMakerField
 @onready var artist_field: LineEdit = $"%ArtistField"
 @onready var title_field: LineEdit = $"%TitleField"
+@onready var difficulty_field: LineEdit = %DifficultyField
 
 const AUDIO_FIELD_NAMES: Array[String] = [
 	"TITLE",
@@ -15,6 +16,7 @@ var audio_file_name: String = ""
 var beatmap_maker: String
 var session_file_path: String = "user://editor/session"
 var session_data: Dictionary[String, Variant] = {}
+
 
  
 func setup(audio_name: String, audio_comments: String) -> void:
@@ -56,14 +58,14 @@ func apply_map_inputs() -> void:
 	UTILITIES.write_json_file(session_file_path, session_data)
 	
 	
-func set_data(beatmap_maker_data: String, audio_data: Dictionary[String, Variant]) -> void:
+func set_data(beatmap_maker_data: String, audio_data: Dictionary) -> void:
 	beatmap_maker_field.text = str(beatmap_maker_data)
 	set_audio_inputs_from(audio_data)
 	apply_map_inputs()
 	apply_audio_inputs()
 	
 	
-func set_audio_inputs_from(data: Dictionary[String, String]) -> void:
+func set_audio_inputs_from(data: Dictionary) -> void:
 	artist_field.text = data["artist"]
 	title_field.text= data["title"]
 	

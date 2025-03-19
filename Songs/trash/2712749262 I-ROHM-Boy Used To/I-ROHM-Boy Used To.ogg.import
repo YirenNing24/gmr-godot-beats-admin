@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://3jalb0ayibi8"
+path="res://.godot/imported/I-ROHM-Boy Used To.ogg-6c484decdceac0ff8c253ed0d0b42f46.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/trash/2712749262 I-ROHM-Boy Used To/I-ROHM-Boy Used To.ogg"
+dest_files=["res://.godot/imported/I-ROHM-Boy Used To.ogg-6c484decdceac0ff8c253ed0d0b42f46.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

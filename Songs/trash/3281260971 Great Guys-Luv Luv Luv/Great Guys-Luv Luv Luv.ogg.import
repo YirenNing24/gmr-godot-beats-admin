@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bktla0qh60ujg"
+path="res://.godot/imported/Great Guys-Luv Luv Luv.ogg-a627e048aacef76349b3e0aa3f44298b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/trash/3281260971 Great Guys-Luv Luv Luv/Great Guys-Luv Luv Luv.ogg"
+dest_files=["res://.godot/imported/Great Guys-Luv Luv Luv.ogg-a627e048aacef76349b3e0aa3f44298b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

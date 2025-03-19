@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b7407r4wcok1p"
+path="res://.godot/imported/I-ROHM-Boy Used To.ogg-49c8fc68243df76253b84f0f529d3f6e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/UltraHard/1848336194 I-ROHM-Boy Used To/I-ROHM-Boy Used To.ogg"
+dest_files=["res://.godot/imported/I-ROHM-Boy Used To.ogg-49c8fc68243df76253b84f0f529d3f6e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

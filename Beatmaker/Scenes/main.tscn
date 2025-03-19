@@ -1,10 +1,10 @@
 [gd_scene load_steps=30 format=3 uid="uid://d03pucxisbxjv"]
 
-[ext_resource type="Script" path="res://Beatmaker/Scenes/main.gd" id="1_4lm2j"]
+[ext_resource type="Script" uid="uid://c4rj5dxfn0cit" path="res://Beatmaker/Scenes/main.gd" id="1_4lm2j"]
 [ext_resource type="Theme" uid="uid://csmn6i3t0is3l" path="res://Beatmaker/Themes/file_dialog.tres" id="2_7fwbi"]
 [ext_resource type="Theme" uid="uid://ox8b3u5s2nr5" path="res://Beatmaker/Scenes/file_button.tres" id="3_3ksly"]
 [ext_resource type="PackedScene" uid="uid://3asw05b86j8q" path="res://Beatmaker/Components/bpm_input.tscn" id="3_7e23d"]
-[ext_resource type="Script" path="res://Beatmaker/Scenes/PlayButton.gd" id="3_naw2h"]
+[ext_resource type="Script" uid="uid://s5wpteak3643" path="res://Beatmaker/Scenes/PlayButton.gd" id="3_naw2h"]
 [ext_resource type="PackedScene" uid="uid://coobf77s77ucm" path="res://Beatmaker/Components/start_pos_input.tscn" id="4_5x18j"]
 [ext_resource type="PackedScene" uid="uid://didp4xuev5bj1" path="res://Beatmaker/Components/waveform_node.tscn" id="4_byj1h"]
 [ext_resource type="FontFile" uid="uid://dcbjdaee834xb" path="res://Beatmaker/Assets/Fonts/argentum-sans.vf-regular.ttf" id="4_qakiy"]
@@ -247,9 +247,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_l3ycc")
 theme_override_font_sizes/font_size = 15
 theme_override_styles/focus = ExtResource("6_fovbi")
@@ -288,6 +288,8 @@ script = null
 [node name="BPMInput" parent="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2" instance=ExtResource("3_7e23d")]
 unique_name_in_owner = true
 layout_mode = 2
+max_value = 200.0
+value = 130.0
 prefix = "BPM:"
 
 [node name="WindowScroll" type="ScrollContainer" parent="EditorContainer/HBoxContainer/VBoxContainer"]
@@ -386,7 +388,7 @@ theme_override_constants/separation = 50
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -14.99
+volume_db = -6.222
 
 [node name="FileDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -417,6 +419,7 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="changed_value" from="EditorContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2/BPMInput" to="." method="_on_bpm_input_changed_value"]
 [connection signal="minimum_size_changed" from="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll" to="." method="_on_window_scroll_minimum_size_changed"]
 [connection signal="resized" from="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll" to="." method="_on_window_scroll_resized"]
 [connection signal="value_changed" from="EditorContainer/HBoxContainer/VBoxContainer/WindowScroll/VBoxContainer/WaveformContainer/CursorContainer/CursorSlider" to="." method="_on_cursor_slider_value_changed"]

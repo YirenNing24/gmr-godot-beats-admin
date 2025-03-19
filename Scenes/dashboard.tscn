@@ -375,6 +375,9 @@ size_flags_horizontal = 3
 visible = false
 layout_mode = 2
 
+[node name="MissionWindow" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("16_o8sh0")]
+layout_mode = 2
+
 [node name="Logout" parent="." instance=ExtResource("9_osgux")]
 unique_name_in_owner = true
 visible = false

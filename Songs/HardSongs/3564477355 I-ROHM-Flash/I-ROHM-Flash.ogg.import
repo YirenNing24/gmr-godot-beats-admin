@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bsmdeql35k5bk"
+path="res://.godot/imported/I-ROHM-Flash.ogg-27f859ceb7d7e43f90ed9c26b68a76be.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/HardSongs/3564477355 I-ROHM-Flash/I-ROHM-Flash.ogg"
+dest_files=["res://.godot/imported/I-ROHM-Flash.ogg-27f859ceb7d7e43f90ed9c26b68a76be.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

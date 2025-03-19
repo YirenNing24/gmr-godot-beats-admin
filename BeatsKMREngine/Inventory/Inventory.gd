@@ -30,7 +30,7 @@ var inventory_update: Dictionary
 #
 # @returns {Node} The current instance for method chaining.
 #
-func open_card_inventory() -> Node:
+func open_card_inventory() -> void:
 	# Prepare an HTTP request for fetching private inbox data.
 	var prepared_http_req: Dictionary = BKMREngine.prepare_http_request()
 	OpenCardInventory = prepared_http_req.request
@@ -46,19 +46,11 @@ func open_card_inventory() -> Node:
 	var request_url: String = host + "/api/card/inventory/open"
 	
 	# Send a GET request to retrieve the private inbox data.
-	await BKMREngine.send_get_request(OpenCardInventory, request_url)
+	BKMREngine.send_get_request(OpenCardInventory, request_url)
 	
 	# Return the current node for method chaining.
-	return self as Node
 
 # Callback function to handle the completion of the private inbox data retrieval request.
-# Parameters:
-# - _result (int): The result of the HTTP request.
-# - response_code (int): The HTTP response code.
-# - headers (Array): The array of HTTP headers received in the response.
-# - body (PackedByteArray): The packed byte array containing the response body.
-# Returns:
-# - void
 func _onOpenCardInventory_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check if the HTTP response indicates success.
 	var status_check: bool = BKMRUtils.check_http_response(response_code, headers, body)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cpl4mgii82vxw"]
 
 [ext_resource type="Theme" uid="uid://csmn6i3t0is3l" path="res://Beatmaker/Themes/file_dialog.tres" id="1_fbkd8"]
-[ext_resource type="Script" path="res://Beatmaker/Components/map_info_dialog.gd" id="1_ijsgf"]
+[ext_resource type="Script" uid="uid://c78ne06p30uac" path="res://Beatmaker/Components/map_info_dialog.gd" id="1_ijsgf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn4o4"]
 bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.333333)

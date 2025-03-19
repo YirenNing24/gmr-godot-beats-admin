@@ -4,7 +4,6 @@ var note_scene: PackedScene = preload("res://Beatmaker/Components/note.tscn")
 var swipe_note_scene: PackedScene = preload("res://Beatmaker/Components/swipe_note.tscn")
 
 @onready var grid: Node2D = get_node("Grid")
-@onready var index_label: Label = get_node("IndexLabel")
 @onready var control: Control = get_node('Control')
 @onready var track: Control = get_node("../../")
 @onready var editor: Control = get_node("/root/Main")
@@ -24,7 +23,7 @@ var hold_ctrl: bool = false
 var hold_shift: bool = false
 
 func _ready() -> void:
-	index_label.text = str(index)
+	%IndexLabel.text = str(index)
 	control.custom_minimum_size = Vector2(get_width(), get_height())
 	#editor.connecting_slanted_long_note.connect(_on_set_slanting_node_data)
 
@@ -60,7 +59,7 @@ func set_x_position(val: int) -> void:
 func update_scale(val: int) -> void:
 	scale = Vector2(val, 1)
 	position = Vector2(x_pos * val, position.y)
-	index_label.set_scale(Vector2(1.0 / val, 1))
+	%IndexLabel.set_scale(Vector2(1.0 / val, 1))
 	for note: StaticBody2D in notes:
 		note.update_scale(val)
 
@@ -105,10 +104,10 @@ func clear_notes() -> void:
 
 func set_notes_data(notes_data: Array) -> void:
 	for data: Dictionary in notes_data:
-		var data_pos: String = data.pos
+		var data_pos: String = str(data.pos)
 		var x: float = float(data_pos) / EDITOR_C.CELL_EXPORT_SCALE
 		var note: StaticBody2D = add_note(x)
-		var data_len: String = data.len
+		var data_len: String = str(data.len)
 		note.set_width(float(data_len) / EDITOR_C.CELL_EXPORT_SCALE)
 
 func get_notes_data() -> Array:

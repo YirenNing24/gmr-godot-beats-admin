@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bn35ydrrlri1f"
+path="res://.godot/imported/Hearts2Hearts-The Chase.ogg-557cfe54c5ddb8ad11c1d9f6fb052f4d.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/trash/2677152557 Hearts2Hearts-The Chase/Hearts2Hearts-The Chase.ogg"
+dest_files=["res://.godot/imported/Hearts2Hearts-The Chase.ogg-557cfe54c5ddb8ad11c1d9f6fb052f4d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

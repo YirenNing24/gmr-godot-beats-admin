@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://bj74imsghls41"]
 
-[ext_resource type="Script" path="res://Beatmaker/Components/bar.gd" id="1_hk7xb"]
-[ext_resource type="Script" path="res://Beatmaker/Components/Grid.gd" id="2_0ni8s"]
+[ext_resource type="Script" uid="uid://bc8at0wvxdq2e" path="res://Beatmaker/Components/bar.gd" id="1_hk7xb"]
+[ext_resource type="Script" uid="uid://c6w51it2dhadn" path="res://Beatmaker/Components/Grid.gd" id="2_0ni8s"]
 
 [node name="Bar" type="Node2D"]
 script = ExtResource("1_hk7xb")
 
 [node name="IndexLabel" type="Label" parent="."]
+unique_name_in_owner = true
 offset_left = 3.0
 offset_top = -24.0
 offset_right = 47.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b3gn7sva3sbu7"
+path="res://.godot/imported/I-ROHM-Flash.ogg-76cfb7bbc51e6960228045f47ef5cfd2.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/trash/4072900342 I-ROHM-Flash/I-ROHM-Flash.ogg"
+dest_files=["res://.godot/imported/I-ROHM-Flash.ogg-76cfb7bbc51e6960228045f47ef5cfd2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

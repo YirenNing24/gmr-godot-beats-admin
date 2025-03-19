@@ -49,22 +49,31 @@ func _on_reward_amount_field_text_changed(required_value: String) -> void:
 	
 	
 func _on_review_button_pressed() -> void:
-		mission_object = {
-			"name": %MissionNameField.text,
-			"missionType": %MissionTypeField.get_item_text().to_lower(),
-			"description": %DescriptionField.text,
-			"requirement": { 
-				"criteria": {
-					"type": %MissionSubtypeField.get_item_text(),
-					"value": int(%RequiredMissionValueField.text),
-					"group": "",
-					"description": %DescriptionField.text,
-					"reward": { 
-								"name": %RewardField.get_item_text(),
-								"cards": card_reward_array,
-								"beats": 0,
-								"amount": int(%RewardAmountField.text) 
-					}
-				},
-			}
+	var mission_type_index: int = %MissionTypeField.selected
+	var reward_field_index: int = %RewardField.selected
+	var mission_type_text: String = %MissionTypeField.get_item_text(mission_type_index).to_lower().replace(" mission", "")
+	mission_object = {
+		"name": %MissionNameField.text,
+		"missionType": mission_type_text,
+		"description": %DescriptionField.text,
+		"requirement": { 
+			"criteria": {
+				"type": %MissionSubtypeField.get_item_text(mission_type_index),
+				"value": int(%RequiredMissionValueField.text),
+				"group": "",
+				"description": %DescriptionField.text,
+				"reward": { 
+							"name": %RewardField.get_item_text(reward_field_index),
+							"cards": card_reward_array,
+							"beats": 0,
+							"amount": int(%RewardAmountField.text) 
+				}
+			},
 		}
+	}
+	
+	if %MissionTypeField.selected == 0:
+		BKMREngine.Mission.create_personal_mission(mission_object)
+		print(mission_object)
+	else:
+		BKMREngine.Mission.create_collection_mission((mission_object))

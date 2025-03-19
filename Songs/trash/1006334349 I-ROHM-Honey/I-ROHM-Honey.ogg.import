@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c8g0asrvpe2x2"
+path="res://.godot/imported/I-ROHM-Honey.ogg-32be83fb2f9107c6593f9e15f061006c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/trash/1006334349 I-ROHM-Honey/I-ROHM-Honey.ogg"
+dest_files=["res://.godot/imported/I-ROHM-Honey.ogg-32be83fb2f9107c6593f9e15f061006c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

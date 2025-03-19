@@ -42,6 +42,7 @@ const BKMRLogger: Script = preload("res://BeatsKMREngine/utils/BKMRLogger.gd")
 @onready var NFT: Node = Node.new()
 @onready var Song: Node = Node.new()
 @onready var Gacha: Node = Node.new()
+@onready var Mission: Node = Node.new()
 
 # Configuration dictionaries
 @onready var config: Dictionary = {}
@@ -67,7 +68,7 @@ var list_script: Script = preload("res://BeatsKMREngine/List/List.gd")
 var nft_script: Script = preload("res://BeatsKMREngine/NFT/NFT.gd")
 var song_script: Script = preload("res://BeatsKMREngine/Song/Song.gd")
 var gacha_script: Script = preload("res://BeatsKMREngine/Gacha/Gacha.gd")
-
+var mission_script: Script = preload("res://BeatsKMREngine/Mission/Mission.gd")
 
 # Called when the node is added to the scene tree
 func _ready() -> void:
@@ -105,6 +106,7 @@ func initialize_script() -> void:
 	NFT.set_script(nft_script)
 	Song.set_script(song_script)
 	Gacha.set_script(gacha_script)
+	Mission.set_script(mission_script)
 	
 	
 func add_child_nodes() -> void:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dkdjtcd2mnn5o"
+path="res://.godot/imported/ICU-Anti-Hero.ogg-08396e60f775e2f5a6ae79bdfb37029a.oggvorbisstr"
+
+[deps]
+
+source_file="res://Songs/UltraHard/1237244139 ICU-Anti-Hero/ICU-Anti-Hero.ogg"
+dest_files=["res://.godot/imported/ICU-Anti-Hero.ogg-08396e60f775e2f5a6ae79bdfb37029a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
